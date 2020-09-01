@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
@@ -41,18 +41,18 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 		// Hook up Layer methods to Layer button
 		private void SetupClickListeners() {
 			// Hook up Layer Change methods to Layer Change buttons
-			Utilities.FindButtonAndAddOnClickListener("+LayerButton", LayerUp);
-			Utilities.FindButtonAndAddOnClickListener("-LayerButton", LayerDown);
+			UIUtilities.FindButtonAndAddOnClickListener("+LayerButton", LayerUp);
+			UIUtilities.FindButtonAndAddOnClickListener("-LayerButton", LayerDown);
 
 			// Hook up ToggleOnlyShowCurrentLayer method to OnlyShowCurrentLayerToggle
 			_layerEyeImage = GameObject.Find("LayerEyeImage");
 			_layerClosedEyeImage = GameObject.Find("LayerClosedEyeImage");
 			_onlyShowCurrentLayerToggleComponent =
-				Utilities.FindGameObjectOrError("OnlyShowCurrentLayerToggle").GetComponent<Toggle>();
+				UIUtilities.FindGameObjectOrError("OnlyShowCurrentLayerToggle").GetComponent<Toggle>();
 			_onlyShowCurrentLayerToggleComponent.onValueChanged.AddListener(ToggleOnlyShowCurrentLayer);
 
 			// Instantiate the LayerText game object to display the current layer
-			_layerText = Utilities.FindGameObjectOrError("LayerText").GetComponent<Text>();
+			_layerText = UIUtilities.FindGameObjectOrError("LayerText").GetComponent<Text>();
 		}
 
 		// ----- UPDATE -----

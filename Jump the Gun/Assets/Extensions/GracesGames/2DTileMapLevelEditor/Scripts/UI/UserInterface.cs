@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.UI {
 
@@ -51,7 +51,7 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.UI {
 		public void Setup() {
 			name = ("LevelEditorUI");
 			_levelEditor = LevelEditor.Instance;
-			_levelEditorPanel = Utilities.FindGameObjectOrError("LevelEditorPanel");
+			_levelEditorPanel = UIUtilities.FindGameObjectOrError("LevelEditorPanel");
 			SetupOpenCloseButton();
 			SetupSelectedTile();
 			SetupPrefabsButtons();
@@ -61,22 +61,22 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.UI {
 
 		private void SetupOpenCloseButton() {
 			// Hook up CloseLevelEditorPanel method to CloseButton
-			Utilities.FindButtonAndAddOnClickListener("CloseButton", _levelEditor.CloseLevelEditorPanel);
+			UIUtilities.FindButtonAndAddOnClickListener("CloseButton", _levelEditor.CloseLevelEditorPanel);
 
 			// Hook up OpenLevelEditorPanel method to OpenButton and disable at start
-			_openButton = Utilities.FindButtonAndAddOnClickListener("OpenButton", _levelEditor.OpenLevelEditorPanel);
+			_openButton = UIUtilities.FindButtonAndAddOnClickListener("OpenButton", _levelEditor.OpenLevelEditorPanel);
 			_openButton.SetActive(false);
 		}
 
 		private void SetupSelectedTile() {
-			_selectedTile = Utilities.FindGameObjectOrError("SelectedTile");
+			_selectedTile = UIUtilities.FindGameObjectOrError("SelectedTile");
 			// Find the image component of the SelectedTileImage GameObject
-			_selectedTileImage = Utilities.FindGameObjectOrError("SelectedTileImage").GetComponent<Image>();
+			_selectedTileImage = UIUtilities.FindGameObjectOrError("SelectedTileImage").GetComponent<Image>();
 		}
 
 		private void SetupPrefabsButtons() {
 			// Find the prefabParent object and set the cellSize for the tile selection buttons
-			_prefabParent = Utilities.FindGameObjectOrError("Prefabs");
+			_prefabParent = UIUtilities.FindGameObjectOrError("Prefabs");
 			if (_prefabParent.GetComponent<GridLayoutGroup>() == null) {
 				Debug.LogError("Make sure prefabParent has a GridLayoutGroup component");
 			}

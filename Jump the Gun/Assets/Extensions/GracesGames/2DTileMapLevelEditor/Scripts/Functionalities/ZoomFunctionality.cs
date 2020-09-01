@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
@@ -35,9 +35,9 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
         // Hook up Zoom methods to Zoom buttons
         private void SetupClickListeners() {
-            Utilities.FindButtonAndAddOnClickListener("ZoomInButton", ZoomIn);
-            Utilities.FindButtonAndAddOnClickListener("ZoomOutButton", ZoomOut);
-            Utilities.FindButtonAndAddOnClickListener("ZoomDefaultButton", ZoomDefault);
+            UIUtilities.FindButtonAndAddOnClickListener("ZoomInButton", ZoomIn);
+            UIUtilities.FindButtonAndAddOnClickListener("ZoomOutButton", ZoomOut);
+            UIUtilities.FindButtonAndAddOnClickListener("ZoomDefaultButton", ZoomDefault);
         }
 
         // ----- UPDATE -----

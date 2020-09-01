@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 using GracesGames.SimpleFileBrowser.Scripts;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
@@ -52,7 +52,7 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
 		// Hook up Save/Load Level method to Save/Load button
 		private void SetupClickListeners() {
-			Utilities.FindButtonAndAddOnClickListener("SaveButton", SaveLevel);
+			UIUtilities.FindButtonAndAddOnClickListener("SaveButton", SaveLevel);
 		}
 
 		// ----- PUBLIC METHODS -----

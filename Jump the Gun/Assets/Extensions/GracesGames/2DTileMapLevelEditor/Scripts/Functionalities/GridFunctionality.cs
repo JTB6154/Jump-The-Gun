@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
@@ -28,21 +28,21 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 		// Hook up Grid methods to Grid button
 		private void SetupClickListeners() {
 			// Hook up ToggleGrid method to GridToggle
-			GameObject gridEyeToggle = Utilities.FindGameObjectOrError("GridEyeToggle");
-			_gridEyeImage = Utilities.FindGameObjectOrError("GridEyeImage");
-			_gridClosedEyeImage = Utilities.FindGameObjectOrError("GridClosedEyeImage");
+			GameObject gridEyeToggle = UIUtilities.FindGameObjectOrError("GridEyeToggle");
+			_gridEyeImage = UIUtilities.FindGameObjectOrError("GridEyeImage");
+			_gridClosedEyeImage = UIUtilities.FindGameObjectOrError("GridClosedEyeImage");
 			_gridEyeToggleComponent = gridEyeToggle.GetComponent<Toggle>();
 			_gridEyeToggleComponent.onValueChanged.AddListener(ToggleGrid);
 
 			// Hook up Grid Size methods to Grid Size buttons
-			Utilities.FindButtonAndAddOnClickListener("GridSizeUpButton", GridOverlay.Instance.GridSizeUp);
-			Utilities.FindButtonAndAddOnClickListener("GridSizeDownButton", GridOverlay.Instance.GridSizeDown);
+			UIUtilities.FindButtonAndAddOnClickListener("GridSizeUpButton", GridOverlay.Instance.GridSizeUp);
+			UIUtilities.FindButtonAndAddOnClickListener("GridSizeDownButton", GridOverlay.Instance.GridSizeDown);
 
 			// Hook up Grid Navigation methods to Grid Navigation buttons
-			Utilities.FindButtonAndAddOnClickListener("GridUpButton", GridOverlay.Instance.GridUp);
-			Utilities.FindButtonAndAddOnClickListener("GridDownButton", GridOverlay.Instance.GridDown);
-			Utilities.FindButtonAndAddOnClickListener("GridLeftButton", GridOverlay.Instance.GridLeft);
-			Utilities.FindButtonAndAddOnClickListener("GridRightButton", GridOverlay.Instance.GridRight);
+			UIUtilities.FindButtonAndAddOnClickListener("GridUpButton", GridOverlay.Instance.GridUp);
+			UIUtilities.FindButtonAndAddOnClickListener("GridDownButton", GridOverlay.Instance.GridDown);
+			UIUtilities.FindButtonAndAddOnClickListener("GridLeftButton", GridOverlay.Instance.GridLeft);
+			UIUtilities.FindButtonAndAddOnClickListener("GridRightButton", GridOverlay.Instance.GridRight);
 		}
 
 		// Define the level sizes as the sizes for the grid

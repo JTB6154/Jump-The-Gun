@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
@@ -27,8 +28,8 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
 		// Hook up Undo/Redo method to Undo/Redo button
 		private void SetupClickListeners() {
-			Utilities.FindButtonAndAddOnClickListener("UndoButton", Undo);
-			Utilities.FindButtonAndAddOnClickListener("RedoButton", Redo);
+			UIUtilities.FindButtonAndAddOnClickListener("UndoButton", Undo);
+			UIUtilities.FindButtonAndAddOnClickListener("RedoButton", Redo);
 		}
 
 		// ----- UPDATE -----

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 
@@ -39,10 +39,10 @@ namespace GracesGames._2DTileMapLevelEditor.Scripts.Functionalities {
 		// Hook up Mode methods to Mode button
 		private void SetupClickListeners() {
 			// Hook up EnablePencilMode method to PencilButton
-			GameObject pencilModeButton = Utilities.FindButtonAndAddOnClickListener("PencilButton", DisableFillMode);
+			GameObject pencilModeButton = UIUtilities.FindButtonAndAddOnClickListener("PencilButton", DisableFillMode);
 			_pencilModeButtonImage = pencilModeButton.GetComponent<Image>();
 			// Hook up EnableFillMode method to FillButton
-			GameObject fillModeButton = Utilities.FindButtonAndAddOnClickListener("FillButton", EnableFillMode);
+			GameObject fillModeButton = UIUtilities.FindButtonAndAddOnClickListener("FillButton", EnableFillMode);
 			_fillModeButtonImage = fillModeButton.GetComponent<Image>();
 		}
 

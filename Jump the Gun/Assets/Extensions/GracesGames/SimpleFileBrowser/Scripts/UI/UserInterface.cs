@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames.SimpleFileBrowser.Scripts.UI {
 
@@ -94,30 +94,30 @@ namespace GracesGames.SimpleFileBrowser.Scripts.UI {
 		// Setup click listeners for buttons
 		private void SetupClickListeners() {
 			// Hook up Directory Navigation methods to Directory Navigation Buttons
-			Utilities.FindButtonAndAddOnClickListener("DirectoryBackButton", _fileBrowser.DirectoryBackward);
-			Utilities.FindButtonAndAddOnClickListener("DirectoryForwardButton", _fileBrowser.DirectoryForward);
-			Utilities.FindButtonAndAddOnClickListener("DirectoryUpButton", _fileBrowser.DirectoryUp);
+			UIUtilities.FindButtonAndAddOnClickListener("DirectoryBackButton", _fileBrowser.DirectoryBackward);
+			UIUtilities.FindButtonAndAddOnClickListener("DirectoryForwardButton", _fileBrowser.DirectoryForward);
+			UIUtilities.FindButtonAndAddOnClickListener("DirectoryUpButton", _fileBrowser.DirectoryUp);
 
 			// Hook up CloseFileBrowser method to CloseFileBrowserButton
-			Utilities.FindButtonAndAddOnClickListener("CloseFileBrowserButton", _fileBrowser.CloseFileBrowser);
+			UIUtilities.FindButtonAndAddOnClickListener("CloseFileBrowserButton", _fileBrowser.CloseFileBrowser);
 			// Hook up SelectFile method to SelectFileButton
-			_selectFileButton = Utilities.FindButtonAndAddOnClickListener("SelectFileButton", _fileBrowser.SelectFile);
+			_selectFileButton = UIUtilities.FindButtonAndAddOnClickListener("SelectFileButton", _fileBrowser.SelectFile);
 		}
 
 		// Setup path, load and save file text
 		private void SetupTextLabels() {
 			// Find the path and file label (path label optional in Portrait UI)
 			GameObject pathLabel = GameObject.Find("PathLabel");
-			GameObject fileLabel = Utilities.FindGameObjectOrError("FileLabel");
+			GameObject fileLabel = UIUtilities.FindGameObjectOrError("FileLabel");
 
 			// Find pathText game object to update path on clicks
-			_pathText = Utilities.FindGameObjectOrError("PathText");
+			_pathText = UIUtilities.FindGameObjectOrError("PathText");
 			// Find loadText game object to update load file text on clicks
-			_loadFileText = Utilities.FindGameObjectOrError("LoadFileText");
+			_loadFileText = UIUtilities.FindGameObjectOrError("LoadFileText");
 
 			// Find saveFileText game object to update save file text 
 			// and hook up onValueChanged listener to check the name using CheckValidFileName method
-			_saveFileText = Utilities.FindGameObjectOrError("SaveFileText");
+			_saveFileText = UIUtilities.FindGameObjectOrError("SaveFileText");
 			_saveFileTextInputFile = _saveFileText.GetComponent<InputField>();
 			_saveFileTextInputFile.onValueChanged.AddListener(_fileBrowser.CheckValidFileName);
 
@@ -141,7 +141,7 @@ namespace GracesGames.SimpleFileBrowser.Scripts.UI {
 		private void SetupSearchInputField() {
 			// Find search input field and get input field component
 			// and hook up onValueChanged listener to update search results on value change
-			_searchInputField = Utilities.FindGameObjectOrError("SearchInputField").GetComponent<InputField>();
+			_searchInputField = UIUtilities.FindGameObjectOrError("SearchInputField").GetComponent<InputField>();
 			foreach (Text textComponent in _searchInputField.GetComponentsInChildren<Text>()) {
 				textComponent.fontSize = PanelTextFontSize;
 			}

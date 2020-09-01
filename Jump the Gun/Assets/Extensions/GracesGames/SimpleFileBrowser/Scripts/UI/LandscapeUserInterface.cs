@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+using UIUtilities = GracesGames.Common.Scripts.Utilities;
 
 namespace GracesGames.SimpleFileBrowser.Scripts.UI {
 
@@ -8,15 +8,15 @@ namespace GracesGames.SimpleFileBrowser.Scripts.UI {
 
         protected override void SetupParents() {
             // Find directories parent to group directory buttons
-            DirectoriesParent = Utilities.FindGameObjectOrError("Directories");
+            DirectoriesParent = UIUtilities.FindGameObjectOrError("Directories");
             // Find files parent to group file buttons
-            FilesParent = Utilities.FindGameObjectOrError("Files");
+            FilesParent = UIUtilities.FindGameObjectOrError("Files");
             // Set the button height
             SetButtonParentHeight(DirectoriesParent, ItemButtonHeight);
             SetButtonParentHeight(FilesParent, ItemButtonHeight);
             // Set the panel color
-            Utilities.FindGameObjectOrError("DirectoryPanel").GetComponent<Image>().color = DirectoryPanelColor;
-            Utilities.FindGameObjectOrError("FilePanel").GetComponent<Image>().color = FilePanelColor;
+            UIUtilities.FindGameObjectOrError("DirectoryPanel").GetComponent<Image>().color = DirectoryPanelColor;
+            UIUtilities.FindGameObjectOrError("FilePanel").GetComponent<Image>().color = FilePanelColor;
         }
     }
 }
