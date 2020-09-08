@@ -153,7 +153,7 @@ MonoBehaviour:
     m_Bits: 55
   gravityScale: 1
   walkSpeed: 50
-  maxSpeed: 15
+  maxSpeed: 10
   movementSmoothing: 0.05
   grounded: 0
   lastGrounded: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   maxRockets: 2
   rocketPrefab: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
     type: 3}
+  liftOffCheckTime: 0.2
 --- !u!1 &1737607661350953783
 GameObject:
   m_ObjectHideFlags: 0

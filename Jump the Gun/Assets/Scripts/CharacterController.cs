@@ -18,7 +18,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float gravityScale = 1f;
     [SerializeField] float walkSpeed = 5f;
     //[SerializeField] float mass = 2.5f;
-    [SerializeField] float maxSpeed = 15f;
+    [Range(5f,150f)][SerializeField] float maxSpeed = 15f;
     Vector3 moveControls = new Vector3();
     Vector3 velocity = new Vector2(0, 0);
     Vector3 smoothVelocity = Vector3.zero;
@@ -133,6 +133,12 @@ public class CharacterController : MonoBehaviour
                 numBigRecoilShots -= 1;
                 subtractBigRecoil = true;
             }
+        }
+
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            //cap the speed of the player
+            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
     }
 
