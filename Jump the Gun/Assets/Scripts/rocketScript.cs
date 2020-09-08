@@ -42,11 +42,11 @@ public class rocketScript : MonoBehaviour
         {
             if (colliders[i].gameObject != gameObject)
             {
-                Debug.Log("found it");
+                //Debug.Log("found it");
                 Rigidbody2D prb = colliders[i].GetComponent<Rigidbody2D>(); //get player rigid body
                 Vector3 direction = colliders[i].gameObject.transform.position - gameObject.transform.position; //vector from rocket to player
-                float scale = explosionRadius / direction.magnitude; //farther away scales down force applied
-
+                float scale = (explosionRadius - direction.magnitude) / explosionRadius; //farther away scales down force applied
+                direction.Normalize();
                 prb.AddForce(direction * scale * explosionforce);
             }
         }

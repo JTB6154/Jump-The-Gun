@@ -156,14 +156,17 @@ MonoBehaviour:
   maxSpeed: 15
   movementSmoothing: 0.05
   grounded: 0
-  groundCheckRadius: 0.2
+  lastGrounded: 0
+  groundCheckRadius: 0.04
   left: 97
   right: 100
   fire1: 323
   fire2: 324
   recoilSize: 300
+  maxBigRecoilShots: 2
   rocketForce: 300
   rocketRadius: 2
+  maxRockets: 2
   rocketPrefab: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
     type: 3}
 --- !u!1 &1737607661350953783
