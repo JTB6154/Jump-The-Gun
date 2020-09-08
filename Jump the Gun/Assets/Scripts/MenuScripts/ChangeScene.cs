@@ -8,13 +8,14 @@ public class ChangeScene : MonoBehaviour
     //Load main game
     public void LoadGameScene()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("GavinTest", LoadSceneMode.Single);
     }
 
     //Load title screen
-    public void LoadTitleScene()
+    public void LoadMenuScene()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 
     //Load Options

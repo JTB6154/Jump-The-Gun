@@ -1251,7 +1251,7 @@ PrefabInstance:
     - target: {fileID: 7777952609990135538, guid: 3c75f85bb6cb21b41963fa8e212ea939,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadTitleScene
+      value: LoadMenuScene
       objectReference: {fileID: 0}
     - target: {fileID: 7777952609990135538, guid: 3c75f85bb6cb21b41963fa8e212ea939,
         type: 3}
