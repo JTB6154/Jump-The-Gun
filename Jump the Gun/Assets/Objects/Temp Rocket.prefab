@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7135729808385639175}
   - component: {fileID: 8967675180997167366}
   - component: {fileID: 2491184299533774725}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Temp Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
