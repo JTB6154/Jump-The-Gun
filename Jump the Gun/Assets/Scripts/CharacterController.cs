@@ -52,6 +52,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] int maxRockets = 2;
     int numRockets = 0;
     [SerializeField] GameObject rocketPrefab;
+    [Range(0f, 1f)] [SerializeField] float liftOffCheckTime = .2f;
+    bool subtractRockets = false;
+    bool subtractBigRecoil =false;
 	#endregion
 
 #region UnityFunctions
@@ -116,6 +119,21 @@ public class CharacterController : MonoBehaviour
                 Landed();
             }
         }
+        else if (lastGrounded) //if you are not currently grounded but last frame you were you just took off
+        {
+            //check to see if you shot a rocket or big recoil recently then subtract them
+            if (subtractRockets)
+            { 
+                numRockets -= 1;
+                subtractRockets = false;
+            }
+
+            if (subtractBigRecoil)
+            { 
+                numBigRecoilShots -= 1;
+                subtractBigRecoil = true;
+            }
+        }
     }
 
     private void OnDrawGizmos()
@@ -141,7 +159,16 @@ public class CharacterController : MonoBehaviour
         if (numRockets < 1) //shoot no rockets if there arne't any left
         { return; }
 
-        numRockets -= 1; //decrement the number of rockets remaining
+        if (!grounded)
+        {
+            numRockets -= 1; //decrement the number of big recoil shots remaining
+        }
+        else
+        {
+            subtractRockets = true;
+            StartCoroutine(removeRocketsFired());
+        }
+
 
         if (rocketPrefab != null)
         { 
@@ -161,7 +188,15 @@ public class CharacterController : MonoBehaviour
         if (numBigRecoilShots < 1)// no big recoil shots if there are no bullets left
         { return; }
 
-        numBigRecoilShots -= 1; //decrement the number of big recoil shots remaining
+        if (!grounded)
+        {
+            numBigRecoilShots -= 1; //decrement the number of big recoil shots remaining
+        }
+        else
+        {
+            subtractBigRecoil = true;
+            StartCoroutine(removeBigRecoilFired());
+        }
 
 
         //get the mouse position in world coordinates
@@ -241,7 +276,19 @@ public class CharacterController : MonoBehaviour
         ReloadGuns();
     }
 
-	#endregion
+    #endregion
+#region coroutines
+    IEnumerator removeRocketsFired()
+    {
+        yield return new WaitForSeconds(liftOffCheckTime);
+        subtractRockets = false;
+    }
+    IEnumerator removeBigRecoilFired()
+    {
+        yield return new WaitForSeconds(liftOffCheckTime);
+        subtractBigRecoil = false;
+    }
+    #endregion
 
 
 }
