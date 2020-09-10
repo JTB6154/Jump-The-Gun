@@ -8,7 +8,9 @@ public class rocketScript : MonoBehaviour
     [Range(1,1000)][SerializeField] float initialForce = 100f;
     float explosionforce = 0f;
     float explosionRadius = 2f;
+    bool hasExploded = false;
     [SerializeField] LayerMask player;
+    [SerializeField] LayerMask notPlayer;
     
 
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class rocketScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (gameObject.GetComponent<Collider2D>().IsTouchingLayers(notPlayer))
         {
             Explode();
         }
@@ -37,6 +39,8 @@ public class rocketScript : MonoBehaviour
 
     void Explode()
     {
+        if (hasExploded) return;//if the rocket has already exploded don't make it blow up again
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, explosionRadius, player);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -50,7 +54,8 @@ public class rocketScript : MonoBehaviour
                 prb.AddForce(direction * scale * explosionforce);
             }
         }
-
+        //show the rocket has already exploded
+        hasExploded = true;
         Destroy(gameObject);
     }
 }
