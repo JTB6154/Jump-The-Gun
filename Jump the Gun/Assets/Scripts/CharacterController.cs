@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-#region Variables
-	[Header("Character Objects")]
+    #region Variables
+    [Header("Character Objects")]
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject character;
     [SerializeField] Camera cam;
     [SerializeField] GameObject groundchecker;
+    groundFinder finder;
     [SerializeField] LayerMask ground;
     [Space]
 
@@ -18,7 +19,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float gravityScale = 1f;
     [SerializeField] float walkSpeed = 5f;
     //[SerializeField] float mass = 2.5f;
-    [Range(5f,150f)][SerializeField] float maxSpeed = 15f;
+    [Range(5f, 150f)] [SerializeField] float maxSpeed = 15f;
     Vector3 moveControls = new Vector3();
     Vector3 velocity = new Vector2(0, 0);
     Vector3 smoothVelocity = Vector3.zero;
@@ -28,6 +29,8 @@ public class CharacterController : MonoBehaviour
     public bool grounded;
     public bool lastGrounded;
     [SerializeField] float groundCheckRadius = .15f;
+    [Range(0.001f, .1f)] [SerializeField] float groundCheckDepth = .01f;
+    [Range(0.001f, 1f)] [SerializeField] float groundTimer = .01f;
 
 
     [Space]
@@ -42,7 +45,7 @@ public class CharacterController : MonoBehaviour
     [Space]
     [Header("Big recoil")]
     KeyCode fireBigRecoil;
-    [Range(5f, 500f)] [SerializeField] float recoilSize = 300f;
+    [Range(5f, 500f)] [SerializeField] float recoilForce = 300f;
     [Range(1,5)][SerializeField] int maxBigRecoilShots = 2;
     int numBigRecoilShots = 0;
     [Header("Rocket Jump")]
@@ -105,10 +108,9 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundchecker.transform.position, groundCheckRadius, ground);
         lastGrounded = grounded;
-        grounded = CheckGrounded(colliders);
-
+        grounded = CheckGrounded(ground);
+        
         if (grounded) //only walk on the ground, no air adjustments
         {
             Vector3 targetVelocity = new Vector3(moveControls.x * 10f, rb.velocity.y);
@@ -144,7 +146,11 @@ public class CharacterController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(groundchecker.transform.position, groundCheckRadius);
+       // Gizmos.DrawWireSphere(groundchecker.transform.position, groundCheckRadius); //old ground checking, no longer used
+        Gizmos.DrawLine(groundchecker.transform.position + -transform.right * groundCheckRadius,
+                        groundchecker.transform.position + -transform.right * groundCheckRadius + -Vector3.up * groundCheckDepth);
+        Gizmos.DrawLine(groundchecker.transform.position + transform.right * groundCheckRadius,
+                groundchecker.transform.position + transform.right * groundCheckRadius + -Vector3.up * groundCheckDepth);
     }
 
     private void OnGUI()
@@ -210,7 +216,7 @@ public class CharacterController : MonoBehaviour
         //get the vector from mouse position to object position
         Vector2 direction = new Vector2(gameObject.transform.position.x - mousePos.x, gameObject.transform.position.y - mousePos.y).normalized;
 
-        rb.AddForce(direction * recoilSize);
+        rb.AddForce(direction * recoilForce);
 
     }
 
@@ -258,28 +264,48 @@ public class CharacterController : MonoBehaviour
         {
             cam = GameObject.FindObjectOfType<Camera>();
         }
+
+        finder = groundchecker.GetComponent<groundFinder>();
     }
     #endregion
 
 #region physicsHelpers
-    bool CheckGrounded(Collider2D[] colliders)
+    bool CheckGrounded(LayerMask countsAsGround)
     {
-        bool ground = false;
-        for (int i = 0; i < colliders.Length; i++)
+
+        bool isGrounded = false;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundchecker.transform.position, groundCheckRadius, countsAsGround);
+        RaycastHit2D right = Physics2D.Raycast(groundchecker.transform.position + transform.right * groundCheckRadius, -Vector2.up, groundCheckDepth, countsAsGround);
+        RaycastHit2D left = Physics2D.Raycast(groundchecker.transform.position + -transform.right * groundCheckRadius, -Vector2.up, groundCheckDepth, countsAsGround);
+
+        if (right.collider != null)
         {
-            if (colliders[i].gameObject != gameObject)
-            {
-                ground = true;
-            }
+            isGrounded = true;
         }
-        return ground;
+
+        if (left.collider != null)
+        {
+            isGrounded = true;
+        }
+
+        //for (int i = 0; i < colliders.Length; i++)
+        //{
+        //    if (colliders[i].gameObject != gameObject)
+        //    {
+        //        isGrounded = true;
+        //    }
+        //}
+
+
+        return isGrounded;
     }
 
     void Landed()
     {
 
         //landing causes you to reload your guns
-        ReloadGuns();
+        StartCoroutine(landedDoubleCheck());
     }
 
     #endregion
@@ -293,6 +319,12 @@ public class CharacterController : MonoBehaviour
     {
         yield return new WaitForSeconds(liftOffCheckTime);
         subtractBigRecoil = false;
+    }
+
+    IEnumerator landedDoubleCheck()
+    {
+        yield return new WaitForSeconds(groundTimer);
+        if (grounded) ReloadGuns();
     }
     #endregion
 

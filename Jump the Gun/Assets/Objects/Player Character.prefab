@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3511297541694562783}
   - component: {fileID: 1266472977782812875}
   - component: {fileID: -1583146218990895924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,11 +153,13 @@ MonoBehaviour:
     m_Bits: 55
   gravityScale: 1
   walkSpeed: 50
-  maxSpeed: 10
+  maxSpeed: 5
   movementSmoothing: 0.05
   grounded: 0
   lastGrounded: 0
-  groundCheckRadius: 0.04
+  groundCheckRadius: 0.09
+  groundCheckDepth: 0.04
+  groundTimer: 0.01
   left: 97
   right: 100
   fire1: 323
@@ -169,7 +171,7 @@ MonoBehaviour:
   maxRockets: 2
   rocketPrefab: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
     type: 3}
-  liftOffCheckTime: 0.2
+  liftOffCheckTime: 0.3
 --- !u!1 &1737607661350953783
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +181,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4821134395631563914}
-  m_Layer: 0
+  - component: {fileID: 4780501903347434926}
+  - component: {fileID: 4895865653935272618}
+  m_Layer: 5
   m_Name: GroundFinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,9 +198,50 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737607661350953783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0966, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8699347926505432588}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4780501903347434926
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737607661350953783}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.07, y: 0.03817773}
+  m_EdgeRadius: 0
+--- !u!114 &4895865653935272618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737607661350953783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99feeda31fd79284d82519454c994832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultGround:
+    serializedVersion: 2
+    m_Bits: 0
