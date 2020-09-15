@@ -145,6 +145,16 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public int GetBigRecoilAmmo()
+    {
+        return numBigRecoilShots;
+    }
+
+    public int GetRocketAmmo()
+    {
+        return numRockets;
+    }
+
     private void OnDrawGizmos()
     {
        // Gizmos.DrawWireSphere(groundchecker.transform.position, groundCheckRadius); //old ground checking, no longer used
