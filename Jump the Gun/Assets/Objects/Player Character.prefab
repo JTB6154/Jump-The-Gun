@@ -152,19 +152,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   gravityScale: 1
-  walkSpeed: 50
-  maxSpeed: 5
+  walkSpeed: 26
+  maxSpeed: 10
   movementSmoothing: 0.05
+  velocityZeroing: 1
   grounded: 0
   lastGrounded: 0
-  groundCheckRadius: 0.09
+  groundCheckRadius: 0.098
   groundCheckDepth: 0.04
   groundTimer: 0.01
   left: 97
   right: 100
   fire1: 323
   fire2: 324
-  recoilSize: 300
+  recoilForce: 300
   maxBigRecoilShots: 2
   rocketForce: 300
   rocketRadius: 2

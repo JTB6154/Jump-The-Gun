@@ -24,6 +24,7 @@ public class CharacterController : MonoBehaviour
     Vector3 velocity = new Vector2(0, 0);
     Vector3 smoothVelocity = Vector3.zero;
     [Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f;
+    [SerializeField] public bool velocityZeroing = true;
 
 
     public bool grounded;
@@ -210,6 +211,10 @@ public class CharacterController : MonoBehaviour
             StartCoroutine(removeBigRecoilFired());
         }
 
+        if (velocityZeroing)
+        {
+            rb.velocity = Vector2.zero;
+        }
 
         //get the mouse position in world coordinates
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);

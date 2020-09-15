@@ -992,6 +992,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
         type: 3}
+    - target: {fileID: -1583146218990895924, guid: 6b80e60416c62b14daea630dc949b948,
+        type: 3}
+      propertyPath: groundCheckDepth
+      value: 0.045
+      objectReference: {fileID: 0}
     - target: {fileID: 252171939886247679, guid: 6b80e60416c62b14daea630dc949b948,
         type: 3}
       propertyPath: m_Name
