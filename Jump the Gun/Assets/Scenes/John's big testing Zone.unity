@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547ee73622e1d654792557f91c81e7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchSprite: {fileID: 268827926}
+  switchSprite: {fileID: 0}
   tiedPlatforms: []
   tripsSwitch:
     serializedVersion: 2
@@ -1156,6 +1156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: groundCheckDepth
       value: 0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: -1583146218990895924, guid: 6b80e60416c62b14daea630dc949b948,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 252171939886247679, guid: 6b80e60416c62b14daea630dc949b948,
         type: 3}

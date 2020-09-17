@@ -152,9 +152,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   gravityScale: 1
-  walkSpeed: 26
-  maxSpeed: 10
-  movementSmoothing: 0.05
+  walkSpeed: 4.5
+  maxSpeed: 15
   velocityZeroing: 1
   grounded: 0
   lastGrounded: 0

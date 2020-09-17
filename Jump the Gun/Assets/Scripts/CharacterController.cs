@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour
     Vector3 moveControls = new Vector3();
     Vector3 velocity = new Vector2(0, 0);
     Vector3 smoothVelocity = Vector3.zero;
-    [Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f;
+    //[Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f; //currently unused, may be used later for time to reach max speed
     [SerializeField] public bool velocityZeroing = true;
 
 
@@ -62,7 +62,6 @@ public class CharacterController : MonoBehaviour
 	#endregion
 
 #region UnityFunctions
-	// Start is called before the first frame update
 	void Start()
     {
 
@@ -74,22 +73,23 @@ public class CharacterController : MonoBehaviour
         InitializeGuns();
     }
 
-    // Update is called once per frame
     void Update()
     {
         moveControls = Vector3.zero;
 
         //update controls here
+
+        //currently no smoothing between starting to walk and being walking.
         if (Input.GetKey(left))
         {
             //Debug.Log("walk left");
-            moveControls.x += -walkSpeed * Time.deltaTime;
+            moveControls.x += -walkSpeed;
         }
 
         if (Input.GetKey(right))
         {
             //Debug.Log("walk Right");
-            moveControls.x += walkSpeed * Time.deltaTime;
+            moveControls.x += walkSpeed;
         }
 
         if (Input.GetKeyDown(fireBigRecoil))
@@ -114,8 +114,12 @@ public class CharacterController : MonoBehaviour
         
         if (grounded) //only walk on the ground, no air adjustments
         {
-            Vector3 targetVelocity = new Vector3(moveControls.x * 10f, rb.velocity.y);
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref smoothVelocity, movementSmoothing);
+            Vector3 targetVelocity = new Vector3(moveControls.x, rb.velocity.y);
+            //Debug.Log(targetVelocity);
+            targetVelocity = targetVelocity.normalized*Mathf.Clamp(targetVelocity.magnitude, 0f, maxSpeed); //clamps the speed to between zero and max speed
+            //rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref smoothVelocity, movementSmoothing);
+            //Debug.Log(targetVelocity);
+            rb.velocity = targetVelocity;
 
             if (!lastGrounded)//if last frame you were not grounded this frame you have landed
             {
@@ -314,6 +318,7 @@ public class CharacterController : MonoBehaviour
     }
 
     #endregion
+
 #region coroutines
     IEnumerator removeRocketsFired()
     {

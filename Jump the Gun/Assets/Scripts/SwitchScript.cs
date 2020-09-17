@@ -36,15 +36,14 @@ public class SwitchScript : MonoBehaviour
     {
         //toggle the switch and change the sprite
         switchIsOn = !switchIsOn;
+
         if (switchIsOn)
         {
-            Debug.Log(switchSprite);
             Debug.Log(onSprite);
             switchSprite.sprite = onSprite;
         }
         else
         {
-            Debug.Log(switchSprite);
             Debug.Log(offSprite);
             switchSprite.sprite = offSprite;
         }
@@ -54,7 +53,7 @@ public class SwitchScript : MonoBehaviour
     {
 
         //make sure all of the things are properly attached 
-        if (switchSprite = null)
+        if (switchSprite == null)
         {
             Debug.LogWarning("Switch "+ gameObject.name +" automatically got sprite renderer component");
             switchSprite = GetComponent<SpriteRenderer>();
