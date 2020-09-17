@@ -12,10 +12,9 @@ public class rocketScript : MonoBehaviour
     [SerializeField] LayerMask player;
     [SerializeField] LayerMask notPlayer;
     
-
-    // Start is called before the first frame update
     void Start()
-    {
+    { 
+        //get the rigidbody if it wasn't given in the inspector
         if (rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
@@ -24,6 +23,7 @@ public class rocketScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //check if it is colliding with the something other than the player
         if (gameObject.GetComponent<Collider2D>().IsTouchingLayers(notPlayer))
         {
             Explode();

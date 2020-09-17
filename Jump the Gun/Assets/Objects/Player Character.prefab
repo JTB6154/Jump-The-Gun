@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.195, y: 0.2}
   m_EdgeRadius: 0
 --- !u!50 &1266472977782812875
 Rigidbody2D:
@@ -152,9 +152,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   gravityScale: 1
-  walkSpeed: 26
-  maxSpeed: 10
-  movementSmoothing: 0.05
+  walkSpeed: 4.5
+  maxSpeed: 15
   velocityZeroing: 1
   grounded: 0
   lastGrounded: 0
