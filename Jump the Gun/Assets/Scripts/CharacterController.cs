@@ -59,6 +59,8 @@ public class CharacterController : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] float liftOffCheckTime = .2f;
     bool subtractRockets = false;
     bool subtractBigRecoil =false;
+    private Animator animator;
+    private SpriteRenderer sprite;
 	#endregion
 
 #region UnityFunctions
@@ -105,6 +107,8 @@ public class CharacterController : MonoBehaviour
             ShootRocket();
         }
 
+        //Update the player character's animations based on their movement
+        UpdateAnim();
     }
 
     private void FixedUpdate()
@@ -146,6 +150,37 @@ public class CharacterController : MonoBehaviour
         {
             //cap the speed of the player
             rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+    }
+
+    //Determine what animation needs to be played
+    //based on what the player character is currently doing
+    private void UpdateAnim()
+    {
+        //Check if the player is moving up or down
+        if (rb.velocity.y != 0)
+        {
+            animator.SetBool("InAir", true);
+        }
+        else
+        {
+            animator.SetBool("InAir", false);
+        }
+
+        //Check if the player character is moving left or right
+        if (rb.velocity.x > 0)
+        {
+            sprite.flipX = true;
+            animator.SetBool("Running", true);
+        }
+        else if (rb.velocity.x < 0)
+        {
+            sprite.flipX = false;
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
         }
     }
 
@@ -283,6 +318,8 @@ public class CharacterController : MonoBehaviour
         {
             cam = GameObject.FindObjectOfType<Camera>();
         }
+        animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
 
         finder = groundchecker.GetComponent<groundFinder>();
     }
