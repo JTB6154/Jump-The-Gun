@@ -51,7 +51,7 @@ public class CharacterController : MonoBehaviour
     int numBigRecoilShots = 0;
     [Header("Rocket Jump")]
     KeyCode fireRocket;
-    [Range(5f, 500f)] [SerializeField] float rocketForce = 300f;
+    [Range(5f, 1000f)] [SerializeField] float rocketForce = 300f;
     [Range(.1f, 10f)] [SerializeField] float rocketRadius = 2f;
     [SerializeField] int maxRockets = 2;
     int numRockets = 0;
