@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5606061587031542434}
   - component: {fileID: 5606061587031542435}
   - component: {fileID: 5606061587031542432}
+  - component: {fileID: -229538871158459190}
   m_Layer: 0
   m_Name: TestPlatform2
   m_TagString: SpriteShape
@@ -319,3 +320,21 @@ MonoBehaviour:
   m_OptimizeGeometry: 1
   m_EnableTangents: 0
   m_GeometryCached: 0
+--- !u!68 &-229538871158459190
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606061587031542433}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -10.125326, y: -1.4231791}
+  - {x: 8.854284, y: -1.4231791}

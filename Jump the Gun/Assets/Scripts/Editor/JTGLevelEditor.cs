@@ -2,6 +2,15 @@
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System;
+using System.Runtime.Serialization;
+using System.Xml.Linq;
+using System.Text;
+using System.Linq;
 
 public class JTGLevelEditor : EditorWindow
 {
@@ -19,12 +28,18 @@ public class JTGLevelEditor : EditorWindow
     private string spriteShapeName = "Platform";
 
     // Level Save/Load - Variables
-    private readonly string pathToSaveLoad = "Levels/";
+    private readonly string pathToSaveLoad = "/Resources/Levels/";
+    private static Level_Data levelData;
+    private int currentLevelIndex = 0;      // Level number - 1
 
     [MenuItem("Tools/JTG Level Editor")]
     public static void ShowWindow()
     {
         _editorInstance = GetWindow<JTGLevelEditor>("JTG Level Editor");
+
+        // Initialization
+        levelData = new Level_Data();
+        levelData.levelCount = 8;
     }
 
     void OnInspectorUpdate()
@@ -90,15 +105,17 @@ public class JTGLevelEditor : EditorWindow
                 // 1 - Directory path to store level files
                 GUILayout.Label("Path to Save/Load", EditorStyles.boldLabel);
                 EditorGUI.BeginDisabledGroup(true);
-                spriteShapeName = EditorGUILayout.TextField("Relative Path", pathToSaveLoad, GUILayout.MaxWidth(400));
+                EditorGUILayout.TextField("Relative Path", pathToSaveLoad, GUILayout.MaxWidth(400));
                 EditorGUI.EndDisabledGroup();
 
                 // 2 - Level files list
+                // ...
 
                 // 3 - Save/Load buttons
                 if (GUILayout.Button("Save Level", GUILayout.MaxWidth(250)))
                 {
                     Debug.Log("Saved");
+                    SaveLevelData();
                 }
                 if (GUILayout.Button("Load Level", GUILayout.MaxWidth(250)))
                 {
@@ -144,9 +161,77 @@ public class JTGLevelEditor : EditorWindow
 
         // Unpack the prefab completely so that the user won't mess up with the default asset
         PrefabUtility.UnpackPrefabInstance(newPlatform, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
-
+        
         //Debug.Log(platformName + " was created.");   // testing
     }
 
+    /// <summary>
+    /// Save the serialized GameObjects as xml file.
+    /// </summary>
+    /// https://stackoverflow.com/questions/36852213/how-to-serialize-and-save-a-gameobject-in-unity
+    private void SaveLevelData()
+    {
+        // Stream the file with a File Stream. (Note that File.Create() 'Creates' or 'Overwrites' a file.)
+        FileStream file = File.Create(Application.dataPath + pathToSaveLoad + "/Levels.dat");
+
+        // Get all GameObjects (SpriteShapes) in scene
+        levelData.Levels = new List<GameObject>[levelData.levelCount];
+        levelData.Levels[currentLevelIndex] = FindAllSpriteShapesInScene();
+
+        // Save the data
+        levelData.levelCount = 7;
+
+        Debug.Log(levelData.SaveToString());
+
+        // Serialize to xml
+        DataContractSerializer bf = new DataContractSerializer(levelData.GetType());
+        MemoryStream streamer = new MemoryStream();
+
+        // Serialize the file
+        bf.WriteObject(streamer, levelData);
+        streamer.Seek(0, SeekOrigin.Begin);
+
+        // Save to disk
+        file.Write(streamer.GetBuffer(), 0, streamer.GetBuffer().Length);
+
+        // Close the file to prevent any corruptions
+        file.Close();
+
+        // PRINT RESULT
+        //string result = XElement.Parse(Encoding.ASCII.GetString(streamer.GetBuffer()).Replace("\0", "")).ToString();
+        //Debug.Log("Serialized Result: " + result);
+    }
+
+    private List<GameObject> FindAllSpriteShapesInScene()
+    {
+        GameObject[] all = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
+        IEnumerable<GameObject> spriteShapesInScene = all.Where(obj => obj.CompareTag("SpriteShape"));
+
+        List<GameObject> output = spriteShapesInScene.ToList();
+
+        return output;
+    }
+
     #endregion
+
+}
+
+/// <summary>
+/// 
+/// </summary>
+[DataContract]
+class Level_Data
+{
+    [DataMember]
+    private List<GameObject>[] _levels;
+
+    public List<GameObject>[] Levels { get => _levels; set => _levels = value; }
+
+    [DataMember]
+    public int levelCount;
+
+    public string SaveToString()
+    {
+        return JsonUtility.ToJson(_levels[0][0].GetComponent<SpriteShapeController>(), false);
+    }
 }
