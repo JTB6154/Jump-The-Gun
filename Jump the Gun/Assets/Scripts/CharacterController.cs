@@ -23,8 +23,9 @@ public class CharacterController : MonoBehaviour
     Vector3 moveControls = new Vector3();
     Vector3 velocity = new Vector2(0, 0);
     Vector3 smoothVelocity = Vector3.zero;
-    //[Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f; //currently unused, may be used later for time to reach max speed
+    [Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f; //currently unused, may be used later for time to reach max speed
     [SerializeField] public bool velocityZeroing = true;
+    [SerializeField] float maxWalkableAngle = 65;
 
 
     public bool grounded;
@@ -196,11 +197,13 @@ public class CharacterController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-       // Gizmos.DrawWireSphere(groundchecker.transform.position, groundCheckRadius); //old ground checking, no longer used
+        //Gizmos.DrawWireSphere(groundchecker.transform.position, groundCheckRadius); //old ground checking, depreciated
         Gizmos.DrawLine(groundchecker.transform.position + -transform.right * groundCheckRadius,
                         groundchecker.transform.position + -transform.right * groundCheckRadius + -Vector3.up * groundCheckDepth);
         Gizmos.DrawLine(groundchecker.transform.position + transform.right * groundCheckRadius,
                 groundchecker.transform.position + transform.right * groundCheckRadius + -Vector3.up * groundCheckDepth);
+        Gizmos.DrawLine(groundchecker.transform.position,
+                        groundchecker.transform.position + -Vector3.up * groundCheckDepth);
     }
 
     private void OnGUI()
@@ -331,30 +334,38 @@ public class CharacterController : MonoBehaviour
 
         bool isGrounded = false;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundchecker.transform.position, groundCheckRadius, countsAsGround);
+        //Collider2D[] colliders = Physics2D.OverlapCircleAll(groundchecker.transform.position, groundCheckRadius, countsAsGround);
         RaycastHit2D right = Physics2D.Raycast(groundchecker.transform.position + transform.right * groundCheckRadius, -Vector2.up, groundCheckDepth, countsAsGround);
         RaycastHit2D left = Physics2D.Raycast(groundchecker.transform.position + -transform.right * groundCheckRadius, -Vector2.up, groundCheckDepth, countsAsGround);
+        RaycastHit2D center = Physics2D.Raycast(groundchecker.transform.position, -Vector2.up, groundCheckDepth, countsAsGround);
 
-        if (right.collider != null)
+
+        if (finder.getGrounded(countsAsGround))
         {
-            isGrounded = true;
-        }
 
-        if (left.collider != null)
-        {
             isGrounded = true;
-        }
 
-        //for (int i = 0; i < colliders.Length; i++)
-        //{
-        //    if (colliders[i].gameObject != gameObject)
-        //    {
-        //        isGrounded = true;
-        //    }
-        //}
+            if (!CheckRayCastNormalAngle(left)) isGrounded = false;
+            if (!CheckRayCastNormalAngle(right)) isGrounded = false;
+            if (!CheckRayCastNormalAngle(center)) isGrounded = false;
+
+        }
 
 
         return isGrounded;
+    }
+
+    bool CheckRayCastNormalAngle(RaycastHit2D hit)
+    {
+        if (hit.collider != null)
+        {
+            if (Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg) > maxWalkableAngle)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     void Landed()
