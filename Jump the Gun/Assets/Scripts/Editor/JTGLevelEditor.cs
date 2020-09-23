@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Text;
 using System.Linq;
+using UnityEditor.ShortcutManagement;
 
 public class JTGLevelEditor : EditorWindow
 {
@@ -29,17 +30,23 @@ public class JTGLevelEditor : EditorWindow
 
     // Level Save/Load - Variables
     private readonly string pathToSaveLoad = "/Resources/Levels/";
-    private static Level_Data levelData;
+    private Level_Data levelData;
     private int currentLevelIndex = 0;      // Level number - 1
+    private LevelItemManagerEditor levelItemEditor;
 
     [MenuItem("Tools/JTG Level Editor")]
+    [Shortcut("Refresh Window", KeyCode.F12)]
     public static void ShowWindow()
     {
+        if (_editorInstance) _editorInstance.Close();
+
         _editorInstance = GetWindow<JTGLevelEditor>("JTG Level Editor");
 
         // Initialization
-        levelData = new Level_Data();
-        levelData.levelCount = 8;
+        _editorInstance.levelData = new Level_Data();
+        _editorInstance.levelData.levelCount = 5;
+        var ff = FindObjectOfType<LevelItemManager>();
+        _editorInstance.levelItemEditor = (LevelItemManagerEditor)Editor.CreateEditor(ff);
     }
 
     void OnInspectorUpdate()
@@ -63,6 +70,7 @@ public class JTGLevelEditor : EditorWindow
         GUILayout.BeginVertical("box");
         GUILayout.Label("Official 2D Level Editor for Jump The Gun", EditorStyles.miniLabel);
         GUILayout.Label("© 2020 Cardboard Gamers", EditorStyles.miniLabel);
+        GUILayout.Label("Press F12 to Refresh the Window", EditorStyles.label);
         GUILayout.EndVertical();
 
         // Switching tab
@@ -76,8 +84,6 @@ public class JTGLevelEditor : EditorWindow
                 // 1 - Selecting Prefab
                 GUILayout.Label("Select Prefab", EditorStyles.boldLabel);
                 spriteShapePrefab = EditorGUILayout.ObjectField("Sprite Shape Prefab", spriteShapePrefab, typeof(GameObject), true, GUILayout.MaxWidth(400)) as GameObject;
-
-
 
                 if (GUILayout.Button("Get Default Sprite Shape", GUILayout.MaxWidth(250)))
                 {
@@ -109,7 +115,13 @@ public class JTGLevelEditor : EditorWindow
                 EditorGUI.EndDisabledGroup();
 
                 // 2 - Level files list
-                // ...
+                GUILayout.Label("Level List Info", EditorStyles.boldLabel);
+                EditorGUI.BeginDisabledGroup(true);
+                EditorGUILayout.TextField("Total Level Count", levelData.levelCount.ToString(), GUILayout.MaxWidth(400));
+                EditorGUI.EndDisabledGroup();
+                // ============================ List code below ============================
+                levelItemEditor.OnInspectorGUI();
+
 
                 // 3 - Save/Load buttons
                 if (GUILayout.Button("Save Level", GUILayout.MaxWidth(250)))
@@ -161,7 +173,7 @@ public class JTGLevelEditor : EditorWindow
 
         // Unpack the prefab completely so that the user won't mess up with the default asset
         PrefabUtility.UnpackPrefabInstance(newPlatform, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
-        
+
         //Debug.Log(platformName + " was created.");   // testing
     }
 
@@ -174,15 +186,22 @@ public class JTGLevelEditor : EditorWindow
         // Stream the file with a File Stream. (Note that File.Create() 'Creates' or 'Overwrites' a file.)
         FileStream file = File.Create(Application.dataPath + pathToSaveLoad + "/Levels.dat");
 
-        // Get all GameObjects (SpriteShapes) in scene
-        levelData.Levels = new List<GameObject>[levelData.levelCount];
-        levelData.Levels[currentLevelIndex] = FindAllSpriteShapesInScene();
+        // Find all GameObjects (SpriteShapes) in scene
+        List<GameObject> ssInScene = FindAllSpriteShapesInScene();
+
+        // Get Sprite Shape Renderer/Controller components info
+        levelData.SpriteShapeControllers = new List<string>[levelData.levelCount];
+        foreach (GameObject ss in ssInScene)
+        {
+            List<string> currSSControllerList = levelData.SpriteShapeControllers[currentLevelIndex];
+            if (currSSControllerList == null)
+                currSSControllerList = new List<string>();
+            currSSControllerList.Add(SaveLoadUtility.ConvertToJsonString(ss.GetComponent<SpriteShapeController>()));
+        }
 
         // Save the data
-        levelData.levelCount = 7;
 
-        Debug.Log(levelData.SaveToString());
-
+        // ============================ Serialization Step Below ============================
         // Serialize to xml
         DataContractSerializer bf = new DataContractSerializer(levelData.GetType());
         MemoryStream streamer = new MemoryStream();
@@ -217,7 +236,7 @@ public class JTGLevelEditor : EditorWindow
 }
 
 /// <summary>
-/// 
+/// Class to be serialized to a saved level file
 /// </summary>
 [DataContract]
 class Level_Data
@@ -225,13 +244,12 @@ class Level_Data
     [DataMember]
     private List<GameObject>[] _levels;
 
+    [DataMember]
+    private List<string>[] _ssControllers;
+
     public List<GameObject>[] Levels { get => _levels; set => _levels = value; }
+    public List<string>[] SpriteShapeControllers { get => _ssControllers; set => _ssControllers = value; }
 
     [DataMember]
     public int levelCount;
-
-    public string SaveToString()
-    {
-        return JsonUtility.ToJson(_levels[0][0].GetComponent<SpriteShapeController>(), false);
-    }
 }
