@@ -5,7 +5,7 @@ using UnityEngine;
 public class rocketScript : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
-    [Range(1,1000)][SerializeField] float initialForce = 100f;
+    [Range(1,100)][SerializeField] float initialSpeed = 10f;
     float explosionforce = 0f;
     float explosionRadius = 2f;
     bool hasExploded = false;
@@ -33,7 +33,7 @@ public class rocketScript : MonoBehaviour
     public void Init(Vector2 direction, float initExplosionForce, float initExplosionRadius)
     {
         explosionforce = initExplosionForce;
-        rb.AddForce(direction.normalized * initialForce);
+        rb.velocity = direction.normalized * initialSpeed;
         explosionRadius = initExplosionRadius;
     }
 

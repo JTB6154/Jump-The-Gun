@@ -10,6 +10,7 @@ public class SwitchScript : MonoBehaviour
     bool switchIsOn = false;
     [SerializeField] Sprite offSprite;
     [SerializeField] Sprite onSprite;
+    [SerializeField] bool canBeTurnedOff = true;
 
 
     void Start()
@@ -20,31 +21,46 @@ public class SwitchScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("trigger has triggered");
+        //Debug.Log("trigger has triggered");
         if (gameObject.GetComponent<Collider2D>().IsTouchingLayers(tripsSwitch))
         {
             //if we've collided with something that trips the switch toggle it
             ToggleSwitch();
-            for (int i = 0; i < tiedPlatforms.Length; i++)
-            { 
-                //activate the platforms here
+
+            if (!canBeTurnedOff && switchIsOn) return; //if the switch can't be turned off, and the switch is currently on, back out now
+            
+            foreach (platformScript platform in tiedPlatforms)
+            {
+                //call the platforms start transformation
+                platform.toggleState();
             }
+        }
+    }
+
+    private void Update()
+    {
+        foreach (platformScript platform in tiedPlatforms)
+        {
+            //call the platform that don't currently match the state of the switch
+            if(platform.state != switchIsOn) platform.toggleState();
         }
     }
 
     void ToggleSwitch()
     {
+        if (switchIsOn && !canBeTurnedOff) return; //if the switch is in the on position and it can't be turned off just back out 
+
+
         //toggle the switch and change the sprite
         switchIsOn = !switchIsOn;
 
         if (switchIsOn)
         {
-            Debug.Log(onSprite);
             switchSprite.sprite = onSprite;
+
         }
         else
         {
-            Debug.Log(offSprite);
             switchSprite.sprite = offSprite;
         }
     }
