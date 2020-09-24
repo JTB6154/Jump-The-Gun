@@ -21,7 +21,7 @@ public class SwitchScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("trigger has triggered");
+        //Debug.Log("trigger has triggered");
         if (gameObject.GetComponent<Collider2D>().IsTouchingLayers(tripsSwitch))
         {
             //if we've collided with something that trips the switch toggle it

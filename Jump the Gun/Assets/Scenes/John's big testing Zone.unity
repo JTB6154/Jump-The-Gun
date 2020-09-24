@@ -207,6 +207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Character 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5262651818253060545, guid: 3cb7af398baa09a43b40a7db2ebd6349,
+        type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6608315356415120129, guid: 3cb7af398baa09a43b40a7db2ebd6349,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1825,6 +1830,11 @@ PrefabInstance:
         type: 3}
       propertyPath: tiedPlatforms.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7858604871518369132, guid: b0a190800c21e7341b5ef16ea516db92,
+        type: 3}
+      propertyPath: tripsSwitch.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7858604871518369134, guid: b0a190800c21e7341b5ef16ea516db92,
         type: 3}
