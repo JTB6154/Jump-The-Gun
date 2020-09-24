@@ -46,11 +46,13 @@ public class CharacterController : MonoBehaviour
 
     [Space]
     [Header("Big recoil")]
+    public bool hasBigRecoil = false;
     KeyCode fireBigRecoil;
     [Range(5f, 500f)] [SerializeField] float recoilForce = 300f;
     [Range(1,5)][SerializeField] int maxBigRecoilShots = 2;
     int numBigRecoilShots = 0;
     [Header("Rocket Jump")]
+    public bool hasRocketJump = false;
     KeyCode fireRocket;
     [Range(5f, 1000f)] [SerializeField] float rocketForce = 300f;
     [Range(.1f, 10f)] [SerializeField] float rocketRadius = 2f;
@@ -224,26 +226,29 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     void ShootRocket()
     {
-        if (numRockets < 1) //shoot no rockets if there arne't any left
-        { return; }
-
-        if (!grounded)
+        if (hasRocketJump)
         {
-            numRockets -= 1; //decrement the number of big recoil shots remaining
-        }
-        else
-        {
-            subtractRockets = true;
-            StartCoroutine(removeRocketsFired());
-        }
+            if (numRockets < 1) //shoot no rockets if there arne't any left
+            { return; }
+
+            if (!grounded)
+            {
+                numRockets -= 1; //decrement the number of big recoil shots remaining
+            }
+            else
+            {
+                subtractRockets = true;
+                StartCoroutine(removeRocketsFired());
+            }
 
 
-        if (rocketPrefab != null)
-        { 
-            Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position; //get the direction the rocket is going to be going in
-            GameObject tempRocket = GameObject.Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized *.1f, Quaternion.identity); //set the rocket
-            tempRocket.transform.forward = dir.normalized; //set the rockets rotation
-            tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+            if (rocketPrefab != null)
+            {
+                Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position; //get the direction the rocket is going to be going in
+                GameObject tempRocket = GameObject.Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
+                tempRocket.transform.forward = dir.normalized; //set the rockets rotation
+                tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+            }
         }
     }
 
@@ -253,31 +258,34 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     void ShootBigRecoil()
     {
-        if (numBigRecoilShots < 1)// no big recoil shots if there are no bullets left
-        { return; }
 
-        if (!grounded)
+        if (hasBigRecoil)
         {
-            numBigRecoilShots -= 1; //decrement the number of big recoil shots remaining
+            if (numBigRecoilShots < 1)// no big recoil shots if there are no bullets left
+            { return; }
+
+            if (!grounded)
+            {
+                numBigRecoilShots -= 1; //decrement the number of big recoil shots remaining
+            }
+            else
+            {
+                subtractBigRecoil = true;
+                StartCoroutine(removeBigRecoilFired());
+            }
+
+            if (velocityZeroing)
+            {
+                rb.velocity = Vector2.zero;
+            }
+
+            //get the mouse position in world coordinates
+            Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            //get the vector from mouse position to object position
+            Vector2 direction = new Vector2(gameObject.transform.position.x - mousePos.x, gameObject.transform.position.y - mousePos.y).normalized;
+
+            rb.AddForce(direction * recoilForce);
         }
-        else
-        {
-            subtractBigRecoil = true;
-            StartCoroutine(removeBigRecoilFired());
-        }
-
-        if (velocityZeroing)
-        {
-            rb.velocity = Vector2.zero;
-        }
-
-        //get the mouse position in world coordinates
-        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        //get the vector from mouse position to object position
-        Vector2 direction = new Vector2(gameObject.transform.position.x - mousePos.x, gameObject.transform.position.y - mousePos.y).normalized;
-
-        rb.AddForce(direction * recoilForce);
-
     }
 
     /// <summary>
