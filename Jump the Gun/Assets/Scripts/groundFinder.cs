@@ -5,11 +5,17 @@ using UnityEngine;
 public class groundFinder : MonoBehaviour
 {
     [SerializeField] LayerMask defaultGround;
-    Collider2D collider;
+    [SerializeField] CharacterController player;
+    Collider2D coll2D;
 
     private void Start()
     {
-        collider = gameObject.GetComponent<Collider2D>();
+        if (player == null)
+        {
+            player = gameObject.GetComponentInParent<CharacterController>();
+        }
+
+        coll2D = gameObject.GetComponent<Collider2D>();
     }
 
     //private void Update() //depriciated code
@@ -24,25 +30,27 @@ public class groundFinder : MonoBehaviour
     //    }
     //}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "reloader")
+        {
+            player.ReloadGuns();
+        }
+    }
+
     public bool getGrounded()
     {
-        return collider.IsTouchingLayers(defaultGround);
+        return coll2D.IsTouchingLayers(defaultGround);
     }
 
     public bool getGrounded(LayerMask groundMask)
     {
-        return collider.IsTouchingLayers(groundMask);
+        return coll2D.IsTouchingLayers(groundMask);
     }
 
-    //too busy
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Debug.Log("ontriggerenter");
-    //    if (gameObject.GetComponent<Collider2D>().IsTouchingLayers(ground))
-    //    {
-    //        checkground = true;
-    //    }
-    //}
+
+
+
 
 
 }

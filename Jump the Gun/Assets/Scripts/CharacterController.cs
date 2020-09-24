@@ -126,10 +126,10 @@ public class CharacterController : MonoBehaviour
             //Debug.Log(targetVelocity);
             rb.velocity = targetVelocity;
 
-            if (!lastGrounded)//if last frame you were not grounded this frame you have landed
-            {
-                Landed();
-            }
+            //if (!lastGrounded)//if last frame you were not grounded this frame you have landed
+            //{
+            //    //Landed(); //currently has no functionality
+            //}
         }
         else if (lastGrounded) //if you are not currently grounded but last frame you were you just took off
         {
@@ -212,9 +212,12 @@ public class CharacterController : MonoBehaviour
         GUI.contentColor = Color.yellow;
         GUI.Label(new Rect(10, 10, 300, 100), "Number of Bigrecoil Shots: " + numBigRecoilShots + "\nNumber of Rockets: " + numRockets);
     }
-#endregion
 
-#region guns
+
+
+    #endregion
+
+    #region guns
 
     /// <summary>
     /// shoots the a rocket in the direction of the mouse
@@ -294,7 +297,7 @@ public class CharacterController : MonoBehaviour
     /// <summary>
     /// sets the number of all of the guns back to the maximum of guns
     /// </summary>
-    void ReloadGuns()
+    public void ReloadGuns()
     {
         numRockets = maxRockets;
         numBigRecoilShots = maxBigRecoilShots;
@@ -370,9 +373,7 @@ public class CharacterController : MonoBehaviour
 
     void Landed()
     {
-
-        //landing causes you to reload your guns
-        StartCoroutine(landedDoubleCheck());
+        //no functions here yet
     }
 
     #endregion
