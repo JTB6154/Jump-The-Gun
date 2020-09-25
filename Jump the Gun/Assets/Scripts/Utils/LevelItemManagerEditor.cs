@@ -7,6 +7,8 @@ using UnityEditorInternal;
 [CustomEditor(typeof(LevelItemManager))]
 public class LevelItemManagerEditor : Editor
 {
+    private Vector2 scrollPos;
+
     //The array property we will edit
     SerializedProperty levelItems;
 
@@ -15,15 +17,34 @@ public class LevelItemManagerEditor : Editor
 
     private void OnEnable()
     {
-        //Gets the wave property in WaveManager so we can access it. 
+        //Gets the levelItems property in levelItemManager so we can access it. 
         levelItems = serializedObject.FindProperty("levelItems");
 
         //Initializes the ReorderableList. We are creating a Reorderable List from the "levelItems" property. 
         //In this, we want a ReorderableList that is draggable, with a display header, with add and remove buttons        
-        list = new ReorderableList(serializedObject, levelItems, true, true, true, true);
+        list = new ReorderableList(serializedObject, levelItems)
+        {
+            displayAdd = true,
+            displayRemove = true,
+            draggable = false,           
 
-        list.drawElementCallback = DrawListItems;
-        list.drawHeaderCallback = DrawHeader;
+            onAddCallback = list =>
+            {
+                list.serializedProperty.arraySize++;
+                int newIndex = list.serializedProperty.arraySize - 1;
+                SerializedProperty newElement = list.serializedProperty.GetArrayElementAtIndex(newIndex);
+
+                SerializedProperty levelName = newElement.FindPropertyRelative("levelName");
+                levelName.stringValue = "";
+
+                SerializedProperty platformCount = newElement.FindPropertyRelative("platformCount");
+                platformCount.intValue = 0;
+            },
+
+            drawElementCallback = DrawListItems,
+            drawHeaderCallback = DrawHeader,
+            elementHeight = EditorGUIUtility.singleLineHeight
+        };
     }
 
     void DrawListItems(Rect rect, int index, bool isActive, bool isFocused)
@@ -65,11 +86,36 @@ public class LevelItemManagerEditor : Editor
         EditorGUI.LabelField(rect, name);
     }
 
+    #region Public Methods
+
     //This is the function that makes the custom editor work
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(150));
         list.DoLayoutList();
+        EditorGUILayout.EndScrollView();
+
         serializedObject.ApplyModifiedProperties();
+
+        //Debug.Log(list.index);
     }
+
+    public int GetIndex() => list.index;
+    public int GetCount() => list.count;
+    public void AddItem()
+    {
+        list.serializedProperty.arraySize++;
+        int newIndex = list.serializedProperty.arraySize - 1;
+        SerializedProperty newElement = list.serializedProperty.GetArrayElementAtIndex(newIndex);
+
+        SerializedProperty levelName = newElement.FindPropertyRelative("levelName");
+        levelName.stringValue = "";
+
+        SerializedProperty platformCount = newElement.FindPropertyRelative("platformCount");
+        platformCount.intValue = 0;
+    }
+
+    #endregion
 }

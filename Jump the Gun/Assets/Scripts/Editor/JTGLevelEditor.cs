@@ -16,7 +16,7 @@ using UnityEditor.ShortcutManagement;
 public class JTGLevelEditor : EditorWindow
 {
     // Editor window instance
-    private static JTGLevelEditor _editorInstance;
+    private static JTGLevelEditor instance;
 
     // Toolbar (tabs)
     private int toolbarInt = 0;
@@ -30,23 +30,29 @@ public class JTGLevelEditor : EditorWindow
 
     // Level Save/Load - Variables
     private readonly string pathToSaveLoad = "/Resources/Levels/";
+    private readonly string fileName = "levels.dat";
     private Level_Data levelData;
+    private int levelCount = 5;
     private int currentLevelIndex = 0;      // Level number - 1
-    private LevelItemManagerEditor levelItemEditor;
+    private LevelItemManagerEditor levelItemManagerEditor;
 
     [MenuItem("Tools/JTG Level Editor")]
     [Shortcut("Refresh Window", KeyCode.F12)]
     public static void ShowWindow()
     {
-        if (_editorInstance) _editorInstance.Close();
+        if (instance) instance.Close();
 
-        _editorInstance = GetWindow<JTGLevelEditor>("JTG Level Editor");
+        instance = GetWindow<JTGLevelEditor>("JTG Level Editor");
+    }
 
+    private void Awake()
+    {
         // Initialization
-        _editorInstance.levelData = new Level_Data();
-        _editorInstance.levelData.levelCount = 5;
-        var ff = FindObjectOfType<LevelItemManager>();
-        _editorInstance.levelItemEditor = (LevelItemManagerEditor)Editor.CreateEditor(ff);
+        var manager = FindObjectOfType<LevelItemManager>();
+        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
+
+        // TODO: Load level data from file
+        LoadLevelData();
     }
 
     void OnInspectorUpdate()
@@ -117,10 +123,15 @@ public class JTGLevelEditor : EditorWindow
                 // 2 - Level files list
                 GUILayout.Label("Level List Info", EditorStyles.boldLabel);
                 EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.TextField("Total Level Count", levelData.levelCount.ToString(), GUILayout.MaxWidth(400));
+                EditorGUILayout.TextField("Total Level Count", levelItemManagerEditor.GetCount().ToString(), GUILayout.MaxWidth(400));
                 EditorGUI.EndDisabledGroup();
                 // ============================ List code below ============================
-                levelItemEditor.OnInspectorGUI();
+                levelItemManagerEditor.OnInspectorGUI();
+                GUILayout.Space(10);
+                if (GUILayout.Button("Add Level Item"))
+                {
+                    levelItemManagerEditor.AddItem();
+                }
 
 
                 // 3 - Save/Load buttons
@@ -183,38 +194,43 @@ public class JTGLevelEditor : EditorWindow
     /// https://stackoverflow.com/questions/36852213/how-to-serialize-and-save-a-gameobject-in-unity
     private void SaveLevelData()
     {
-        // Stream the file with a File Stream. (Note that File.Create() 'Creates' or 'Overwrites' a file.)
-        FileStream file = File.Create(Application.dataPath + pathToSaveLoad + "/Levels.dat");
 
         // Find all GameObjects (SpriteShapes) in scene
         List<GameObject> ssInScene = FindAllSpriteShapesInScene();
 
-        // Get Sprite Shape Renderer/Controller components info
-        levelData.SpriteShapeControllers = new List<string>[levelData.levelCount];
-        foreach (GameObject ss in ssInScene)
+        // Retrieve Sprite Shape Controller components data from scene
+        if (levelData == null)  // no level file was found and data is null
         {
-            List<string> currSSControllerList = levelData.SpriteShapeControllers[currentLevelIndex];
-            if (currSSControllerList == null)
-                currSSControllerList = new List<string>();
-            currSSControllerList.Add(SaveLoadUtility.ConvertToJsonString(ss.GetComponent<SpriteShapeController>()));
+            levelData = new Level_Data();
+            levelCount = 5;
+            levelData.Levels = new string[levelCount];
         }
 
-        // Save the data
+        var platformsInScene = new List<Platform>();
+        foreach (var ss in ssInScene)
+        {
+            Platform pf = new Platform();
+            pf.name = ss.name;
+            pf.instanceID = ss.GetInstanceID().ToString();
+            pf.ssControllerData = JsonUtility.ToJson(ss.GetComponent<SpriteShapeController>());
+            platformsInScene.Add(pf);
+        }
+
+        levelData.Levels[currentLevelIndex] = JsonHelper.ToJson(platformsInScene, true);
+        Debug.Log(levelData.Levels[currentLevelIndex]);
+
+        // TEST CODE
 
         // ============================ Serialization Step Below ============================
         // Serialize to xml
-        DataContractSerializer bf = new DataContractSerializer(levelData.GetType());
-        MemoryStream streamer = new MemoryStream();
+        DataContractSerializer s = new DataContractSerializer(typeof(Level_Data));
 
-        // Serialize the file
-        bf.WriteObject(streamer, levelData);
-        streamer.Seek(0, SeekOrigin.Begin);
+        // Stream the file with a File Stream. (Note that File.Create() 'Creates' or 'Overwrites' a file.)
+        using (FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Create))
+        {
+            s.WriteObject(fs, levelData);
+        }
 
-        // Save to disk
-        file.Write(streamer.GetBuffer(), 0, streamer.GetBuffer().Length);
-
-        // Close the file to prevent any corruptions
-        file.Close();
 
         // PRINT RESULT
         //string result = XElement.Parse(Encoding.ASCII.GetString(streamer.GetBuffer()).Replace("\0", "")).ToString();
@@ -231,25 +247,44 @@ public class JTGLevelEditor : EditorWindow
         return output;
     }
 
+    private void LoadLevelData()
+    {
+        Level_Data loadedLevelData;
+        DataContractSerializer s = new DataContractSerializer(typeof(Level_Data));
+
+        using (FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Open))
+        {
+            loadedLevelData = s.ReadObject(fs) as Level_Data;
+            if (loadedLevelData == null)
+                Debug.LogError("Deserialized level file is NULL");
+            else
+            {
+                levelData = loadedLevelData;
+                Debug.Log("Level Data Loaded!");
+            }
+        }
+    }
+
     #endregion
 
 }
 
 /// <summary>
-/// Class to be serialized to a saved level file
+/// Class to be serialized to a saved level file (.dat)
 /// </summary>
 [DataContract]
 class Level_Data
 {
     [DataMember]
-    private List<GameObject>[] _levels;
+    private string[] _levels;
 
-    [DataMember]
-    private List<string>[] _ssControllers;
+    public string[] Levels { get => _levels; set => _levels = value; }
+}
 
-    public List<GameObject>[] Levels { get => _levels; set => _levels = value; }
-    public List<string>[] SpriteShapeControllers { get => _ssControllers; set => _ssControllers = value; }
-
-    [DataMember]
-    public int levelCount;
+[Serializable]
+public class Platform
+{
+    public string name;
+    public string instanceID;
+    public string ssControllerData;
 }
