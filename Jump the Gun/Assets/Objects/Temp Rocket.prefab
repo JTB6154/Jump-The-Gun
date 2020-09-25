@@ -144,11 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7135729808385639175}
-<<<<<<< HEAD
-  initialForce: 561
-=======
-  initialSpeed: 25
->>>>>>> 1269cca407e7a34935f02416329525f558e41e13
+  initialSpeed: 10
   player:
     serializedVersion: 2
     m_Bits: 256
