@@ -144,8 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7135729808385639175}
-  initialForce: 561
-  initialSpeed: 25
+  initialSpeed: 10
   player:
     serializedVersion: 2
     m_Bits: 256
