@@ -20,11 +20,13 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float gravityScale = 1f;
     [SerializeField] float walkSpeed = 5f;
     //[SerializeField] float mass = 2.5f;
-    [Range(5f, 150f)] [SerializeField] float maxSpeed = 15f;
+    [Range(5f, 150f)] [SerializeField] float maxXSpeed = 9f;
+    [Range(5f, 150f)] [SerializeField] float maxYSpeed = 9f;
+    float maxSpeed;
     Vector3 moveControls = new Vector3();
-    Vector3 velocity = new Vector2(0, 0);
-    Vector3 smoothVelocity = Vector3.zero;
-    [Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f; //currently unused, may be used later for time to reach max speed
+    //Vector3 velocity = new Vector2(0, 0);
+    //Vector3 smoothVelocity = Vector3.zero;
+    //[Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f; //currently unused, may be used later for time to reach max speed
     [SerializeField] public bool velocityZeroing = true;
     [SerializeField] float maxWalkableAngle = 65;
 
@@ -74,6 +76,7 @@ public class CharacterController : MonoBehaviour
         GetObjects();
 
         rb.gravityScale = gravityScale;
+        maxSpeed = new Vector2(maxXSpeed, maxYSpeed).magnitude;
         //rb.mass = mass;
 
         InitializeGuns();
@@ -154,10 +157,16 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        if (rb.velocity.magnitude > maxSpeed)
+
+        //cap the speed of the player in the x and y directions
+        if (Mathf.Abs(rb.velocity.x) > maxXSpeed)
         {
-            //cap the speed of the player
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+            rb.velocity = new Vector2(maxXSpeed * rb.velocity.x / Mathf.Abs(rb.velocity.x) , rb.velocity.y);
+        }
+
+        if (Mathf.Abs(rb.velocity.y) > maxYSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maxYSpeed * rb.velocity.y / Mathf.Abs(rb.velocity.y));
         }
     }
 
