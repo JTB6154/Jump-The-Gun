@@ -5,8 +5,8 @@ using UnityEngine;
 public class platformScript : MonoBehaviour
 {
     public bool state = false; //start in the off position
-    public bool rotationActive = false; //start inactive
-    public bool translationAcitve = false;
+    bool rotationActive = false; //start inactive
+    bool translationAcitve = false;
     [Header("Objects")]
     [SerializeField] GameObject target;
 
@@ -14,8 +14,8 @@ public class platformScript : MonoBehaviour
     [SerializeField] bool translationEnabled = false;
     [SerializeField] Vector3 totatlTranslation = Vector3.zero;
     [SerializeField] [Range(0f, 25f)] float translationSpeed = 5f;
-    public Vector3 startPos;
-    public float maxDistance, currentDistance;
+    Vector3 startPos;
+    float maxDistance, currentDistance;
 
     [Header("Rotation")]
     [SerializeField] bool rotationEnabled = false;
