@@ -53,6 +53,9 @@ public class CharacterController : MonoBehaviour
     KeyCode fireBigRecoil;
     [Range(5f, 500f)] [SerializeField] float recoilForce = 300f;
     [Range(1, 5)] [SerializeField] int maxBigRecoilShots = 2;
+    [SerializeField] GameObject shotgunShot;
+    [SerializeField] float maxVariation = 10f;
+    [SerializeField] int numShot = 3;
     int numBigRecoilShots = 0;
     [Header("Rocket Jump")]
     public bool hasRocketJump = false;
@@ -72,6 +75,10 @@ public class CharacterController : MonoBehaviour
     #region UnityFunctions
     void Start()
     {
+        if (shotgunShot == null)
+        {
+            Debug.LogError("shotgun does not have proper shot");
+        }
 
         GetObjects();
 
@@ -270,6 +277,17 @@ public class CharacterController : MonoBehaviour
             Vector2 direction = new Vector2(gameObject.transform.position.x - mousePos.x, gameObject.transform.position.y - mousePos.y).normalized;
 
             rb.AddForce(direction * recoilForce);
+            
+            if (shotgunShot != null)
+            {
+                for (int i = 0; i < numShot; i++)
+                {
+                    GameObject shooting = GameObject.Instantiate(shotgunShot);
+                    shooting.transform.position = gameObject.transform.position;
+                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg+Random.Range(-maxVariation, maxVariation));
+                }
+            }
+
         }
     }
 
