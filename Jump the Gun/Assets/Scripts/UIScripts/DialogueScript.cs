@@ -43,7 +43,7 @@ public class DialogueScript : MonoBehaviour
         switch (timesEntered)
         {
             case 0:
-
+                
                 break;
 
             default:
