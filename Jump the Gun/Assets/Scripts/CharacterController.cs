@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] GameObject groundchecker;
     groundFinder finder;
     [SerializeField] LayerMask ground;
+    [SerializeField] LayerMask reloadLayer;
     [SerializeField] Texture2D cursorTexture;
     [Space]
 
@@ -197,7 +198,13 @@ public class CharacterController : MonoBehaviour
         GUI.Label(new Rect(10, 10, 300, 100), "Number of Bigrecoil Shots: " + numBigRecoilShots + "\nNumber of Rockets: " + numRockets);
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (character.GetComponent<Collider2D>().IsTouchingLayers(reloadLayer))
+        {
+            ReloadGuns();
+        }
+    }
 
     #endregion
 
