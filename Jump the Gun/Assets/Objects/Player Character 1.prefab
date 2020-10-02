@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Bits: 2048
   reloadLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 8192
   cursorTexture: {fileID: 0}
   gravityScale: 1.65
   walkSpeed: 4.12

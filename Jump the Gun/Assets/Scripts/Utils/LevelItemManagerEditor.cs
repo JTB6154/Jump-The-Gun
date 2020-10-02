@@ -26,7 +26,7 @@ public class LevelItemManagerEditor : Editor
         {
             displayAdd = true,
             displayRemove = true,
-            draggable = false,           
+            draggable = false,
 
             onAddCallback = list =>
             {
