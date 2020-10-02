@@ -153,10 +153,11 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 2048
+  cursorTexture: {fileID: 0}
   gravityScale: 1.65
   walkSpeed: 4.12
-  maxSpeed: 9
-  movementSmoothing: 0.05
+  maxXSpeed: 9
+  maxYSpeed: 9
   velocityZeroing: 1
   maxWalkableAngle: 75
   grounded: 0
@@ -168,8 +169,14 @@ MonoBehaviour:
   right: 100
   fire1: 323
   fire2: 324
+  hasBigRecoil: 0
   recoilForce: 406
   maxBigRecoilShots: 2
+  shotgunShot: {fileID: 4954155497841062491, guid: 92c493c8872137f4fb73422375f0b035,
+    type: 3}
+  maxVariation: 10
+  numShot: 3
+  hasRocketJump: 0
   rocketForce: 600
   rocketRadius: 4
   maxRockets: 2
