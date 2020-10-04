@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class LevelItemManager : MonoBehaviour
 {
-    public LevelItem[] levelItems;
+    public List<LevelItem> levelItems = new List<LevelItem>();
 }

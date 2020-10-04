@@ -24,6 +24,7 @@ public class JTGLevelEditor : EditorWindow
 
     // Level Editing - Variables
     private readonly string localPathToController = "Assets/Prefabs/LevelEditorPrefabs/SpriteShapeController.prefab";
+    private readonly string localPathToLevelItemManager = "Assets/Prefabs/LevelEditorPrefabs/LevelItemManager.prefab";
     private static int platformCounter = 0;
     private GameObject spriteShapePrefab;
     private string spriteShapeName = "Platform";
@@ -34,6 +35,9 @@ public class JTGLevelEditor : EditorWindow
     private Level_Data levelData;
     private int levelCount = 5;
     private int currentLevelIndex = 0;      // Level number - 1
+
+    // Level Item Manager
+    private GameObject managerObj;
     private LevelItemManagerEditor levelItemManagerEditor;
 
     [MenuItem("Tools/JTG Level Editor")]
@@ -48,11 +52,28 @@ public class JTGLevelEditor : EditorWindow
     private void Awake()
     {
         // Initialization
-        var manager = FindObjectOfType<LevelItemManager>();
-        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
+        var managerPrefab = AssetDatabase.LoadAssetAtPath(localPathToLevelItemManager, typeof(GameObject)) as GameObject;
+        managerObj = PrefabUtility.InstantiatePrefab(managerPrefab) as GameObject;
+        PrefabUtility.UnpackPrefabInstance(managerObj, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
 
-        // TODO: Load level data from file
+        // Set parent
+        var doNotDeleteParent = GameObject.Find("DO NOT DELETE");
+        managerObj.transform.parent = doNotDeleteParent.transform;
+
+        var manager = managerObj.AddComponent<LevelItemManager>();
+        // FindObjectOfType<LevelItemManager>();
+
+        // Load level data from file
         LoadLevelData();
+
+        // Display loaded data in Reorderable list
+
+        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
+    }
+
+    private void OnDestroy()
+    {
+        DestroyImmediate(managerObj);
     }
 
     void OnInspectorUpdate()
@@ -130,7 +151,7 @@ public class JTGLevelEditor : EditorWindow
                 GUILayout.Space(10);
                 if (GUILayout.Button("Add Level Item"))
                 {
-                    levelItemManagerEditor.AddItem();
+                    levelItemManagerEditor.AddItem(levelItemManagerEditor.GetReorderableListRef);
                 }
 
 

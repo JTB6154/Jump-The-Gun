@@ -22,32 +22,31 @@ public class LevelItemManagerEditor : Editor
 
         //Initializes the ReorderableList. We are creating a Reorderable List from the "levelItems" property. 
         //In this, we want a ReorderableList that is draggable, with a display header, with add and remove buttons        
-        list = new ReorderableList(serializedObject, levelItems)
-        {
-            displayAdd = true,
-            displayRemove = true,
-            draggable = false,           
+        list = new ReorderableList(serializedObject, levelItems, false, true, true, true);
 
-            onAddCallback = list =>
+        list.drawElementCallback = DrawListItems;
+        list.drawHeaderCallback = DrawHeader;
+
+        list.onRemoveCallback = (ReorderableList l) => {
+            if (EditorUtility.DisplayDialog("Warning!", "Are you sure you want to delete the level?", "Yes", "No"))
             {
-                list.serializedProperty.arraySize++;
-                int newIndex = list.serializedProperty.arraySize - 1;
-                SerializedProperty newElement = list.serializedProperty.GetArrayElementAtIndex(newIndex);
-
-                SerializedProperty levelName = newElement.FindPropertyRelative("levelName");
-                levelName.stringValue = "";
-
-                SerializedProperty platformCount = newElement.FindPropertyRelative("platformCount");
-                platformCount.intValue = 0;
-            },
-
-            drawElementCallback = DrawListItems,
-            drawHeaderCallback = DrawHeader,
-            elementHeight = EditorGUIUtility.singleLineHeight
+                ReorderableList.defaultBehaviours.DoRemoveButton(l);
+            }
         };
+
+        list.onAddCallback = (ReorderableList l) =>
+        {
+            var index = l.serializedProperty.arraySize;
+            l.serializedProperty.arraySize++;
+            l.index = index;
+            var element = l.serializedProperty.GetArrayElementAtIndex(index);
+            element.FindPropertyRelative("levelName").stringValue = "Level X";
+            element.FindPropertyRelative("platformCount").intValue = -1;
+        };
+
     }
 
-    void DrawListItems(Rect rect, int index, bool isActive, bool isFocused)
+    private void DrawListItems(Rect rect, int index, bool isActive, bool isFocused)
     {
         SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index); //The element in the list
 
@@ -80,7 +79,7 @@ public class LevelItemManagerEditor : Editor
 
     }
 
-    void DrawHeader(Rect rect)
+    private void DrawHeader(Rect rect)
     {
         string name = "Level List";
         EditorGUI.LabelField(rect, name);
@@ -104,17 +103,15 @@ public class LevelItemManagerEditor : Editor
 
     public int GetIndex() => list.index;
     public int GetCount() => list.count;
-    public void AddItem()
+    public ReorderableList GetReorderableListRef => list;
+    public void AddItem(ReorderableList l)
     {
-        list.serializedProperty.arraySize++;
-        int newIndex = list.serializedProperty.arraySize - 1;
-        SerializedProperty newElement = list.serializedProperty.GetArrayElementAtIndex(newIndex);
-
-        SerializedProperty levelName = newElement.FindPropertyRelative("levelName");
-        levelName.stringValue = "";
-
-        SerializedProperty platformCount = newElement.FindPropertyRelative("platformCount");
-        platformCount.intValue = 0;
+        var index = l.serializedProperty.arraySize;
+        l.serializedProperty.arraySize++;
+        l.index = index;
+        var element = l.serializedProperty.GetArrayElementAtIndex(index);
+        element.FindPropertyRelative("levelName").stringValue = "Level X";
+        element.FindPropertyRelative("platformCount").intValue = -1;
     }
 
     #endregion
