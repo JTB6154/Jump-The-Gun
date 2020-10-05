@@ -38,7 +38,9 @@ public class JTGLevelEditor : EditorWindow
 
     // Level Item Manager
     private GameObject managerObj;
+    private LevelItemManager manager;
     private LevelItemManagerEditor levelItemManagerEditor;
+    private string currentLoadedLevelName;
 
     [MenuItem("Tools/JTG Level Editor")]
     [Shortcut("Refresh Window", KeyCode.F12)]
@@ -60,15 +62,14 @@ public class JTGLevelEditor : EditorWindow
         var doNotDeleteParent = GameObject.Find("DO NOT DELETE");
         managerObj.transform.parent = doNotDeleteParent.transform;
 
-        var manager = managerObj.AddComponent<LevelItemManager>();
+        manager = managerObj.AddComponent<LevelItemManager>();
         // FindObjectOfType<LevelItemManager>();
 
         // Load level data from file
         LoadLevelData();
 
         // Display loaded data in Reorderable list
-
-        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
+        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);        
     }
 
     private void OnDestroy()
@@ -135,36 +136,50 @@ public class JTGLevelEditor : EditorWindow
             case "Level Save/Load":
                 GUILayout.BeginVertical("box");
 
-                // 1 - Directory path to store level files
-                GUILayout.Label("Path to Save/Load", EditorStyles.boldLabel);
+                // 1 - Save/Load buttons
+                GUILayout.Label("Level File Management", EditorStyles.boldLabel);
                 EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.TextField("Relative Path", pathToSaveLoad, GUILayout.MaxWidth(400));
+                EditorGUILayout.TextField("Relative File Path", pathToSaveLoad, GUILayout.MaxWidth(400));
                 EditorGUI.EndDisabledGroup();
+                if (GUILayout.Button("Save Levels to File", GUILayout.MaxWidth(200)))
+                {
+                    SaveLevelData();
+                }
+                if (GUILayout.Button("Load Levels from File", GUILayout.MaxWidth(200)))
+                {
+                }
+
+                GUILayout.Space(20);
 
                 // 2 - Level files list
                 GUILayout.Label("Level List Info", EditorStyles.boldLabel);
                 EditorGUI.BeginDisabledGroup(true);
                 EditorGUILayout.TextField("Total Level Count", levelItemManagerEditor.GetCount().ToString(), GUILayout.MaxWidth(400));
+                EditorGUILayout.TextField("Current Selected Level", levelItemManagerEditor.GetCurrentSelectedLevelName(), GUILayout.MaxWidth(400));
+                EditorGUILayout.TextField("Current Loaded Level", currentLoadedLevelName, GUILayout.MaxWidth(400));
                 EditorGUI.EndDisabledGroup();
-                // ============================ List code below ============================
+
+                //  Display Reorderable list GUI
                 levelItemManagerEditor.OnInspectorGUI();
-                GUILayout.Space(10);
-                if (GUILayout.Button("Add Level Item"))
+
+                bool areButtonsDisabled = levelItemManagerEditor.GetSelectedIndex() == -1;
+                EditorGUI.BeginDisabledGroup(areButtonsDisabled);
+                if (GUILayout.Button("Load Data from Current Selected Level", GUILayout.MaxWidth(250)))
                 {
-                    levelItemManagerEditor.AddItem(levelItemManagerEditor.GetReorderableListRef);
+                    LoadCurrentSelectedLevel();
                 }
 
-
-                // 3 - Save/Load buttons
-                if (GUILayout.Button("Save Level", GUILayout.MaxWidth(250)))
+                if (GUILayout.Button("Save Data to Current Selected Level \n (Does Not Save to File)", GUILayout.MaxWidth(250)))
                 {
-                    Debug.Log("Saved");
-                    SaveLevelData();
+                    bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
+                                            "Are you sure you want to update data in " + levelItemManagerEditor.GetCurrentSelectedLevelName() + "? This will overwrite any previous data.",
+                                            "Yes", "No");
+                    if (isCurrentLevelSaved)
+                    {
+                        SaveDataToCurrentLevel();
+                    }
                 }
-                if (GUILayout.Button("Load Level", GUILayout.MaxWidth(250)))
-                {
-                    Debug.Log("Loaded");
-                }
+                EditorGUI.EndDisabledGroup();
 
                 GUILayout.EndVertical();
                 break;
@@ -215,7 +230,6 @@ public class JTGLevelEditor : EditorWindow
     /// https://stackoverflow.com/questions/36852213/how-to-serialize-and-save-a-gameobject-in-unity
     private void SaveLevelData()
     {
-
         // Find all GameObjects (SpriteShapes) in scene
         List<GameObject> ssInScene = FindAllSpriteShapesInScene();
 
@@ -227,15 +241,7 @@ public class JTGLevelEditor : EditorWindow
             levelData.Levels = new string[levelCount];
         }
 
-        var platformsInScene = new List<Platform>();
-        foreach (var ss in ssInScene)
-        {
-            Platform pf = new Platform();
-            pf.name = ss.name;
-            pf.instanceID = ss.GetInstanceID().ToString();
-            pf.ssControllerData = JsonUtility.ToJson(ss.GetComponent<SpriteShapeController>());
-            platformsInScene.Add(pf);
-        }
+        var platformsInScene = FindAllPlatformsInScene(ssInScene);
 
         levelData.Levels[currentLevelIndex] = JsonHelper.ToJson(platformsInScene, true);
         Debug.Log(levelData.Levels[currentLevelIndex]);
@@ -250,8 +256,8 @@ public class JTGLevelEditor : EditorWindow
         using (FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Create))
         {
             s.WriteObject(fs, levelData);
+            Debug.Log("Saved to file");
         }
-
 
         // PRINT RESULT
         //string result = XElement.Parse(Encoding.ASCII.GetString(streamer.GetBuffer()).Replace("\0", "")).ToString();
@@ -268,22 +274,98 @@ public class JTGLevelEditor : EditorWindow
         return output;
     }
 
+    private List<Platform> FindAllPlatformsInScene(List<GameObject> ssInScene)
+    {
+        if (ssInScene == null) return null;
+        var output = new List<Platform>();
+        foreach (var ss in ssInScene)
+        {
+            Platform pf = new Platform();
+            pf.name = ss.name;
+            pf.ssControllerData = JsonUtility.ToJson(ss.GetComponent<SpriteShapeController>(), true);
+            Debug.Log(pf.ssControllerData);
+            output.Add(pf);
+        }
+        return output;
+    }
+
     private void LoadLevelData()
     {
         Level_Data loadedLevelData;
         DataContractSerializer s = new DataContractSerializer(typeof(Level_Data));
 
-        using (FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Open))
+        try
         {
+            FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Open);
             loadedLevelData = s.ReadObject(fs) as Level_Data;
             if (loadedLevelData == null)
                 Debug.LogError("Deserialized level file is NULL");
             else
             {
                 levelData = loadedLevelData;
-                Debug.Log("Level Data Loaded!");
+
+                //string[] s_loadedLevels = JsonHelper.FromJson<string[]> 
             }
+
+            fs.Close();
+            Debug.Log("Level Data Loaded!");
         }
+        catch (FileNotFoundException e)
+        {
+            Debug.LogError("Error: " + e.Message);
+        }
+    }
+
+    private void LoadCurrentSelectedLevel()
+    {
+        // Destroy all sprite shapes in hierarchy
+        List<GameObject> ssInScene = FindAllSpriteShapesInScene();
+        foreach (var ss in ssInScene)
+        {
+            DestroyImmediate(ss);
+        }
+
+        // Load platforms from level item
+        var levelItem = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()];
+        var platforms = new List<GameObject>();
+        foreach (Platform pf in levelItem.platforms)
+        {
+            platforms.Add(ConvertPlatformToGameObject(pf));
+        }
+
+        foreach (GameObject pfObj in platforms)
+        {
+            Instantiate(pfObj);
+        }
+
+        currentLoadedLevelName = levelItemManagerEditor.GetCurrentSelectedLevelName();  // Update textbox
+        Debug.Log(currentLoadedLevelName + " loaded in Scene");
+    }
+
+    private void SaveDataToCurrentLevel()
+    {
+        // Find all GameObjects (SpriteShapes) in scene
+        List<GameObject> ssInScene = FindAllSpriteShapesInScene();
+
+        var currentLevelItem = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()];
+
+        currentLevelItem.platforms = FindAllPlatformsInScene(ssInScene);
+        currentLevelItem.UpdatePlatformCount();
+
+        Debug.Log("Saved current level");
+    }
+
+    private GameObject ConvertPlatformToGameObject(Platform pf)
+    {
+        var result = new GameObject();
+
+        result.name = pf.name;
+        var controllerData = JsonUtility.FromJson<Spline>(pf.ssControllerData);
+        result.AddComponent<SpriteShapeRenderer>();
+        result.AddComponent<SpriteShapeController>();
+        result.GetComponent<SpriteShapeController>().spline = controllerData;
+
+        return result;
     }
 
     #endregion
@@ -302,10 +384,3 @@ class Level_Data
     public string[] Levels { get => _levels; set => _levels = value; }
 }
 
-[Serializable]
-public class Platform
-{
-    public string name;
-    public string instanceID;
-    public string ssControllerData;
-}

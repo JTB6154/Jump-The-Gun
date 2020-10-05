@@ -15,6 +15,8 @@ public class LevelItemManagerEditor : Editor
     //The Reorderable list we will be working with
     ReorderableList list;
 
+    private int displayIndex = 1;
+
     private void OnEnable()
     {
         //Gets the levelItems property in levelItemManager so we can access it. 
@@ -40,8 +42,7 @@ public class LevelItemManagerEditor : Editor
             l.serializedProperty.arraySize++;
             l.index = index;
             var element = l.serializedProperty.GetArrayElementAtIndex(index);
-            element.FindPropertyRelative("levelName").stringValue = "Level X";
-            element.FindPropertyRelative("platformCount").intValue = -1;
+            element.FindPropertyRelative("levelName").stringValue = "Level " + displayIndex++;      
         };
 
     }
@@ -92,26 +93,21 @@ public class LevelItemManagerEditor : Editor
     {
         serializedObject.Update();
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(150));
+        //scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(150));
         list.DoLayoutList();
-        EditorGUILayout.EndScrollView();
+        //EditorGUILayout.EndScrollView();
 
         serializedObject.ApplyModifiedProperties();
-
-        //Debug.Log(list.index);
     }
 
-    public int GetIndex() => list.index;
     public int GetCount() => list.count;
-    public ReorderableList GetReorderableListRef => list;
-    public void AddItem(ReorderableList l)
+    public int GetSelectedIndex() => list.index;
+    public string GetCurrentSelectedLevelName()
     {
-        var index = l.serializedProperty.arraySize;
-        l.serializedProperty.arraySize++;
-        l.index = index;
-        var element = l.serializedProperty.GetArrayElementAtIndex(index);
-        element.FindPropertyRelative("levelName").stringValue = "Level X";
-        element.FindPropertyRelative("platformCount").intValue = -1;
+        if (list.index < 0)
+            return "No Level Selected";
+        var element = list.serializedProperty.GetArrayElementAtIndex(list.index);
+        return element.FindPropertyRelative("levelName").stringValue;
     }
 
     #endregion
