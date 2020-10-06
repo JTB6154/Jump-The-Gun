@@ -363,7 +363,7 @@ public class JTGLevelEditor : EditorWindow
         var controllerData = JsonUtility.FromJson<Spline>(pf.ssControllerData);
         result.AddComponent<SpriteShapeRenderer>();
         result.AddComponent<SpriteShapeController>();
-        result.GetComponent<SpriteShapeController>().spline = controllerData;
+        //result.GetComponent<SpriteShapeController>().spline = controllerData; //commented out due to error
 
         return result;
     }
