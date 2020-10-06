@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9091745540971705106}
   - component: {fileID: 9091745540971705105}
   - component: {fileID: 8555720731453638810}
+  - component: {fileID: -1212797469281960430}
   m_Layer: 13
   m_Name: Reload Trigger With Sprite
   m_TagString: reloader
@@ -122,3 +123,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-1212797469281960430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9091745540971705104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91364d8bf393f0541a5790854123313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 8555720731453638810}
+  collider: {fileID: 9091745540971705105}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 256

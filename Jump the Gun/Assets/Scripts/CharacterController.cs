@@ -29,7 +29,7 @@ public class CharacterController : MonoBehaviour
     //Vector3 smoothVelocity = Vector3.zero;
     //[Range(0f, .3f)] [SerializeField] float movementSmoothing = .05f; //currently unused, may be used later for time to reach max speed
     [SerializeField] public bool velocityZeroing = true;
-    [SerializeField] float maxWalkableAngle = 65;
+    [SerializeField] float maxWalkableAngle = 1f;
 
 
     public bool grounded;
@@ -380,6 +380,7 @@ public class CharacterController : MonoBehaviour
     {
         if (hit.collider != null)
         {
+            Debug.Log(Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg));
             if (Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg) > maxWalkableAngle)
             {
                 return false;
