@@ -29,7 +29,8 @@ public class LevelItemManagerEditor : Editor
         list.drawElementCallback = DrawListItems;
         list.drawHeaderCallback = DrawHeader;
 
-        list.onRemoveCallback = (ReorderableList l) => {
+        list.onRemoveCallback = (ReorderableList l) =>
+        {
             if (EditorUtility.DisplayDialog("Warning!", "Are you sure you want to delete the level?", "Yes", "No"))
             {
                 ReorderableList.defaultBehaviours.DoRemoveButton(l);
@@ -42,7 +43,7 @@ public class LevelItemManagerEditor : Editor
             l.serializedProperty.arraySize++;
             l.index = index;
             var element = l.serializedProperty.GetArrayElementAtIndex(index);
-            element.FindPropertyRelative("levelName").stringValue = "Level " + displayIndex++;      
+            element.FindPropertyRelative("levelName").stringValue = "Level " + displayIndex++;
         };
 
     }

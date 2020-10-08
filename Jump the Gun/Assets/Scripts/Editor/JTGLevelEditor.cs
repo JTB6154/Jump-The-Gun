@@ -69,7 +69,7 @@ public class JTGLevelEditor : EditorWindow
         LoadLevelData();
 
         // Display loaded data in Reorderable list
-        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);        
+        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
     }
 
     private void OnDestroy()
