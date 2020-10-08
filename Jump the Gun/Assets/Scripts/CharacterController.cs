@@ -71,6 +71,8 @@ public class CharacterController : MonoBehaviour
     bool subtractBigRecoil = false;
     private Animator animator;
     private SpriteRenderer sprite;
+
+    public bool isPaused = false;
     #endregion
 
     #region UnityFunctions
@@ -225,7 +227,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     void ShootRocket()
     {
-        if (hasRocketJump)
+        if (hasRocketJump && isPaused == false)
         {
             if (numRockets < 1) //shoot no rockets if there arne't any left
             { return; }
@@ -258,7 +260,7 @@ public class CharacterController : MonoBehaviour
     void ShootBigRecoil()
     {
 
-        if (hasBigRecoil)
+        if (hasBigRecoil && isPaused == false)
         {
             if (numBigRecoilShots < 1)// no big recoil shots if there are no bullets left
             { return; }
