@@ -8,12 +8,15 @@ public class rocketScript : MonoBehaviour
     [Range(1,100)][SerializeField] float initialSpeed = 10f;
     float explosionforce = 0f;
     float explosionRadius = 2f;
+    [SerializeField] [Range(0, 100)] float MinimumForcePercent;
+    float minimumForcePercent;
     bool hasExploded = false;
     [SerializeField] LayerMask player;
     [SerializeField] LayerMask notPlayer;
     
     void Start()
-    { 
+    {
+        minimumForcePercent = MinimumForcePercent / 100f;
         //get the rigidbody if it wasn't given in the inspector
         if (rb == null)
         {
@@ -32,7 +35,7 @@ public class rocketScript : MonoBehaviour
 
     public void Init(Vector2 direction, float initExplosionForce, float initExplosionRadius)
     {
-        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.right = new Vector3(direction.x, direction.y);
         explosionforce = initExplosionForce;
         rb.velocity = direction.normalized * initialSpeed;
         explosionRadius = initExplosionRadius;
@@ -52,7 +55,7 @@ public class rocketScript : MonoBehaviour
                 Vector3 direction = colliders[i].gameObject.transform.position - gameObject.transform.position; //vector from rocket to player
                 float scale = (explosionRadius - direction.magnitude) / explosionRadius; //farther away scales down force applied
                 direction.Normalize();
-                if (colliders[i].GetComponent<CharacterController>().velocityZeroing)
+                if (colliders[i].GetComponent<CharacterController>().velocityZeroing && scale > minimumForcePercent)
                 {
                     prb.velocity = Vector2.zero;
                 }
