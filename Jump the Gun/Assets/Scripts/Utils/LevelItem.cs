@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class LevelItem
@@ -7,12 +8,12 @@ public class LevelItem
     public string levelName;    // Name of the level
     public int platformCount;   // Number of platforms in the level
 
-    public List<Platform> platforms;
+    public List<GameObject> platforms;
 
     public LevelItem(string _levelName)
     {
         levelName = _levelName;
-        platforms = new List<Platform>();
+        platforms = new List<GameObject>();
         UpdatePlatformCount();
     }
 
@@ -20,11 +21,17 @@ public class LevelItem
     {
         platformCount = platforms.Count;
     }
-}
 
-[Serializable]
-public struct Platform
-{
-    public string name;
-    public string ssControllerData;
+    public void AddPlatform(GameObject _platform)
+    {
+        platforms.Add(_platform);
+        UpdatePlatformCount();
+    }
+
+    public void UpdatePlatforms(List<GameObject> _platforms)
+    {
+        platforms.Clear();
+        platforms = _platforms;
+        UpdatePlatformCount();
+    }
 }

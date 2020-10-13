@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using System.Text;
 using System.Linq;
 using UnityEditor.ShortcutManagement;
+using OdinSerializer;
 
 public class JTGLevelEditor : EditorWindow
 {
@@ -19,7 +20,7 @@ public class JTGLevelEditor : EditorWindow
     private static JTGLevelEditor instance;
 
     // Toolbar (tabs)
-    private int toolbarInt = 0;
+    private int toolbarInt = 1;
     private readonly string[] toolbarStrings = { "Level Editing", "Level Save/Load" };
 
     // Level Editing - Variables
@@ -32,15 +33,16 @@ public class JTGLevelEditor : EditorWindow
     // Level Save/Load - Variables
     private readonly string pathToSaveLoad = "/Resources/Levels/";
     private readonly string fileName = "levels.dat";
-    private Level_Data levelData;
     private int levelCount = 5;
-    private int currentLevelIndex = 0;      // Level number - 1
+    private int currentLoadedLevelIndex = 0;
 
     // Level Item Manager
     private GameObject managerObj;
     private LevelItemManager manager;
     private LevelItemManagerEditor levelItemManagerEditor;
     private string currentLoadedLevelName;
+
+    private byte[] savedLevelBinaries;
 
     [MenuItem("Tools/JTG Level Editor")]
     [Shortcut("Refresh Window", KeyCode.F12)]
@@ -74,6 +76,7 @@ public class JTGLevelEditor : EditorWindow
 
     private void OnDestroy()
     {
+        //SaveLevelData();
         DestroyImmediate(managerObj);
     }
 
@@ -130,6 +133,16 @@ public class JTGLevelEditor : EditorWindow
                     CreatePlatform(spriteShapePrefab, spriteShapeName);
                 }
 
+                GUILayout.Space(10);
+
+                // 3 - Clear Scene
+                GUILayout.Label("Clear Sprite Shapes in Hierarchy", EditorStyles.boldLabel);
+
+                if (GUILayout.Button("Clear", GUILayout.MaxWidth(250)))
+                {
+                    ClearSpriteShapesInScene();
+                }
+
                 GUILayout.EndVertical();
                 break;
 
@@ -141,12 +154,9 @@ public class JTGLevelEditor : EditorWindow
                 EditorGUI.BeginDisabledGroup(true);
                 EditorGUILayout.TextField("Relative File Path", pathToSaveLoad, GUILayout.MaxWidth(400));
                 EditorGUI.EndDisabledGroup();
-                if (GUILayout.Button("Save Levels to File", GUILayout.MaxWidth(200)))
-                {
-                    SaveLevelData();
-                }
                 if (GUILayout.Button("Load Levels from File", GUILayout.MaxWidth(200)))
                 {
+                    LoadLevelData();
                 }
 
                 GUILayout.Space(20);
@@ -164,15 +174,15 @@ public class JTGLevelEditor : EditorWindow
 
                 bool areButtonsDisabled = levelItemManagerEditor.GetSelectedIndex() == -1;
                 EditorGUI.BeginDisabledGroup(areButtonsDisabled);
-                if (GUILayout.Button("Load Data from Current Selected Level", GUILayout.MaxWidth(250)))
+                if (GUILayout.Button("Load Current Selected Level", GUILayout.MaxWidth(250)))
                 {
                     LoadCurrentSelectedLevel();
                 }
 
-                if (GUILayout.Button("Save Data to Current Selected Level \n (Does Not Save to File)", GUILayout.MaxWidth(250)))
+                if (GUILayout.Button("Save Current Selected Level To File", GUILayout.MaxWidth(250)))
                 {
                     bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
-                                            "Are you sure you want to update data in " + levelItemManagerEditor.GetCurrentSelectedLevelName() + "? This will overwrite any previous data.",
+                                            "Are you sure you want to update data in " + levelItemManagerEditor.GetCurrentSelectedLevelName() + "? This will overwrite any previous data in files.",
                                             "Yes", "No");
                     if (isCurrentLevelSaved)
                     {
@@ -224,100 +234,102 @@ public class JTGLevelEditor : EditorWindow
         //Debug.Log(platformName + " was created.");   // testing
     }
 
-    /// <summary>
-    /// Save the serialized GameObjects as xml file.
-    /// </summary>
-    /// https://stackoverflow.com/questions/36852213/how-to-serialize-and-save-a-gameobject-in-unity
-    private void SaveLevelData()
-    {
-        // Find all GameObjects (SpriteShapes) in scene
-        List<GameObject> ssInScene = FindAllSpriteShapesInScene();
-
-        // Retrieve Sprite Shape Controller components data from scene
-        if (levelData == null)  // no level file was found and data is null
-        {
-            levelData = new Level_Data();
-            levelCount = 5;
-            levelData.Levels = new string[levelCount];
-        }
-
-        var platformsInScene = FindAllPlatformsInScene(ssInScene);
-
-        levelData.Levels[currentLevelIndex] = JsonHelper.ToJson(platformsInScene, true);
-        Debug.Log(levelData.Levels[currentLevelIndex]);
-
-        // TEST CODE
-
-        // ============================ Serialization Step Below ============================
-        // Serialize to xml
-        DataContractSerializer s = new DataContractSerializer(typeof(Level_Data));
-
-        // Stream the file with a File Stream. (Note that File.Create() 'Creates' or 'Overwrites' a file.)
-        using (FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Create))
-        {
-            s.WriteObject(fs, levelData);
-            Debug.Log("Saved to file");
-        }
-
-        // PRINT RESULT
-        //string result = XElement.Parse(Encoding.ASCII.GetString(streamer.GetBuffer()).Replace("\0", "")).ToString();
-        //Debug.Log("Serialized Result: " + result);
-    }
-
     private List<GameObject> FindAllSpriteShapesInScene()
     {
-        GameObject[] all = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
-        IEnumerable<GameObject> spriteShapesInScene = all.Where(obj => obj.CompareTag("SpriteShape"));
+        GameObject[] spriteShapesInScene = GameObject.FindGameObjectsWithTag("SpriteShape");
 
-        List<GameObject> output = spriteShapesInScene.ToList();
+        List<GameObject> output = new List<GameObject>();
+        foreach (GameObject spriteShape in spriteShapesInScene)
+        {
+            output.Add(SerializationUtility.CreateCopy(spriteShape) as GameObject);
+        }
 
         return output;
     }
 
-    private List<Platform> FindAllPlatformsInScene(List<GameObject> ssInScene)
+    /// <summary>
+    /// Save current sprite shapes in scene to file.
+    /// </summary>
+    private void SaveDataToCurrentLevel()
     {
-        if (ssInScene == null) return null;
-        var output = new List<Platform>();
-        foreach (var ss in ssInScene)
+        List<GameObject> spriteShapesInScene = FindAllSpriteShapesInScene();
+        manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].UpdatePlatforms(spriteShapesInScene);
+
+        // Create a list of level game objects
+        List<GameObject> levelsToSave = new List<GameObject>();
+        foreach (LevelItem level in manager.levelItems)
         {
-            Platform pf = new Platform();
-            pf.name = ss.name;
-            pf.ssControllerData = JsonUtility.ToJson(ss.GetComponent<SpriteShapeController>(), true);
-            Debug.Log(pf.ssControllerData);
-            output.Add(pf);
+            GameObject newLevel = new GameObject();
+            newLevel.name = level.levelName;
+            foreach (GameObject platform in level.platforms)
+            {
+                GameObject tempPlatform = Instantiate(platform, newLevel.transform);
+                tempPlatform.name = tempPlatform.name.Replace("(Clone)", "");
+            }
+            levelsToSave.Add(newLevel);
         }
-        return output;
+
+        // Check for directory for save/load
+        string tempPermPath = Application.dataPath + pathToSaveLoad;
+        // If path to save doesn't exist
+        if (!Directory.Exists(tempPermPath))
+        {
+            Debug.Log("Path not existed");
+            Directory.CreateDirectory(tempPermPath);
+        }
+        else
+        {
+            // If existed, clear the path and recreate the directory
+            FileUtil.DeleteFileOrDirectory(tempPermPath);
+            Directory.CreateDirectory(tempPermPath);
+        }
+
+        // Save level gameobjects in folder
+        foreach (GameObject level in levelsToSave)
+        {
+            string pathToSave = pathToSaveLoad + level.name;
+
+            bool success;
+            Debug.Log(level);
+            PrefabUtility.SaveAsPrefabAsset(level, "Assets" + pathToSave + ".prefab", out success);
+            Debug.Log("Saved " + (success ? "successfully" : "unsuccessfully"));
+        }
+
+        for (int i = 0; i < levelsToSave.Count; i++)
+        {
+            DestroyImmediate(levelsToSave[i]);
+        }
+
+        AssetDatabase.Refresh();
     }
 
     private void LoadLevelData()
     {
-        Level_Data loadedLevelData;
-        DataContractSerializer s = new DataContractSerializer(typeof(Level_Data));
+        // Clear the list if it was prepopulated
+        if (manager.levelItems.Count > 0)
+            manager.levelItems.Clear();
 
-        try
+        List<GameObject> levelPrefabs = PrefabLoader.LoadAllPrefabsAt("Assets" + pathToSaveLoad);
+
+        foreach (GameObject level in levelPrefabs)
         {
-            FileStream fs = File.Open(Application.dataPath + pathToSaveLoad + fileName, FileMode.Open);
-            loadedLevelData = s.ReadObject(fs) as Level_Data;
-            if (loadedLevelData == null)
-                Debug.LogError("Deserialized level file is NULL");
-            else
+            Debug.Log(level);
+            LevelItem levelItem = new LevelItem(level.name);
+            foreach (Transform platformT in level.transform)
             {
-                levelData = loadedLevelData;
-
-                //string[] s_loadedLevels = JsonHelper.FromJson<string[]> 
+                levelItem.AddPlatform(platformT.gameObject);
             }
-
-            fs.Close();
-            Debug.Log("Level Data Loaded!");
-        }
-        catch (FileNotFoundException e)
-        {
-            Debug.LogError("Error: " + e.Message);
+            manager.levelItems.Add(levelItem);
         }
     }
 
     private void LoadCurrentSelectedLevel()
     {
+        LoadLevelData();
+
+        // Update current loaded level
+        currentLoadedLevelName = levelItemManagerEditor.GetCurrentSelectedLevelName();
+
         // Destroy all sprite shapes in hierarchy
         List<GameObject> ssInScene = FindAllSpriteShapesInScene();
         foreach (var ss in ssInScene)
@@ -326,61 +338,25 @@ public class JTGLevelEditor : EditorWindow
         }
 
         // Load platforms from level item
-        var levelItem = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()];
-        var platforms = new List<GameObject>();
-        foreach (Platform pf in levelItem.platforms)
+        var platforms = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].platforms;
+        foreach (var platform in platforms)
         {
-            platforms.Add(ConvertPlatformToGameObject(pf));
+            var newPlatform = Instantiate(platform);
+            newPlatform.name = newPlatform.name.Replace("(Clone)", "");
         }
-
-        foreach (GameObject pfObj in platforms)
-        {
-            Instantiate(pfObj);
-        }
-
-        currentLoadedLevelName = levelItemManagerEditor.GetCurrentSelectedLevelName();  // Update textbox
-        Debug.Log(currentLoadedLevelName + " loaded in Scene");
     }
 
-    private void SaveDataToCurrentLevel()
+    private void ClearSpriteShapesInScene()
     {
-        // Find all GameObjects (SpriteShapes) in scene
-        List<GameObject> ssInScene = FindAllSpriteShapesInScene();
-
-        var currentLevelItem = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()];
-
-        currentLevelItem.platforms = FindAllPlatformsInScene(ssInScene);
-        currentLevelItem.UpdatePlatformCount();
-
-        Debug.Log("Saved current level");
-    }
-
-    private GameObject ConvertPlatformToGameObject(Platform pf)
-    {
-        var result = new GameObject();
-
-        result.name = pf.name;
-        var controllerData = JsonUtility.FromJson<Spline>(pf.ssControllerData);
-        result.AddComponent<SpriteShapeRenderer>();
-        result.AddComponent<SpriteShapeController>();
-        //result.GetComponent<SpiteShapeController>().spline = controllerData; //commented out due to error
-
-        return result;
+        List<GameObject> platformsInScene = FindAllSpriteShapesInScene();
+        foreach (GameObject p in platformsInScene)
+        {
+            DestroyImmediate(p);
+        }
     }
 
     #endregion
 
 }
 
-/// <summary>
-/// Class to be serialized to a saved level file (.dat)
-/// </summary>
-[DataContract]
-class Level_Data
-{
-    [DataMember]
-    private string[] _levels;
-
-    public string[] Levels { get => _levels; set => _levels = value; }
-}
 
