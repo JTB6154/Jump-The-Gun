@@ -186,6 +186,7 @@ MonoBehaviour:
   rocketPrefab: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
     type: 3}
   liftOffCheckTime: 0.3
+  isPaused: 0
 --- !u!95 &2526300677276419995
 Animator:
   serializedVersion: 3
@@ -232,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 4256466671412237882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0012, y: -1.288, z: 0}
-  m_LocalScale: {x: 0.825, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6608315356415120129}
   m_RootOrder: 0
@@ -250,7 +251,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0017907768, y: 0.0031453595}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -261,7 +262,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75979054, y: 0.03188701}
+  m_Size: {x: 0.62, y: 0.03188701}
   m_EdgeRadius: 0
 --- !u!114 &6989202666850748327
 MonoBehaviour:
@@ -278,4 +279,4 @@ MonoBehaviour:
   defaultGround:
     serializedVersion: 2
     m_Bits: 2048
-  player: {fileID: 0}
+  player: {fileID: 5262651818253060545}

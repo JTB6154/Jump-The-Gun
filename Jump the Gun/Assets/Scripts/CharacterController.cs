@@ -246,7 +246,8 @@ public class CharacterController : MonoBehaviour
             if (rocketPrefab != null)
             {
                 Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position; //get the direction the rocket is going to be going in
-                GameObject tempRocket = GameObject.Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
+                //float angle = Mathf.Atan2(dir.y, dir.x);
+                GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
                 tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
             }
@@ -382,7 +383,7 @@ public class CharacterController : MonoBehaviour
     {
         if (hit.collider != null)
         {
-            Debug.Log(Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg));
+            //Debug.Log(Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg));
             if (Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg) > maxWalkableAngle)
             {
                 return false;

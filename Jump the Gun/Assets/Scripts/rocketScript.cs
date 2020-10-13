@@ -32,6 +32,7 @@ public class rocketScript : MonoBehaviour
 
     public void Init(Vector2 direction, float initExplosionForce, float initExplosionRadius)
     {
+        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         explosionforce = initExplosionForce;
         rb.velocity = direction.normalized * initialSpeed;
         explosionRadius = initExplosionRadius;
