@@ -43,9 +43,8 @@ public class LevelItemManagerEditor : Editor
             l.serializedProperty.arraySize++;
             l.index = index;
             var element = l.serializedProperty.GetArrayElementAtIndex(index);
-            element.FindPropertyRelative("levelName").stringValue = "Level " + displayIndex++;
+            element.FindPropertyRelative("levelName").stringValue = "Level ?";
         };
-
     }
 
     private void DrawListItems(Rect rect, int index, bool isActive, bool isFocused)
@@ -105,7 +104,7 @@ public class LevelItemManagerEditor : Editor
     public int GetSelectedIndex() => list.index;
     public string GetCurrentSelectedLevelName()
     {
-        if (list.index < 0)
+        if (list.index < 0 || list.index >= list.count)
             return "No Level Selected";
         var element = list.serializedProperty.GetArrayElementAtIndex(list.index);
         return element.FindPropertyRelative("levelName").stringValue;

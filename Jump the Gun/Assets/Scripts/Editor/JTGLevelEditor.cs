@@ -13,6 +13,8 @@ using System.Text;
 using System.Linq;
 using UnityEditor.ShortcutManagement;
 using OdinSerializer;
+using System.Text.RegularExpressions;
+using UnityEditor.SceneManagement;
 
 public class JTGLevelEditor : EditorWindow
 {
@@ -32,17 +34,12 @@ public class JTGLevelEditor : EditorWindow
 
     // Level Save/Load - Variables
     private readonly string pathToSaveLoad = "/Resources/Levels/";
-    private readonly string fileName = "levels.dat";
-    private int levelCount = 5;
-    private int currentLoadedLevelIndex = 0;
 
     // Level Item Manager
     private GameObject managerObj;
     private LevelItemManager manager;
     private LevelItemManagerEditor levelItemManagerEditor;
     private string currentLoadedLevelName;
-
-    private byte[] savedLevelBinaries;
 
     [MenuItem("Tools/JTG Level Editor")]
     [Shortcut("Refresh Window", KeyCode.F12)]
@@ -164,8 +161,11 @@ public class JTGLevelEditor : EditorWindow
                 // 2 - Level files list
                 GUILayout.Label("Level List Info", EditorStyles.boldLabel);
                 EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.TextField("Total Level Count", levelItemManagerEditor.GetCount().ToString(), GUILayout.MaxWidth(400));
+                EditorGUILayout.TextField("Total Level Count", manager.levelItems.Count.ToString(), GUILayout.MaxWidth(400));
                 EditorGUILayout.TextField("Current Selected Level", levelItemManagerEditor.GetCurrentSelectedLevelName(), GUILayout.MaxWidth(400));
+
+                //EditorGUILayout.TextField("DEBUG: Current Selected Index", levelItemManagerEditor.GetSelectedIndex().ToString(), GUILayout.MaxWidth(400));
+
                 EditorGUILayout.TextField("Current Loaded Level", currentLoadedLevelName, GUILayout.MaxWidth(400));
                 EditorGUI.EndDisabledGroup();
 
@@ -173,12 +173,26 @@ public class JTGLevelEditor : EditorWindow
                 levelItemManagerEditor.OnInspectorGUI();
 
                 bool areButtonsDisabled = levelItemManagerEditor.GetSelectedIndex() == -1;
-                EditorGUI.BeginDisabledGroup(areButtonsDisabled);
+                EditorGUI.BeginDisabledGroup(areButtonsDisabled 
+                    || levelItemManagerEditor.GetCurrentSelectedLevelName().Equals(currentLoadedLevelName));
                 if (GUILayout.Button("Load Current Selected Level", GUILayout.MaxWidth(250)))
                 {
+                    if (SceneManager.GetActiveScene().isDirty)
+                    {
+                        bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
+                        "There are unsaved changes in " + currentLoadedLevelName + ". Do you want to save changes before loading another level?",
+                        "Yes", "No");
+                        if (isCurrentLevelSaved)
+                        {
+                            SaveDataToCurrentLevel();
+                        }
+                    }
                     LoadCurrentSelectedLevel();
-                }
 
+                }
+                EditorGUI.EndDisabledGroup();
+
+                EditorGUI.BeginDisabledGroup(areButtonsDisabled);
                 if (GUILayout.Button("Save Current Selected Level To File", GUILayout.MaxWidth(250)))
                 {
                     bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
@@ -252,6 +266,13 @@ public class JTGLevelEditor : EditorWindow
     /// </summary>
     private void SaveDataToCurrentLevel()
     {
+        // First, check if each level's name is valid for using as a filename
+        if (IsInvalidFilename(levelItemManagerEditor.GetCurrentSelectedLevelName()))
+        {
+            Debug.LogError(levelItemManagerEditor.GetCurrentSelectedLevelName() + " is not a valid file name. Please fix it and retry!");
+            return;
+        }
+
         List<GameObject> spriteShapesInScene = FindAllSpriteShapesInScene();
         manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].UpdatePlatforms(spriteShapesInScene);
 
@@ -274,7 +295,7 @@ public class JTGLevelEditor : EditorWindow
         // If path to save doesn't exist
         if (!Directory.Exists(tempPermPath))
         {
-            Debug.Log("Path not existed");
+            //Debug.Log("Path not existed");
             Directory.CreateDirectory(tempPermPath);
         }
         else
@@ -290,9 +311,9 @@ public class JTGLevelEditor : EditorWindow
             string pathToSave = pathToSaveLoad + level.name;
 
             bool success;
-            Debug.Log(level);
+            //Debug.Log(level);
             PrefabUtility.SaveAsPrefabAsset(level, "Assets" + pathToSave + ".prefab", out success);
-            Debug.Log("Saved " + (success ? "successfully" : "unsuccessfully"));
+            //Debug.Log("Saved " + (success ? "successfully" : "unsuccessfully"));
         }
 
         for (int i = 0; i < levelsToSave.Count; i++)
@@ -313,7 +334,7 @@ public class JTGLevelEditor : EditorWindow
 
         foreach (GameObject level in levelPrefabs)
         {
-            Debug.Log(level);
+            //Debug.Log(level);
             LevelItem levelItem = new LevelItem(level.name);
             foreach (Transform platformT in level.transform)
             {
@@ -323,9 +344,15 @@ public class JTGLevelEditor : EditorWindow
         }
     }
 
+    private int GetLevelNumInFile()
+    {
+        return PrefabLoader.LoadAllPrefabsAt("Assets" + pathToSaveLoad).Count;
+    }
+
     private void LoadCurrentSelectedLevel()
     {
-        LoadLevelData();
+        if (levelItemManagerEditor.GetCount() <= GetLevelNumInFile())
+            LoadLevelData();
 
         // Update current loaded level
         currentLoadedLevelName = levelItemManagerEditor.GetCurrentSelectedLevelName();
@@ -344,6 +371,9 @@ public class JTGLevelEditor : EditorWindow
             var newPlatform = Instantiate(platform);
             newPlatform.name = newPlatform.name.Replace("(Clone)", "");
         }
+
+        // Save the scene and make it not "dirty"
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
     }
 
     private void ClearSpriteShapesInScene()
@@ -353,6 +383,13 @@ public class JTGLevelEditor : EditorWindow
         {
             DestroyImmediate(p);
         }
+    }
+
+    // Ref: https://stackoverflow.com/questions/12590969/determining-whether-a-string-is-a-file-name-in-c-sharp
+    private bool IsInvalidFilename(string fileName)
+    {
+        char[] invalidFileChars = Path.GetInvalidFileNameChars();
+        return invalidFileChars.Any(s => fileName.Contains(s));
     }
 
     #endregion
