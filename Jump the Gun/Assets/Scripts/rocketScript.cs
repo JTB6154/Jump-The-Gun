@@ -9,6 +9,7 @@ public class rocketScript : MonoBehaviour
     float explosionforce = 0f;
     float explosionRadius = 2f;
     [SerializeField] [Range(0, 100)] float MinimumForcePercent;
+    [SerializeField] bool rocketVelocityZeroing = true;
     float minimumForcePercent;
     bool hasExploded = false;
     [SerializeField] LayerMask player;
@@ -31,7 +32,7 @@ public class rocketScript : MonoBehaviour
         {
             Explode();
         }
-    }
+    } 
 
     public void Init(Vector2 direction, float initExplosionForce, float initExplosionRadius)
     {
@@ -55,7 +56,7 @@ public class rocketScript : MonoBehaviour
                 Vector3 direction = colliders[i].gameObject.transform.position - gameObject.transform.position; //vector from rocket to player
                 float scale = (explosionRadius - direction.magnitude) / explosionRadius; //farther away scales down force applied
                 direction.Normalize();
-                if (colliders[i].GetComponent<CharacterController>().velocityZeroing && scale > minimumForcePercent)
+                if (rocketVelocityZeroing && scale > minimumForcePercent)
                 {
                     prb.velocity = Vector2.zero;
                 }
