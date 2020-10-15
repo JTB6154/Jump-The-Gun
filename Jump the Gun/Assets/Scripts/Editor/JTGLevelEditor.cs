@@ -88,7 +88,7 @@ public class JTGLevelEditor : EditorWindow
         #region Only Run in LevelEditorTest Scene
         // Make sure the editor only runs in level editor scene
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName != "LevelEditorTest")
+        if (sceneName != "LevelEditorTest" && sceneName != "JTGFullGame")
             return;
         #endregion
 
