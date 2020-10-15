@@ -35,7 +35,7 @@ public class CharacterController : MonoBehaviour
     public bool grounded;
     public bool lastGrounded;
     [SerializeField] float groundCheckRadius = .15f;
-    [Range(0.001f, .1f)] [SerializeField] float groundCheckDepth = .01f;
+    [Range(0.001f, .3f)] [SerializeField] float groundCheckDepth = .01f;
     [Range(0.001f, 1f)] [SerializeField] float groundTimer = .01f;
 
 
@@ -52,7 +52,7 @@ public class CharacterController : MonoBehaviour
     [Header("Big recoil")]
     public bool hasBigRecoil = false;
     KeyCode fireBigRecoil;
-    [Range(5f, 500f)] [SerializeField] float recoilForce = 300f;
+    [Range(5f, 1500f)] [SerializeField] float recoilForce = 300f;
     [Range(1, 5)] [SerializeField] int maxBigRecoilShots = 2;
     [SerializeField] GameObject shotgunShot;
     [SerializeField] float maxVariation = 10f;
@@ -61,7 +61,7 @@ public class CharacterController : MonoBehaviour
     [Header("Rocket Jump")]
     public bool hasRocketJump = false;
     KeyCode fireRocket;
-    [Range(5f, 1000f)] [SerializeField] float rocketForce = 300f;
+    [Range(5f, 2000f)] [SerializeField] float rocketForce = 300f;
     [Range(.1f, 10f)] [SerializeField] float rocketRadius = 2f;
     [SerializeField] int maxRockets = 2;
     int numRockets = 0;
