@@ -69,8 +69,12 @@ public class CharacterController : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] float liftOffCheckTime = .2f;
     bool subtractRockets = false;
     bool subtractBigRecoil = false;
+
     private Animator animator;
     private SpriteRenderer sprite;
+    private bool shooting;
+    private float animTimer;
+    private short gun;
 
     public bool isPaused = false;
     #endregion
@@ -250,6 +254,9 @@ public class CharacterController : MonoBehaviour
                 GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
                 tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+
+                //Startup the shooting animation
+                StartShootAnim(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, 1);
             }
         }
     }
@@ -298,6 +305,8 @@ public class CharacterController : MonoBehaviour
                 }
             }
 
+            //Startup the shooting animation
+            StartShootAnim(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, 0);
         }
     }
 
@@ -426,23 +435,29 @@ public class CharacterController : MonoBehaviour
     //based on what the player character is currently doing
     private void UpdateAnim()
     {
-        //Check if the player is moving up or down
-        if (rb.velocity.y != 0)
+        //Check to see if the player has finished the shooting animation
+        if (shooting && animTimer <= Time.time)
         {
-            animator.SetBool("InAir", true);
-        }
-        else
-        {
-            animator.SetBool("InAir", false);
+            if (gun == 0) //shotgun
+                animator.SetBool("Shotgun", false);
+            else //rocket
+                animator.SetBool("Rocket", false);
+            shooting = false;
         }
 
+        //Check if the player is moving up or down
+        if (rb.velocity.y != 0)
+            animator.SetBool("Jumping", true);
+        else
+            animator.SetBool("Jumping", false);
+
         //Check if the player character is moving left or right
-        if (rb.velocity.x > 0)
+        if (rb.velocity.x > 0 && grounded && !shooting)
         {
             sprite.flipX = true;
             animator.SetBool("Running", true);
         }
-        else if (rb.velocity.x < 0)
+        else if (rb.velocity.x < 0 && grounded && !shooting)
         {
             sprite.flipX = false;
             animator.SetBool("Running", true);
@@ -451,6 +466,48 @@ public class CharacterController : MonoBehaviour
         {
             animator.SetBool("Running", false);
         }
+    }
+
+    //Start the animation for shooting, and
+    //setup variables to track when the animation ends
+    private void StartShootAnim(float angle, short gun_)
+    {
+        gun = gun_;
+        if (gun == 0) //shotgun
+        {
+            animator.SetBool("Shotgun", true);
+            angle *= -1;
+            if (angle > 100 || angle < -100)
+            {
+                sprite.flipX = true;
+                float sign = angle / Mathf.Abs(angle);
+                angle = (180 - Mathf.Abs(angle)) * sign;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+            animator.SetFloat("Angle", angle);
+        }
+        else //rocket
+        {
+            animator.SetBool("Rocket", true);
+            if (angle <= 100 && angle >= -100)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+                float sign = angle / Mathf.Abs(angle);
+                angle = (180 - Mathf.Abs(angle)) * sign;
+            }
+            animator.SetFloat("Angle", angle);
+        }
+
+        //Set the timer
+        animTimer = Time.time + animator.GetCurrentAnimatorStateInfo(0).length;
+        shooting = true;
     }
 
     void SetCursor()
