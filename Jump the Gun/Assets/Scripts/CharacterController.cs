@@ -300,7 +300,7 @@ public class CharacterController : MonoBehaviour
                 for (int i = 0; i < numShot; i++)
                 {
                     GameObject shooting = GameObject.Instantiate(shotgunShot);
-                    shooting.transform.position = gameObject.transform.position;
+                    shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
                     shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg+Random.Range(-maxVariation, maxVariation));
                 }
             }
@@ -323,6 +323,14 @@ public class CharacterController : MonoBehaviour
         ReloadGuns();
 
     }
+
+    //private Vector2 GetVisualDirection(Vector2 direction)
+    //{
+    //    float x = 0, y = 0;
+    //    float angle = Mathf.Atan2(direction.y, direction.y) * Mathf.Rad2Deg;
+
+    //    return new Vector2(x, y);
+    //}
 
     /// <summary>
     /// sets the number of all of the guns back to the maximum of guns
@@ -475,6 +483,8 @@ public class CharacterController : MonoBehaviour
         gun = gun_;
         if (gun == 0) //shotgun
         {
+            if (animator.GetBool("Rocket"))
+                animator.SetBool("Rocket", false);
             animator.SetBool("Shotgun", true);
             angle *= -1;
             if (angle > 100 || angle < -100)
@@ -491,6 +501,8 @@ public class CharacterController : MonoBehaviour
         }
         else //rocket
         {
+            if (animator.GetBool("Shotgun"))
+                animator.SetBool("Shotgun", false);
             animator.SetBool("Rocket", true);
             if (angle <= 100 && angle >= -100)
             {
@@ -506,7 +518,10 @@ public class CharacterController : MonoBehaviour
         }
 
         //Set the timer
-        animTimer = Time.time + animator.GetCurrentAnimatorStateInfo(0).length;
+
+        int timerOffset = 40;
+        if (animator.GetBool("Running")) { timerOffset = 10; }
+        animTimer = Time.time + (timerOffset * Time.deltaTime);
         shooting = true;
     }
 
