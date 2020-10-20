@@ -443,6 +443,7 @@ public class CharacterController : MonoBehaviour
             else //rocket
                 animator.SetBool("Rocket", false);
             shooting = false;
+            Debug.Log("Done Firing");
         }
 
         //Check if the player is moving up or down
@@ -475,6 +476,8 @@ public class CharacterController : MonoBehaviour
         gun = gun_;
         if (gun == 0) //shotgun
         {
+            if (animator.GetBool("Rocket"))
+                animator.SetBool("Rocket", false);
             animator.SetBool("Shotgun", true);
             angle *= -1;
             if (angle > 100 || angle < -100)
@@ -491,6 +494,8 @@ public class CharacterController : MonoBehaviour
         }
         else //rocket
         {
+            if (animator.GetBool("Shotgun"))
+                animator.SetBool("Shotgun", false);
             animator.SetBool("Rocket", true);
             if (angle <= 100 && angle >= -100)
             {
@@ -506,7 +511,7 @@ public class CharacterController : MonoBehaviour
         }
 
         //Set the timer
-        animTimer = Time.time + animator.GetCurrentAnimatorStateInfo(0).length;
+        animTimer = Time.time + (60 * Time.deltaTime);
         shooting = true;
     }
 
