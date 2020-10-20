@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueScript : MonoBehaviour
 {
 
     public GameObject player;
+    public GameObject dialogueTextBox;
+
+    public List<string> dialogueOptions;
 
     bool entered;
+    bool invoking;
     int timesEntered;
 
     // Start is called before the first frame update
     void Start()
     {
+        invoking = false;
         entered = false;
         timesEntered = 0;
     }
@@ -24,31 +31,45 @@ public class DialogueScript : MonoBehaviour
         {
             entered = true;
             StartDialogue();
-            timesEntered++;
         }
-        else
+        else if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()) == false && entered == true && invoking == false)
         {
-            //After being away from NPC for 15 seconds, they can then be triggered with next dialogue option
+            //After being away from NPC for desired seconds, they can then be triggered with next dialogue option
+            invoking = true;
+            Invoke("RemoveDialogue", 1);
             Invoke("ResetEntered", 10);
         }
+    }
+
+    void RemoveDialogue()
+    {
+        dialogueTextBox.SetActive(false);
     }
 
     void ResetEntered()
     {
         entered = false;
+        invoking = false;
     }
 
     void StartDialogue()
     {
-        switch (timesEntered)
+        //Choose dialogue
+        if (timesEntered < dialogueOptions.Capacity - 1)
         {
-            case 0:
-                
-                break;
-
-            default:
-                break;
+            dialogueTextBox.GetComponent<Text>().text = dialogueOptions[timesEntered];
         }
+        else
+        {
+            dialogueTextBox.GetComponent<Text>().text = dialogueOptions[dialogueOptions.Capacity - 1];
+        }
+
+        //Make dialogue visible
+        dialogueTextBox.SetActive(true);
+
+        //Adjust times entered
+        timesEntered++;
+
     }
 
 }
