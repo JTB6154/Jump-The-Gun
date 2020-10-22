@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class BigRecoilPickup : MonoBehaviour
 {
 
-    GameObject player;
+    public GameObject player;
     public GameObject ammoUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player Character");
+
     }
 
     // Update is called once per frame

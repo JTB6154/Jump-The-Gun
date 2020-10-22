@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RocketJumpPickUp : MonoBehaviour
 {
-    GameObject player;
     public GameObject ammoUI;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player Character");
+        
     }
 
     // Update is called once per frame
