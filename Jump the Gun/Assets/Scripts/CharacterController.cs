@@ -22,7 +22,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float walkSpeed = 5f;
     //[SerializeField] float mass = 2.5f;
     [Range(5f, 150f)] [SerializeField] float maxXSpeed = 9f;
-    [Range(-150f, -5f)] [SerializeField] float minXSpeed = 9f;
+    [Range(-150f, -5f)] [SerializeField] float minXSpeed = -9f;
     [Range(5f, 150f)] [SerializeField] float maxYSpeed = 9f;
     [Range(-150f,-5f)] [SerializeField] float minYSpeed = -9f;
     float maxSpeed;
