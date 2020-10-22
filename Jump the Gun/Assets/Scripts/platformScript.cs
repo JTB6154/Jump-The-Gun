@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class platformScript : MonoBehaviour
 {
-    public bool state = false; //start in the off position
+    bool state = false; //start in the off position
+    public bool State
+    {
+        get
+        {
+            return state;
+        }
+    }
     bool rotationActive = false; //start inactive
     bool translationAcitve = false;
+    [Header("Uses Switch: toggle off if this platform does not use a switch")]
+    [SerializeField] bool usesSwitch = true;
+
     [Header("Objects")]
     [SerializeField] GameObject target;
 
@@ -40,20 +50,23 @@ public class platformScript : MonoBehaviour
         //reverse the translation and rotation so they go the right way the first time
         totatlTranslation = -totatlTranslation;
         rotationInDegrees = -rotationInDegrees;
+
+        rotationActive = !usesSwitch && rotationEnabled;
+        translationAcitve = !usesSwitch && translationEnabled;
     }
 
     void Update()
     {
         if (!translationAcitve && !rotationActive) return; //if the platform isn't active, leave 
 
-        if (translationEnabled) updateTranslation(Time.deltaTime);
+        if (translationEnabled) UpdateTranslation(Time.deltaTime);
 
-        if (rotationEnabled) updateRotation(Time.deltaTime);
+        if (rotationEnabled) UpdateRotation(Time.deltaTime);
 
 
         
     }
-    public void updateTranslation(float dt)
+    public void UpdateTranslation(float dt)
     {
         if (!translationAcitve) return;
 
@@ -62,11 +75,13 @@ public class platformScript : MonoBehaviour
 
         if (percentDistance >= 1f) //if we've passed the max distance
         {
-            //disable the movement
-            translationAcitve = false;
+            //disable the movement if a switch is not in use
+            translationAcitve = !usesSwitch;
             currentDistance = 0; //reset program for next time
             target.transform.position = startPos + totatlTranslation.normalized * maxDistance; //move the object
             startPos = target.transform.position;
+            //reverse total translation so that toggling a second time returns to original position
+            totatlTranslation = -totatlTranslation;
             return;
             
         }
@@ -74,7 +89,7 @@ public class platformScript : MonoBehaviour
         target.transform.position = startPos + totatlTranslation.normalized * currentDistance;
 
     }
-    public void updateRotation(float dt)
+    public void UpdateRotation(float dt)
     {
         if (!rotationActive) return;
 
@@ -82,10 +97,12 @@ public class platformScript : MonoBehaviour
         float percentRotation = currentRotation / maxRotation;
         if (percentRotation >= 1f)
         {
-            rotationActive = false;
+            rotationActive = !usesSwitch;
             currentRotation = 0;
             target.transform.rotation = Quaternion.Euler(0, 0, startRotation + rotationInDegrees); 
             startRotation = startRotation + rotationInDegrees;
+            //reverse so toggling returns to initial position
+            rotationInDegrees = -rotationInDegrees;
             return;
         }
 
@@ -94,9 +111,9 @@ public class platformScript : MonoBehaviour
     }
 
 
-    public void toggleState()
+    public void ToggleState()
     {
-        if (translationAcitve || rotationActive) 
+        if (translationAcitve || rotationActive || !usesSwitch) 
         {            
             return; 
         }
@@ -105,14 +122,10 @@ public class platformScript : MonoBehaviour
         if (rotationEnabled)
         {
             rotationActive = true;
-            //reverse so toggling returns to initial position
-            rotationInDegrees = -rotationInDegrees;
         }
         if (translationEnabled) 
         { 
             translationAcitve = true;
-            //reverse total translation so that toggling a second time returns to original position
-            totatlTranslation = -totatlTranslation;
             
         }
     }
