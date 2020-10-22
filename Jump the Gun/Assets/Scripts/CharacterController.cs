@@ -22,7 +22,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float walkSpeed = 5f;
     //[SerializeField] float mass = 2.5f;
     [Range(5f, 150f)] [SerializeField] float maxXSpeed = 9f;
+    [Range(-150f, -5f)] [SerializeField] float minXSpeed = 9f;
     [Range(5f, 150f)] [SerializeField] float maxYSpeed = 9f;
+    [Range(-150f,-5f)] [SerializeField] float minYSpeed = -9f;
     float maxSpeed;
     Vector3 moveControls = new Vector3();
     //Vector3 velocity = new Vector2(0, 0);
@@ -173,15 +175,28 @@ public class CharacterController : MonoBehaviour
 
 
         //cap the speed of the player in the x and y directions
-        if (Mathf.Abs(rb.velocity.x) > maxXSpeed)
+        if (rb.velocity.x > maxXSpeed)
         {
             rb.velocity = new Vector2(maxXSpeed * rb.velocity.x / Mathf.Abs(rb.velocity.x) , rb.velocity.y);
         }
 
-        if (Mathf.Abs(rb.velocity.y) > maxYSpeed)
+        if (rb.velocity.x < minXSpeed)
+        {
+            rb.velocity = new Vector2(minXSpeed * rb.velocity.x / Mathf.Abs(rb.velocity.x), rb.velocity.y);
+
+        }
+
+
+        if (rb.velocity.y > maxYSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, maxYSpeed * rb.velocity.y / Mathf.Abs(rb.velocity.y));
         }
+
+        if (rb.velocity.y < minYSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, minYSpeed * rb.velocity.y / Mathf.Abs(rb.velocity.y));
+        }
+
     }
 
 
