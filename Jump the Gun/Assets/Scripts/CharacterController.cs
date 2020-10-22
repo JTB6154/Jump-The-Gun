@@ -177,24 +177,24 @@ public class CharacterController : MonoBehaviour
         //cap the speed of the player in the x and y directions
         if (rb.velocity.x > maxXSpeed)
         {
-            rb.velocity = new Vector2(maxXSpeed * rb.velocity.x / Mathf.Abs(rb.velocity.x) , rb.velocity.y);
+            rb.velocity = new Vector2(maxXSpeed, rb.velocity.y);
         }
 
         if (rb.velocity.x < minXSpeed)
         {
-            rb.velocity = new Vector2(minXSpeed * rb.velocity.x / Mathf.Abs(rb.velocity.x), rb.velocity.y);
+            rb.velocity = new Vector2(minXSpeed, rb.velocity.y);
 
         }
 
 
         if (rb.velocity.y > maxYSpeed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, maxYSpeed * rb.velocity.y / Mathf.Abs(rb.velocity.y));
+            rb.velocity = new Vector2(rb.velocity.x, maxYSpeed);
         }
 
         if (rb.velocity.y < minYSpeed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, minYSpeed * rb.velocity.y / Mathf.Abs(rb.velocity.y));
+            rb.velocity = new Vector2(rb.velocity.x, minYSpeed);
         }
 
     }
