@@ -8204,17 +8204,17 @@ PrefabInstance:
     - target: {fileID: 3623917481152541901, guid: 4bd4770305608db4b82aae6b57c35f40,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.09867573
+      value: -2.2277486
       objectReference: {fileID: 0}
     - target: {fileID: 3623917481152541901, guid: 4bd4770305608db4b82aae6b57c35f40,
         type: 3}
       propertyPath: m_Size.x
-      value: 11.807634
+      value: 7.1547856
       objectReference: {fileID: 0}
     - target: {fileID: 3623917481152541901, guid: 4bd4770305608db4b82aae6b57c35f40,
         type: 3}
       propertyPath: m_Offset.y
-      value: 0.69484085
+      value: 0.6948409
       objectReference: {fileID: 0}
     - target: {fileID: 3623917481152541901, guid: 4bd4770305608db4b82aae6b57c35f40,
         type: 3}
