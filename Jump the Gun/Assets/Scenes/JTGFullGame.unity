@@ -8256,6 +8256,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComputerNPC (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3623917481152541907, guid: 4bd4770305608db4b82aae6b57c35f40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623917481168092393, guid: 4bd4770305608db4b82aae6b57c35f40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3623917481168092394, guid: 4bd4770305608db4b82aae6b57c35f40,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8280,6 +8290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 149
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623917481629051738, guid: 4bd4770305608db4b82aae6b57c35f40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bd4770305608db4b82aae6b57c35f40, type: 3}
