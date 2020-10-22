@@ -32,7 +32,7 @@ public class SwitchScript : MonoBehaviour
             foreach (platformScript platform in tiedPlatforms)
             {
                 //call the platforms start transformation
-                platform.toggleState();
+                platform.ToggleState();
             }
         }
     }
@@ -42,7 +42,7 @@ public class SwitchScript : MonoBehaviour
         foreach (platformScript platform in tiedPlatforms)
         {
             //call the platform that don't currently match the state of the switch
-            if(platform.state != switchIsOn) platform.toggleState();
+            if(platform.State != switchIsOn) platform.ToggleState();
         }
     }
 
