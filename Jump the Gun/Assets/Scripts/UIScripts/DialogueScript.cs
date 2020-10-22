@@ -12,6 +12,9 @@ public class DialogueScript : MonoBehaviour
 
     public List<string> dialogueOptions;
 
+    [Range(0, 20)] [SerializeField] int textVisibleTime = 1;
+    [Range(1, 20)] [SerializeField] int enterAgainTime = 10;
+
     bool entered;
     bool invoking;
     int timesEntered;
@@ -36,8 +39,8 @@ public class DialogueScript : MonoBehaviour
         {
             //After being away from NPC for desired seconds, they can then be triggered with next dialogue option
             invoking = true;
-            Invoke("RemoveDialogue", 1);
-            Invoke("ResetEntered", 10);
+            Invoke("RemoveDialogue", textVisibleTime);
+            Invoke("ResetEntered", enterAgainTime);
         }
     }
 
