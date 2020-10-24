@@ -9,7 +9,7 @@ public class ChangeScene : MonoBehaviour
     public void LoadGameScene()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Cameron GreyBoxV1", LoadSceneMode.Single);
+        SceneManager.LoadScene("JTGFullGame", LoadSceneMode.Single);
     }
 
     //Load title screen

@@ -18,381 +18,411 @@ using UnityEditor.SceneManagement;
 
 public class JTGLevelEditor : EditorWindow
 {
-    // Editor window instance
-    private static JTGLevelEditor instance;
+	Editor window instance
+	private static JTGLevelEditor instance;
 
-    // Toolbar (tabs)
-    private int toolbarInt = 1;
-    private readonly string[] toolbarStrings = { "Level Editing", "Level Save/Load" };
+	Toolbar(tabs)
 
-    // Level Editing - Variables
-    private readonly string localPathToController = "Assets/Prefabs/LevelEditorPrefabs/SpriteShapeController.prefab";
-    private readonly string localPathToLevelItemManager = "Assets/Prefabs/LevelEditorPrefabs/LevelItemManager.prefab";
-    private static int platformCounter = 0;
-    private GameObject spriteShapePrefab;
-    private string spriteShapeName = "Platform";
+	private int toolbarInt = 1;
+	private readonly string[] toolbarStrings = { "Level Editing", "Level Save/Load" };
 
-    // Level Save/Load - Variables
-    private readonly string pathToSaveLoad = "/Resources/Levels/";
+	Level Editing - Variables
+	private readonly string localPathToController = "Assets/Prefabs/LevelEditorPrefabs/SpriteShapeController.prefab";
+	private readonly string localPathToLevelItemManager = "Assets/Prefabs/LevelEditorPrefabs/LevelItemManager.prefab";
+	private static int platformCounter = 0;
+	private GameObject spriteShapePrefab;
+	private string spriteShapeName = "Platform";
 
-    // Level Item Manager
-    private GameObject managerObj;
-    private LevelItemManager manager;
-    private LevelItemManagerEditor levelItemManagerEditor;
-    private string currentLoadedLevelName;
+	Level Save/Load - Variables
+	private readonly string pathToSaveLoad = "/Resources/Levels/";
 
-    [MenuItem("Tools/JTG Level Editor")]
-    [Shortcut("Refresh Window", KeyCode.F12)]
-    public static void ShowWindow()
-    {
-        if (instance) instance.Close();
+	Level Item Manager
+	private GameObject managerObj;
+	private LevelItemManager manager;
+	private LevelItemManagerEditor levelItemManagerEditor;
+	private string currentLoadedLevelName;
 
-        instance = GetWindow<JTGLevelEditor>("JTG Level Editor");
-    }
+	[MenuItem("Tools/JTG Level Editor")]
+	[Shortcut("Refresh Window", KeyCode.F12)]
+	public static void ShowWindow()
+	{
+		if (instance) instance.Close();
 
-    private void Awake()
-    {
-        // Initialization
-        var managerPrefab = AssetDatabase.LoadAssetAtPath(localPathToLevelItemManager, typeof(GameObject)) as GameObject;
-        managerObj = PrefabUtility.InstantiatePrefab(managerPrefab) as GameObject;
-        PrefabUtility.UnpackPrefabInstance(managerObj, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+		instance = GetWindow<JTGLevelEditor>("JTG Level Editor");
+	}
 
-        // Set parent
-        var doNotDeleteParent = GameObject.Find("DO NOT DELETE");
-        managerObj.transform.parent = doNotDeleteParent.transform;
+	private void Awake()
+	{
+		Initialization
+	   var managerPrefab = AssetDatabase.LoadAssetAtPath(localPathToLevelItemManager, typeof(GameObject)) as GameObject;
+		managerObj = PrefabUtility.InstantiatePrefab(managerPrefab) as GameObject;
+		PrefabUtility.UnpackPrefabInstance(managerObj, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
 
-        manager = managerObj.AddComponent<LevelItemManager>();
-        // FindObjectOfType<LevelItemManager>();
+		Set parent
 
-        // Load level data from file
-        LoadLevelData();
+		var doNotDeleteParent = GameObject.Find("DO NOT DELETE");
+		managerObj.transform.parent = doNotDeleteParent.transform;
 
-        // Display loaded data in Reorderable list
-        levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
-    }
+		manager = managerObj.AddComponent<LevelItemManager>();
+		FindObjectOfType<LevelItemManager>();
 
-    private void OnDestroy()
-    {
-        //SaveLevelData();
-        DestroyImmediate(managerObj);
-    }
+		Load level data from file
 
-    void OnInspectorUpdate()
-    {
-        // Called at 10 frames per second
-        Repaint();
-    }
+		LoadLevelData();
 
-    private void OnGUI()
-    {
-        #region Only Run in LevelEditorTest Scene
-        // Make sure the editor only runs in level editor scene
-        string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName != "LevelEditorTest" && sceneName != "JTGFullGame")
-            return;
-        #endregion
+		Display loaded data in Reorderable list
 
-        GUILayout.BeginVertical();
+		levelItemManagerEditor = (LevelItemManagerEditor)Editor.CreateEditor(manager);
+	}
 
-        // A short description of this editor window
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("Official 2D Level Editor for Jump The Gun", EditorStyles.miniLabel);
-        GUILayout.Label("© 2020 Cardboard Gamers", EditorStyles.miniLabel);
-        GUILayout.Label("Press F12 to Refresh the Window", EditorStyles.label);
-        GUILayout.EndVertical();
+	private void OnDestroy()
+	{
+		SaveLevelData();
+		DestroyImmediate(managerObj);
+	}
 
-        // Switching tab
-        toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
+	void OnInspectorUpdate()
+	{
+		Called at 10 frames per second
 
-        switch (toolbarStrings[toolbarInt])
-        {
-            case "Level Editing":
-                GUILayout.BeginVertical("box");
+		Repaint();
+	}
 
-                // 1 - Selecting Prefab
-                GUILayout.Label("Select Prefab", EditorStyles.boldLabel);
-                spriteShapePrefab = EditorGUILayout.ObjectField("Sprite Shape Prefab", spriteShapePrefab, typeof(GameObject), true, GUILayout.MaxWidth(400)) as GameObject;
+	private void OnGUI()
+	{
+		#region Only Run in LevelEditorTest Scene
+		Make sure the editor only runs in level editor scene
 
-                if (GUILayout.Button("Get Default Sprite Shape", GUILayout.MaxWidth(250)))
-                {
-                    // Load the sprite shape prefab from the Assets folder
-                    spriteShapePrefab = AssetDatabase.LoadAssetAtPath(localPathToController, typeof(GameObject)) as GameObject;
-                }
+		string sceneName = SceneManager.GetActiveScene().name;
+		if (sceneName != "LevelEditorTest" && sceneName != "JTGFullGame")
+			return;
+		#endregion
 
-                GUILayout.Space(10);
+		GUILayout.BeginVertical();
 
-                // 2 - Create Sprite Shape
-                GUILayout.Label("Add Sprite Shape to Scene", EditorStyles.boldLabel);
-                spriteShapeName = EditorGUILayout.TextField("Sprite Shape Name", spriteShapeName, GUILayout.MaxWidth(400));
+		A short description of this editor window
 
-                if (GUILayout.Button("Create a Sprite Shape", GUILayout.MaxWidth(250)))
-                {
-                    CreatePlatform(spriteShapePrefab, spriteShapeName);
-                }
+		GUILayout.BeginVertical("box");
+		GUILayout.Label("Official 2D Level Editor for Jump The Gun", EditorStyles.miniLabel);
+		GUILayout.Label("© 2020 Cardboard Gamers", EditorStyles.miniLabel);
+		GUILayout.Label("Press F12 to Refresh the Window", EditorStyles.label);
+		GUILayout.EndVertical();
 
-                GUILayout.Space(10);
+		Switching tab
 
-                // 3 - Clear Scene
-                GUILayout.Label("Clear Sprite Shapes in Hierarchy", EditorStyles.boldLabel);
+		toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
 
-                if (GUILayout.Button("Clear", GUILayout.MaxWidth(250)))
-                {
-                    ClearSpriteShapesInScene();
-                }
+		switch (toolbarStrings[toolbarInt])
+		{
+			case "Level Editing":
+				GUILayout.BeginVertical("box");
 
-                GUILayout.EndVertical();
-                break;
+				1 - Selecting Prefab
 
-            case "Level Save/Load":
-                GUILayout.BeginVertical("box");
+				GUILayout.Label("Select Prefab", EditorStyles.boldLabel);
+				spriteShapePrefab = EditorGUILayout.ObjectField("Sprite Shape Prefab", spriteShapePrefab, typeof(GameObject), true, GUILayout.MaxWidth(400)) as GameObject;
 
-                // 1 - Save/Load buttons
-                GUILayout.Label("Level File Management", EditorStyles.boldLabel);
-                EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.TextField("Relative File Path", pathToSaveLoad, GUILayout.MaxWidth(400));
-                EditorGUI.EndDisabledGroup();
-                if (GUILayout.Button("Load Levels from File", GUILayout.MaxWidth(200)))
-                {
-                    LoadLevelData();
-                }
+				if (GUILayout.Button("Get Default Sprite Shape", GUILayout.MaxWidth(250)))
+				{
+					Load the sprite shape prefab from the Assets folder
+				   spriteShapePrefab = AssetDatabase.LoadAssetAtPath(localPathToController, typeof(GameObject)) as GameObject;
+				}
 
-                GUILayout.Space(20);
+				GUILayout.Space(10);
 
-                // 2 - Level files list
-                GUILayout.Label("Level List Info", EditorStyles.boldLabel);
-                EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.TextField("Total Level Count", manager.levelItems.Count.ToString(), GUILayout.MaxWidth(400));
-                EditorGUILayout.TextField("Current Selected Level", levelItemManagerEditor.GetCurrentSelectedLevelName(), GUILayout.MaxWidth(400));
+				2 - Create Sprite Shape
 
-                //EditorGUILayout.TextField("DEBUG: Current Selected Index", levelItemManagerEditor.GetSelectedIndex().ToString(), GUILayout.MaxWidth(400));
+				GUILayout.Label("Add Sprite Shape to Scene", EditorStyles.boldLabel);
+				spriteShapeName = EditorGUILayout.TextField("Sprite Shape Name", spriteShapeName, GUILayout.MaxWidth(400));
 
-                EditorGUILayout.TextField("Current Loaded Level", currentLoadedLevelName, GUILayout.MaxWidth(400));
-                EditorGUI.EndDisabledGroup();
+				if (GUILayout.Button("Create a Sprite Shape", GUILayout.MaxWidth(250)))
+				{
+					CreatePlatform(spriteShapePrefab, spriteShapeName);
+				}
 
-                //  Display Reorderable list GUI
-                levelItemManagerEditor.OnInspectorGUI();
+				GUILayout.Space(10);
 
-                bool areButtonsDisabled = levelItemManagerEditor.GetSelectedIndex() == -1;
-                EditorGUI.BeginDisabledGroup(areButtonsDisabled 
-                    || levelItemManagerEditor.GetCurrentSelectedLevelName().Equals(currentLoadedLevelName));
-                if (GUILayout.Button("Load Current Selected Level", GUILayout.MaxWidth(250)))
-                {
-                    if (SceneManager.GetActiveScene().isDirty)
-                    {
-                        bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
-                        "There are unsaved changes in " + currentLoadedLevelName + ". Do you want to save changes before loading another level?",
-                        "Yes", "No");
-                        if (isCurrentLevelSaved)
-                        {
-                            SaveDataToCurrentLevel();
-                        }
-                    }
-                    LoadCurrentSelectedLevel();
+				3 - Clear Scene
 
-                }
-                EditorGUI.EndDisabledGroup();
+				GUILayout.Label("Clear Sprite Shapes in Hierarchy", EditorStyles.boldLabel);
 
-                EditorGUI.BeginDisabledGroup(areButtonsDisabled);
-                if (GUILayout.Button("Save Current Selected Level To File", GUILayout.MaxWidth(250)))
-                {
-                    bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
-                                            "Are you sure you want to update data in " + levelItemManagerEditor.GetCurrentSelectedLevelName() + "? This will overwrite any previous data in files.",
-                                            "Yes", "No");
-                    if (isCurrentLevelSaved)
-                    {
-                        SaveDataToCurrentLevel();
-                    }
-                }
-                EditorGUI.EndDisabledGroup();
+				if (GUILayout.Button("Clear", GUILayout.MaxWidth(250)))
+				{
+					ClearSpriteShapesInScene();
+				}
 
-                GUILayout.EndVertical();
-                break;
-        }
+				GUILayout.EndVertical();
+				break;
 
-        GUILayout.EndVertical();
-    }
+			case "Level Save/Load":
+				GUILayout.BeginVertical("box");
+
+				1 - Save / Load buttons
+
+				GUILayout.Label("Level File Management", EditorStyles.boldLabel);
+				EditorGUI.BeginDisabledGroup(true);
+				EditorGUILayout.TextField("Relative File Path", pathToSaveLoad, GUILayout.MaxWidth(400));
+				EditorGUI.EndDisabledGroup();
+				if (GUILayout.Button("Load Levels from File", GUILayout.MaxWidth(200)))
+				{
+					LoadLevelData();
+				}
+
+				GUILayout.Space(20);
+
+				2 - Level files list
+
+				GUILayout.Label("Level List Info", EditorStyles.boldLabel);
+				EditorGUI.BeginDisabledGroup(true);
+				EditorGUILayout.TextField("Total Level Count", manager.levelItems.Count.ToString(), GUILayout.MaxWidth(400));
+				EditorGUILayout.TextField("Current Selected Level", levelItemManagerEditor.GetCurrentSelectedLevelName(), GUILayout.MaxWidth(400));
+
+				EditorGUILayout.TextField("DEBUG: Current Selected Index", levelItemManagerEditor.GetSelectedIndex().ToString(), GUILayout.MaxWidth(400));
+
+				EditorGUILayout.TextField("Current Loaded Level", currentLoadedLevelName, GUILayout.MaxWidth(400));
+				EditorGUI.EndDisabledGroup();
+
+				Display Reorderable list GUI
+
+				levelItemManagerEditor.OnInspectorGUI();
+
+				bool areButtonsDisabled = levelItemManagerEditor.GetSelectedIndex() == -1;
+				EditorGUI.BeginDisabledGroup(areButtonsDisabled
+					|| levelItemManagerEditor.GetCurrentSelectedLevelName().Equals(currentLoadedLevelName));
+				if (GUILayout.Button("Load Current Selected Level", GUILayout.MaxWidth(250)))
+				{
+					if (SceneManager.GetActiveScene().isDirty)
+					{
+						bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
+						"There are unsaved changes in " + currentLoadedLevelName + ". Do you want to save changes before loading another level?",
+						"Yes", "No");
+						if (isCurrentLevelSaved)
+						{
+							SaveDataToCurrentLevel();
+						}
+					}
+					LoadCurrentSelectedLevel();
+
+				}
+				EditorGUI.EndDisabledGroup();
+
+				EditorGUI.BeginDisabledGroup(areButtonsDisabled);
+				if (GUILayout.Button("Save Current Selected Level To File", GUILayout.MaxWidth(250)))
+				{
+					bool isCurrentLevelSaved = EditorUtility.DisplayDialog("Warning!",
+											"Are you sure you want to update data in " + levelItemManagerEditor.GetCurrentSelectedLevelName() + "? This will overwrite any previous data in files.",
+											"Yes", "No");
+					if (isCurrentLevelSaved)
+					{
+						SaveDataToCurrentLevel();
+					}
+				}
+				EditorGUI.EndDisabledGroup();
+
+				GUILayout.EndVertical();
+				break;
+		}
+
+		GUILayout.EndVertical();
+	}
 
 
     #region Custom Methods
 
-    /// <summary>
-    /// Create a platform sprite shape in the active scene.
-    /// </summary>
+    / <summary>
+    / Create a platform sprite shape in the active scene.
+    / </summary>
     private void CreatePlatform(GameObject _platformPrefab, string _name)
-    {
-        // Check if the prefab is null
-        if (_platformPrefab == null)
-        {
-            Debug.LogError("Sprite Shape Prefab is null.");
-            return;
-        }
+	{
+		Check if the prefab is null
 
-        // Check if the prefab is valid
-        var ssr = _platformPrefab.GetComponent<SpriteShapeRenderer>();
-        var ssc = _platformPrefab.GetComponent<SpriteShapeController>();
-        var ec2D = _platformPrefab.GetComponent<EdgeCollider2D>();
-        if (!ssr || !ssc || !ec2D)
-        {
-            Debug.LogError("The Sprite Shape Prefab needs to have SpriteShapeRenderer, SpriteShapeController, and EdgeCollider2D components.");
-            return;
-        }
+		if (_platformPrefab == null)
+		{
+			Debug.LogError("Sprite Shape Prefab is null.");
+			return;
+		}
 
-        // Instantiate the prefab in active scene
-        string platformName = _name + "_" + (++platformCounter).ToString("00"); // Increment the platform counter to avoid naming conflicts
-        GameObject newPlatform = PrefabUtility.InstantiatePrefab(_platformPrefab) as GameObject;
-        newPlatform.name = platformName;
+		Check if the prefab is valid
+	   var ssr = _platformPrefab.GetComponent<SpriteShapeRenderer>();
+		var ssc = _platformPrefab.GetComponent<SpriteShapeController>();
+		var ec2D = _platformPrefab.GetComponent<EdgeCollider2D>();
+		if (!ssr || !ssc || !ec2D)
+		{
+			Debug.LogError("The Sprite Shape Prefab needs to have SpriteShapeRenderer, SpriteShapeController, and EdgeCollider2D components.");
+			return;
+		}
 
-        // Unpack the prefab completely so that the user won't mess up with the default asset
-        PrefabUtility.UnpackPrefabInstance(newPlatform, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+		Instantiate the prefab in active scene
 
-        //Debug.Log(platformName + " was created.");   // testing
-    }
+		string platformName = _name + "_" + (++platformCounter).ToString("00"); // Increment the platform counter to avoid naming conflicts
+		GameObject newPlatform = PrefabUtility.InstantiatePrefab(_platformPrefab) as GameObject;
+		newPlatform.name = platformName;
 
-    private List<GameObject> FindAllSpriteShapesInScene()
-    {
-        GameObject[] spriteShapesInScene = GameObject.FindGameObjectsWithTag("SpriteShape");
+		Unpack the prefab completely so that the user won't mess up with the default asset
 
-        List<GameObject> output = new List<GameObject>();
-        foreach (GameObject spriteShape in spriteShapesInScene)
-        {
-            output.Add(SerializationUtility.CreateCopy(spriteShape) as GameObject);
-        }
+		PrefabUtility.UnpackPrefabInstance(newPlatform, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
 
-        return output;
-    }
+		Debug.Log(platformName + " was created.");   // testing
+	}
 
-    /// <summary>
-    /// Save current sprite shapes in scene to file.
-    /// </summary>
+	private List<GameObject> FindAllSpriteShapesInScene()
+	{
+		GameObject[] spriteShapesInScene = GameObject.FindGameObjectsWithTag("SpriteShape");
+
+		List<GameObject> output = new List<GameObject>();
+		foreach (GameObject spriteShape in spriteShapesInScene)
+		{
+			output.Add(SerializationUtility.CreateCopy(spriteShape) as GameObject);
+		}
+
+		return output;
+	}
+
+    / <summary>
+    / Save current sprite shapes in scene to file.
+    / </summary>
     private void SaveDataToCurrentLevel()
-    {
-        // First, check if each level's name is valid for using as a filename
-        if (IsInvalidFilename(levelItemManagerEditor.GetCurrentSelectedLevelName()))
-        {
-            Debug.LogError(levelItemManagerEditor.GetCurrentSelectedLevelName() + " is not a valid file name. Please fix it and retry!");
-            return;
-        }
+	{
+		First, check if each level's name is valid for using as a filename
 
-        List<GameObject> spriteShapesInScene = FindAllSpriteShapesInScene();
-        manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].UpdatePlatforms(spriteShapesInScene);
+		if (IsInvalidFilename(levelItemManagerEditor.GetCurrentSelectedLevelName()))
+		{
+			Debug.LogError(levelItemManagerEditor.GetCurrentSelectedLevelName() + " is not a valid file name. Please fix it and retry!");
+			return;
+		}
 
-        // Create a list of level game objects
-        List<GameObject> levelsToSave = new List<GameObject>();
-        foreach (LevelItem level in manager.levelItems)
-        {
-            GameObject newLevel = new GameObject();
-            newLevel.name = level.levelName;
-            foreach (GameObject platform in level.platforms)
-            {
-                GameObject tempPlatform = Instantiate(platform, newLevel.transform);
-                tempPlatform.name = tempPlatform.name.Replace("(Clone)", "");
-            }
-            levelsToSave.Add(newLevel);
-        }
+		List<GameObject> spriteShapesInScene = FindAllSpriteShapesInScene();
+		manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].UpdatePlatforms(spriteShapesInScene);
 
-        // Check for directory for save/load
-        string tempPermPath = Application.dataPath + pathToSaveLoad;
-        // If path to save doesn't exist
-        if (!Directory.Exists(tempPermPath))
-        {
-            //Debug.Log("Path not existed");
-            Directory.CreateDirectory(tempPermPath);
-        }
-        else
-        {
-            // If existed, clear the path and recreate the directory
-            FileUtil.DeleteFileOrDirectory(tempPermPath);
-            Directory.CreateDirectory(tempPermPath);
-        }
+		Create a list of level game objects
 
-        // Save level gameobjects in folder
-        foreach (GameObject level in levelsToSave)
-        {
-            string pathToSave = pathToSaveLoad + level.name;
+		List<GameObject> levelsToSave = new List<GameObject>();
+		foreach (LevelItem level in manager.levelItems)
+		{
+			GameObject newLevel = new GameObject();
+			newLevel.name = level.levelName;
+			foreach (GameObject platform in level.platforms)
+			{
+				GameObject tempPlatform = Instantiate(platform, newLevel.transform);
+				tempPlatform.name = tempPlatform.name.Replace("(Clone)", "");
+			}
+			levelsToSave.Add(newLevel);
+		}
 
-            bool success;
-            //Debug.Log(level);
-            PrefabUtility.SaveAsPrefabAsset(level, "Assets" + pathToSave + ".prefab", out success);
-            //Debug.Log("Saved " + (success ? "successfully" : "unsuccessfully"));
-        }
+		Check for directory for save / load
 
-        for (int i = 0; i < levelsToSave.Count; i++)
-        {
-            DestroyImmediate(levelsToSave[i]);
-        }
 
-        AssetDatabase.Refresh();
-    }
+	   string tempPermPath = Application.dataPath + pathToSaveLoad;
+		If path to save doesn't exist
 
-    private void LoadLevelData()
-    {
-        // Clear the list if it was prepopulated
-        if (manager.levelItems.Count > 0)
-            manager.levelItems.Clear();
+		if (!Directory.Exists(tempPermPath))
+				{
+					Debug.Log("Path not existed");
+					Directory.CreateDirectory(tempPermPath);
+				}
+				else
+				{
+					If existed, clear the path and recreate the directory
 
-        List<GameObject> levelPrefabs = PrefabLoader.LoadAllPrefabsAt("Assets" + pathToSaveLoad);
+					FileUtil.DeleteFileOrDirectory(tempPermPath);
+					Directory.CreateDirectory(tempPermPath);
+				}
 
-        foreach (GameObject level in levelPrefabs)
-        {
-            //Debug.Log(level);
-            LevelItem levelItem = new LevelItem(level.name);
-            foreach (Transform platformT in level.transform)
-            {
-                levelItem.AddPlatform(platformT.gameObject);
-            }
-            manager.levelItems.Add(levelItem);
-        }
-    }
+		Save level gameobjects in folder
 
-    private int GetLevelNumInFile()
-    {
-        return PrefabLoader.LoadAllPrefabsAt("Assets" + pathToSaveLoad).Count;
-    }
+		foreach (GameObject level in levelsToSave)
+		{
+			string pathToSave = pathToSaveLoad + level.name;
 
-    private void LoadCurrentSelectedLevel()
-    {
-        if (levelItemManagerEditor.GetCount() <= GetLevelNumInFile())
-            LoadLevelData();
+			bool success;
+			Debug.Log(level);
+			PrefabUtility.SaveAsPrefabAsset(level, "Assets" + pathToSave + ".prefab", out success);
+			Debug.Log("Saved " + (success ? "successfully" : "unsuccessfully"));
+		}
 
-        // Update current loaded level
-        currentLoadedLevelName = levelItemManagerEditor.GetCurrentSelectedLevelName();
+		for (int i = 0; i < levelsToSave.Count; i++)
+		{
+			DestroyImmediate(levelsToSave[i]);
+		}
 
-        // Destroy all sprite shapes in hierarchy
-        List<GameObject> ssInScene = FindAllSpriteShapesInScene();
-        foreach (var ss in ssInScene)
-        {
-            DestroyImmediate(ss);
-        }
+		AssetDatabase.Refresh();
+	}
 
-        // Load platforms from level item
-        var platforms = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].platforms;
-        foreach (var platform in platforms)
-        {
-            var newPlatform = Instantiate(platform);
-            newPlatform.name = newPlatform.name.Replace("(Clone)", "");
-        }
+	private void LoadLevelData()
+	{
+		Clear the list if it was prepopulated
 
-        // Save the scene and make it not "dirty"
-        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-    }
+		if (manager.levelItems.Count > 0)
+			manager.levelItems.Clear();
 
-    private void ClearSpriteShapesInScene()
-    {
-        List<GameObject> platformsInScene = FindAllSpriteShapesInScene();
-        foreach (GameObject p in platformsInScene)
-        {
-            DestroyImmediate(p);
-        }
-    }
+		List<GameObject> levelPrefabs = PrefabLoader.LoadAllPrefabsAt("Assets" + pathToSaveLoad);
 
-    // Ref: https://stackoverflow.com/questions/12590969/determining-whether-a-string-is-a-file-name-in-c-sharp
+		foreach (GameObject level in levelPrefabs)
+		{
+			Debug.Log(level);
+			LevelItem levelItem = new LevelItem(level.name);
+			foreach (Transform platformT in level.transform)
+			{
+				levelItem.AddPlatform(platformT.gameObject);
+			}
+			manager.levelItems.Add(levelItem);
+		}
+	}
+
+	private int GetLevelNumInFile()
+	{
+		return PrefabLoader.LoadAllPrefabsAt("Assets" + pathToSaveLoad).Count;
+	}
+
+	private void LoadCurrentSelectedLevel()
+	{
+		if (levelItemManagerEditor.GetCount() <= GetLevelNumInFile())
+			LoadLevelData();
+
+		Update current loaded level
+
+		currentLoadedLevelName = levelItemManagerEditor.GetCurrentSelectedLevelName();
+
+		Destroy all sprite shapes in hierarchy
+
+		List<GameObject> ssInScene = FindAllSpriteShapesInScene();
+		foreach (var ss in ssInScene)
+		{
+			DestroyImmediate(ss);
+		}
+
+		Load platforms from level item
+
+
+	   var platforms = manager.levelItems[levelItemManagerEditor.GetSelectedIndex()].platforms;
+		foreach (var platform in platforms)
+		{
+			var newPlatform = Instantiate(platform);
+			newPlatform.name = newPlatform.name.Replace("(Clone)", "");
+		}
+
+		Save the scene and make it not "dirty"
+
+		EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+	}
+
+	private void ClearSpriteShapesInScene()
+	{
+		List<GameObject> platformsInScene = FindAllSpriteShapesInScene();
+		foreach (GameObject p in platformsInScene)
+		{
+			DestroyImmediate(p);
+		}
+	}
+
+	Ref: https://stackoverflow.com/questions/12590969/determining-whether-a-string-is-a-file-name-in-c-sharp
     private bool IsInvalidFilename(string fileName)
-    {
-        char[] invalidFileChars = Path.GetInvalidFileNameChars();
-        return invalidFileChars.Any(s => fileName.Contains(s));
-    }
+	{
+		char[] invalidFileChars = Path.GetInvalidFileNameChars();
+		return invalidFileChars.Any(s => fileName.Contains(s));
+	}
 
-    #endregion
+	#endregion
 
 }
 
