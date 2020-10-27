@@ -235,13 +235,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &24262778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,8 +354,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &24262780
 Transform:
   m_ObjectHideFlags: 0
@@ -405,13 +405,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &97035409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,8 +524,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &97035411
 Transform:
   m_ObjectHideFlags: 0
@@ -824,13 +824,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &175430419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,8 +943,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &175430421
 Transform:
   m_ObjectHideFlags: 0
@@ -1025,13 +1025,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &205723888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,8 +1144,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &205723890
 Transform:
   m_ObjectHideFlags: 0
@@ -1274,13 +1274,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &242756060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,8 +1393,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &242756062
 Transform:
   m_ObjectHideFlags: 0
@@ -1444,13 +1444,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &266651167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,8 +1563,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &266651169
 Transform:
   m_ObjectHideFlags: 0
@@ -1614,13 +1614,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &287764029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1733,8 +1733,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &287764031
 Transform:
   m_ObjectHideFlags: 0
@@ -2205,13 +2205,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &333705359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2324,8 +2324,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &333705361
 Transform:
   m_ObjectHideFlags: 0
@@ -2469,13 +2469,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &358438908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,8 +2588,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &358438910
 Transform:
   m_ObjectHideFlags: 0
@@ -2639,13 +2639,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &368715874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2758,8 +2758,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &368715876
 Transform:
   m_ObjectHideFlags: 0
@@ -2809,13 +2809,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &423384581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,8 +2928,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &423384583
 Transform:
   m_ObjectHideFlags: 0
@@ -2979,13 +2979,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &466419073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3098,8 +3098,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &466419075
 Transform:
   m_ObjectHideFlags: 0
@@ -3169,7 +3169,7 @@ PrefabInstance:
     - target: {fileID: 3781893503830414078, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3781893503830414078, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
@@ -3293,13 +3293,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &485164789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3412,8 +3412,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &485164791
 Transform:
   m_ObjectHideFlags: 0
@@ -4004,13 +4004,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &621790969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4123,8 +4123,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &621790971
 Transform:
   m_ObjectHideFlags: 0
@@ -4174,13 +4174,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &631845236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4293,8 +4293,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &631845238
 Transform:
   m_ObjectHideFlags: 0
@@ -4406,6 +4406,7 @@ GameObject:
   - component: {fileID: 708003808}
   - component: {fileID: 708003807}
   - component: {fileID: 708003811}
+  - component: {fileID: 708003812}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4484,6 +4485,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1934658173}
   - {fileID: 1429360653}
   m_Father: {fileID: 0}
   m_RootOrder: 92
@@ -4510,6 +4512,19 @@ MonoBehaviour:
   ammoBR2: {fileID: 1541509977}
   ammoRL1: {fileID: 1817379325}
   ammoRL2: {fileID: 1707394371}
+--- !u!114 &708003812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708003806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c326d99d2f9d649b5d8d4ff93709b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 1934658171}
 --- !u!1001 &743398282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4777,13 +4792,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &778399739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4896,8 +4911,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &778399741
 Transform:
   m_ObjectHideFlags: 0
@@ -5184,13 +5199,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &814675305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5303,8 +5318,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &814675307
 Transform:
   m_ObjectHideFlags: 0
@@ -5354,13 +5369,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &815787604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5473,8 +5488,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &815787606
 Transform:
   m_ObjectHideFlags: 0
@@ -5524,13 +5539,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &839322876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5643,8 +5658,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &839322878
 Transform:
   m_ObjectHideFlags: 0
@@ -5964,13 +5979,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &980746796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6083,8 +6098,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &980746798
 Transform:
   m_ObjectHideFlags: 0
@@ -6134,13 +6149,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &995876021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6253,8 +6268,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &995876023
 Transform:
   m_ObjectHideFlags: 0
@@ -6378,13 +6393,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1037235061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6497,8 +6512,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1037235063
 Transform:
   m_ObjectHideFlags: 0
@@ -6701,13 +6716,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1065916964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6820,8 +6835,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1065916966
 Transform:
   m_ObjectHideFlags: 0
@@ -6871,13 +6886,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1110281729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6990,8 +7005,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1110281731
 Transform:
   m_ObjectHideFlags: 0
@@ -7041,13 +7056,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1111711741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7160,8 +7175,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1111711743
 Transform:
   m_ObjectHideFlags: 0
@@ -7290,13 +7305,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1148746151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7409,8 +7424,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1148746153
 Transform:
   m_ObjectHideFlags: 0
@@ -8041,13 +8056,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1194762821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8160,8 +8175,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1194762823
 Transform:
   m_ObjectHideFlags: 0
@@ -8211,13 +8226,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1210186238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8330,8 +8345,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1210186240
 Transform:
   m_ObjectHideFlags: 0
@@ -8381,13 +8396,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1218105586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8500,8 +8515,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1218105588
 Transform:
   m_ObjectHideFlags: 0
@@ -8724,13 +8739,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1231581398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8843,8 +8858,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1231581400
 Transform:
   m_ObjectHideFlags: 0
@@ -8894,13 +8909,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1241530794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9013,8 +9028,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1241530796
 Transform:
   m_ObjectHideFlags: 0
@@ -9064,13 +9079,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1279757694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9183,8 +9198,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1279757696
 Transform:
   m_ObjectHideFlags: 0
@@ -9234,13 +9249,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1320977011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9353,8 +9368,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1320977013
 Transform:
   m_ObjectHideFlags: 0
@@ -9404,13 +9419,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1395757892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9523,8 +9538,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1395757894
 Transform:
   m_ObjectHideFlags: 0
@@ -9580,13 +9595,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1443522267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9699,8 +9714,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1443522269
 Transform:
   m_ObjectHideFlags: 0
@@ -9939,13 +9954,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1476491707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10058,8 +10073,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1476491709
 Transform:
   m_ObjectHideFlags: 0
@@ -10268,13 +10283,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1564841823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10387,8 +10402,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1564841825
 Transform:
   m_ObjectHideFlags: 0
@@ -10591,13 +10606,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1663678198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10710,8 +10725,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1663678200
 Transform:
   m_ObjectHideFlags: 0
@@ -10761,13 +10776,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1670237707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10880,8 +10895,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1670237709
 Transform:
   m_ObjectHideFlags: 0
@@ -11357,6 +11372,84 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1934658170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1934658173}
+  - component: {fileID: 1934658172}
+  - component: {fileID: 1934658171}
+  m_Layer: 5
+  m_Name: TimerText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1934658171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934658170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 36
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 00:00.00
+--- !u!222 &1934658172
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934658170}
+  m_CullTransparentMesh: 0
+--- !u!224 &1934658173
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934658170}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 708003810}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 634.30005, y: 375.90002}
+  m_SizeDelta: {x: 221.34534, y: 48.403442}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1941865712
 GameObject:
   m_ObjectHideFlags: 0
@@ -11392,13 +11485,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1941865714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11511,8 +11604,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1941865716
 Transform:
   m_ObjectHideFlags: 0
@@ -11811,13 +11904,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1980911778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11930,8 +12023,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1980911780
 Transform:
   m_ObjectHideFlags: 0
@@ -11981,13 +12074,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &1985891251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12100,8 +12193,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &1985891253
 Transform:
   m_ObjectHideFlags: 0
@@ -12231,13 +12324,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!114 &2110013203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12350,8 +12443,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &2110013205
 Transform:
   m_ObjectHideFlags: 0
@@ -12560,8 +12653,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!68 &1152575999481952482
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -12578,13 +12671,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!1 &1208806323874245000
 GameObject:
   m_ObjectHideFlags: 0
@@ -12766,13 +12859,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!1 &3084455243993487959
 GameObject:
   m_ObjectHideFlags: 0
@@ -12838,8 +12931,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &3422044854553871134
 Transform:
   m_ObjectHideFlags: 0
@@ -12900,8 +12993,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: -0.0002}
-    m_Extent: {x: 2.2500002, y: 2.25, z: 0.0002}
+    m_Center: {x: 0, y: 0.00000023841858, z: -0.0002}
+    m_Extent: {x: 2.0600002, y: 2.0600004, z: 0.0002}
 --- !u!4 &3623980724205988630
 Transform:
   m_ObjectHideFlags: 0
@@ -12932,13 +13025,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0005, y: -2}
-  - {x: -2, y: 2.0005}
-  - {x: 2.0005, y: 2}
-  - {x: 2, y: -2.0005}
-  - {x: -1.9490371, y: -2.0005}
-  - {x: -2, y: -2.0005}
-  - {x: -2.0005, y: -2}
+  - {x: -2.0001202, y: -2}
+  - {x: -2, y: 2.0001202}
+  - {x: 2.0001202, y: 2}
+  - {x: 2, y: -2.0001202}
+  - {x: -1.9490371, y: -2.0001202}
+  - {x: -2, y: -2.0001202}
+  - {x: -2.0001202, y: -2}
 --- !u!1 &4033346601355883103
 GameObject:
   m_ObjectHideFlags: 0
