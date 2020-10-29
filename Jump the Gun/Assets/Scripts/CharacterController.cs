@@ -77,18 +77,25 @@ public class CharacterController : MonoBehaviour
     private bool shooting;
     private float animTimer;
     private short gun;
-
-    public bool isPaused = false;
     #endregion
 
     #region UnityFunctions
     void Start()
     {
+        
+        if (GameStats.Instance.hasSaveData == 1)
+        {
+            //Load data for player from saved
+            this.transform.position = new Vector2(GameStats.Instance.playerPosX, GameStats.Instance.playerPosY);
+            rb.velocity = new Vector2(GameStats.Instance.playerMomentumX, GameStats.Instance.playerMomentumX);
+            numBigRecoilShots = GameStats.Instance.bigRecoilAmmo;
+            numRockets = GameStats.Instance.rocketLauncherAmmo;
+        }
+
         if (shotgunShot == null)
         {
             Debug.LogError("shotgun does not have proper shot");
         }
-
         
         GetObjects();
 
@@ -136,6 +143,14 @@ public class CharacterController : MonoBehaviour
         UpdateAnim();
 
         //update the cursor
+
+        //Update gamestats
+        GameStats.Instance.bigRecoilAmmo = numBigRecoilShots;
+        GameStats.Instance.rocketLauncherAmmo = numRockets;
+        GameStats.Instance.playerPosX = this.transform.position.x;
+        GameStats.Instance.playerPosY = this.transform.position.y;
+        GameStats.Instance.playerMomentumX = rb.velocity.x;
+        GameStats.Instance.playerMomentumY = rb.velocity.y;
 
     }
 
@@ -247,7 +262,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     void ShootRocket()
     {
-        if (hasRocketJump && isPaused == false)
+        if (hasRocketJump && GameStats.Instance.isPaused == false)
         {
             if (numRockets < 1) //shoot no rockets if there arne't any left
             { return; }
@@ -255,7 +270,6 @@ public class CharacterController : MonoBehaviour
             if (!grounded)
             {
                 numRockets -= 1; //decrement the number of big recoil shots remaining
-                GameStats.Instance.rocketLauncherAmmo = numRockets;
             }
             else
             {
@@ -285,7 +299,7 @@ public class CharacterController : MonoBehaviour
     void ShootBigRecoil()
     {
 
-        if (hasBigRecoil && isPaused == false)
+        if (hasBigRecoil && GameStats.Instance.isPaused == false)
         {
             if (numBigRecoilShots < 1)// no big recoil shots if there are no bullets left
             { return; }
@@ -293,7 +307,6 @@ public class CharacterController : MonoBehaviour
             if (!grounded)
             {
                 numBigRecoilShots -= 1; //decrement the number of big recoil shots remaining
-                GameStats.Instance.bigRecoilAmmo = numBigRecoilShots;
             }
             else
             {
