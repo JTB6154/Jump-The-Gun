@@ -89,7 +89,7 @@ public class CharacterController : MonoBehaviour
         }
         
         GetObjects();
-
+ 
         rb.gravityScale = gravityScale;
         maxSpeed = new Vector2(maxXSpeed, maxYSpeed).magnitude;
         //rb.mass = mass;
@@ -113,17 +113,20 @@ public class CharacterController : MonoBehaviour
 
         //update controls here
 
-        //currently no smoothing between starting to walk and being walking.
-        if (Input.GetKey(left))
+        if (grounded)
         {
-            //Debug.Log("walk left");
-            moveControls.x += -walkSpeed;
-        }
+            //currently no smoothing between starting to walk and being walking.
+            if (Input.GetKey(left))
+            {
+                //Debug.Log("walk left");
+                moveControls.x += -walkSpeed;
+            }
 
-        if (Input.GetKey(right))
-        {
-            //Debug.Log("walk Right");
-            moveControls.x += walkSpeed;
+            if (Input.GetKey(right))
+            {
+                //Debug.Log("walk Right");
+                moveControls.x += walkSpeed;
+            }
         }
 
         if (Input.GetKeyDown(fireBigRecoil))
