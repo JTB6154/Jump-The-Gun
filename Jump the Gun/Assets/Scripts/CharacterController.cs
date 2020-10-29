@@ -89,6 +89,7 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("shotgun does not have proper shot");
         }
 
+        
         GetObjects();
 
         rb.gravityScale = gravityScale;
