@@ -14,7 +14,7 @@ public class GameTimer : MonoBehaviour
     void Start()
     {
         startTime = Time.time;
-        previousTime = PlayerPrefs.HasKey("previousTime") ? PlayerPrefs.GetInt("previousTime") : 0f;
+        previousTime = GameStats.Instance.previousTime;
     }
 
     // Update is called once per frame
@@ -39,6 +39,6 @@ public class GameTimer : MonoBehaviour
 
         timerText.text = minutes + ":" + seconds;
 
-        GameStats.Instance.gameTime = t;
+        GameStats.Instance.previousTime = t;
     }
 }

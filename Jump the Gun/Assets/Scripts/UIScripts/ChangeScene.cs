@@ -9,12 +9,14 @@ public class ChangeScene : MonoBehaviour
     public void LoadGameScene()
     {
         Time.timeScale = 1f;
+        GameStats.Instance.isPaused = false;
         SceneManager.LoadScene("JTGFullGame", LoadSceneMode.Single);
     }
 
     //Load title screen
     public void LoadMenuScene()
     {
+        GameStats.Instance.isPaused = false;
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 
