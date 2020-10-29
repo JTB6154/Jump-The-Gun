@@ -82,15 +82,6 @@ public class CharacterController : MonoBehaviour
     #region UnityFunctions
     void Start()
     {
-        
-        if (GameStats.Instance.hasSaveData == 1)
-        {
-            //Load data for player from saved
-            this.transform.position = new Vector2(GameStats.Instance.playerPosX, GameStats.Instance.playerPosY);
-            rb.velocity = new Vector2(GameStats.Instance.playerMomentumX, GameStats.Instance.playerMomentumX);
-            numBigRecoilShots = GameStats.Instance.bigRecoilAmmo;
-            numRockets = GameStats.Instance.rocketLauncherAmmo;
-        }
 
         if (shotgunShot == null)
         {
@@ -105,6 +96,15 @@ public class CharacterController : MonoBehaviour
 
         InitializeGuns();
         SetCursor();
+
+        if (GameStats.Instance.hasSaveData == 1)
+        {
+            //Load data for player from saved
+            this.transform.position = new Vector2(GameStats.Instance.playerPosX, GameStats.Instance.playerPosY);
+            rb.velocity = new Vector2(GameStats.Instance.playerMomentumX, GameStats.Instance.playerMomentumX);
+            numBigRecoilShots = GameStats.Instance.bigRecoilAmmo;
+            numRockets = GameStats.Instance.rocketLauncherAmmo;
+        }
     }
 
     void Update()
@@ -351,7 +351,10 @@ public class CharacterController : MonoBehaviour
         fireRocket = fire2;
 
         //initialize the values of the guns
-        ReloadGuns();
+        if (GameStats.Instance.hasSaveData == 0)
+        {
+            ReloadGuns();
+        }
 
     }
 
