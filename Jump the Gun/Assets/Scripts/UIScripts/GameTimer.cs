@@ -8,17 +8,19 @@ public class GameTimer : MonoBehaviour
 
     public Text timerText;
     float startTime;
+    float previousTime;
 
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
+        previousTime = PlayerPrefs.HasKey("previousTime") ? PlayerPrefs.GetInt("previousTime") : 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float t = Time.time - startTime;
+        float t = Time.time - startTime + previousTime;
 
         //string hours = 
         string minutes = ((int)t / 60).ToString();
@@ -36,5 +38,7 @@ public class GameTimer : MonoBehaviour
         }
 
         timerText.text = minutes + ":" + seconds;
+
+        GameStats.Instance.gameTime = t;
     }
 }

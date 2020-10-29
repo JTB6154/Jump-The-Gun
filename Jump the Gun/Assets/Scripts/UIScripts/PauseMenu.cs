@@ -29,9 +29,6 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         GameStats.Instance.isPaused = false;
 
-        //Re-enable shooty shoot
-        GameObject.Find("Player Character").GetComponent<CharacterController>().isPaused = false;
-
     }
 
     void Pause()
@@ -40,10 +37,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         GameStats.Instance.isPaused = true;
-
-        //Make sure player can't shoot while paused
-        //Re-enable shooty shoot
-        GameObject.Find("Player Character").GetComponent<CharacterController>().isPaused = true;
     }
 
     public void Quit()
