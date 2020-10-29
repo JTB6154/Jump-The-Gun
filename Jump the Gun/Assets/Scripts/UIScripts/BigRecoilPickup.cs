@@ -24,7 +24,8 @@ public class BigRecoilPickup : MonoBehaviour
             player.GetComponent<CharacterController>().hasBigRecoil = true;
             ammoUI.SetActive(true);
             Destroy(this.gameObject);
-        }*/
+        }
+        */
 
         if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
         {
