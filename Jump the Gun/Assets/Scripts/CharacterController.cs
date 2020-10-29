@@ -255,6 +255,7 @@ public class CharacterController : MonoBehaviour
             if (!grounded)
             {
                 numRockets -= 1; //decrement the number of big recoil shots remaining
+                GameStats.Instance.rocketLauncherAmmo = numRockets;
             }
             else
             {
@@ -292,6 +293,7 @@ public class CharacterController : MonoBehaviour
             if (!grounded)
             {
                 numBigRecoilShots -= 1; //decrement the number of big recoil shots remaining
+                GameStats.Instance.bigRecoilAmmo = numBigRecoilShots;
             }
             else
             {
