@@ -60,6 +60,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float maxVariation = 10f;
     [SerializeField] int numShot = 3;
     int numBigRecoilShots = 0;
+
     [Header("Rocket Jump")]
     public bool hasRocketJump = false;
     KeyCode fireRocket;
@@ -335,7 +336,7 @@ public class CharacterController : MonoBehaviour
                 {
                     GameObject shooting = GameObject.Instantiate(shotgunShot);
                     shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
-                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg+Random.Range(-maxVariation, maxVariation));
+                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg + Random.Range(-maxVariation, maxVariation));
                 }
             }
 

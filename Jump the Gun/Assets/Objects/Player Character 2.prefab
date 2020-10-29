@@ -235,7 +235,9 @@ MonoBehaviour:
   gravityScale: 3.762
   walkSpeed: 9.382
   maxXSpeed: 20.52
+  minXSpeed: -9
   maxYSpeed: 45.6
+  minYSpeed: -9
   velocityZeroing: 1
   maxWalkableAngle: 1
   grounded: 0
@@ -261,7 +263,6 @@ MonoBehaviour:
   rocketPrefab: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
     type: 3}
   liftOffCheckTime: 0.3
-  isPaused: 0
 --- !u!95 &3673668008098400033
 Animator:
   serializedVersion: 3
