@@ -476,7 +476,7 @@ public class CharacterController : MonoBehaviour
         }
 
         //Check if the player is moving up or down
-        if (rb.velocity.y != 0)
+        if (!grounded)
             animator.SetBool("Jumping", true);
         else
             animator.SetBool("Jumping", false);
