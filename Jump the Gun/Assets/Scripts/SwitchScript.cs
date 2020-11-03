@@ -31,6 +31,7 @@ public class SwitchScript : MonoBehaviour
             
             foreach (platformScript platform in tiedPlatforms)
             {
+                if (platform == null) continue;
                 //call the platforms start transformation
                 platform.ToggleState();
             }
