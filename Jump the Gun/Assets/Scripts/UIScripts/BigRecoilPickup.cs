@@ -18,14 +18,14 @@ public class BigRecoilPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (GameStats.Instance.hasBigRecoil == 1)
         {
             player.GetComponent<CharacterController>().hasBigRecoil = true;
             ammoUI.SetActive(true);
             Destroy(this.gameObject);
         }
-        */
+        
 
         if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
         {
