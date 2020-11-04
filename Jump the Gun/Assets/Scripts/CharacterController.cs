@@ -61,10 +61,13 @@ public class CharacterController : MonoBehaviour
     bool subtractRockets = false;
     bool subtractBigRecoil = false;
 
-    private Animator animator;
+    public Animator animator;
     private SpriteRenderer sprite;
     private bool shooting;
+    public bool standStill = false;
     private float animTimer;
+    private float cutsceneTimer;
+    private float cutsceneLength;
     private short gun;
     #endregion
 
@@ -94,6 +97,8 @@ public class CharacterController : MonoBehaviour
             numBigRecoilShots = GameStats.Instance.bigRecoilAmmo;
             numRockets = GameStats.Instance.rocketLauncherAmmo;
         }
+
+        StartCutscene();
     }
 
     void Update()
@@ -102,7 +107,7 @@ public class CharacterController : MonoBehaviour
 
         //update controls here
 
-        if (grounded)
+        if (grounded && !standStill)
         {
             //currently no smoothing between starting to walk and being walking.
             if (Input.GetKey(Options.Instance.Left))
@@ -181,6 +186,7 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+        
 
         //cap the speed of the player in the x and y directions
         if (rb.velocity.x > maxXSpeed)
@@ -205,6 +211,11 @@ public class CharacterController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, minYSpeed);
         }
 
+        if (standStill)
+        {
+            cutsceneTimer += Time.deltaTime;
+            if (cutsceneTimer >= cutsceneLength) standStill = false;
+        }
     }
 
 
@@ -465,6 +476,8 @@ public class CharacterController : MonoBehaviour
     //based on what the player character is currently doing
     private void UpdateAnim()
     {
+        if (standStill) return;
+
         //Check to see if the player has finished the shooting animation
         if (shooting && animTimer <= Time.time)
         {
@@ -545,6 +558,15 @@ public class CharacterController : MonoBehaviour
         if (animator.GetBool("Running")) { timerOffset = 10; }
         animTimer = Time.time + (timerOffset * Time.deltaTime);
         shooting = true;
+    }
+
+    public void StartCutscene()
+    {
+        standStill = true;
+        cutsceneLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        cutsceneTimer = 0;
+        animator.SetBool("Jumping", false);
+        animator.SetBool("Running", false);
     }
 
     void SetCursor()

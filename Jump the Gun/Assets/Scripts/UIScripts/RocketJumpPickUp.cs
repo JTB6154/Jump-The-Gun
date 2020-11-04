@@ -28,7 +28,10 @@ public class RocketJumpPickUp : MonoBehaviour
         if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
         {
             GameStats.Instance.hasRocketLauncher = 1;
-            player.GetComponent<CharacterController>().hasRocketJump = true;
+            CharacterController c = player.GetComponent<CharacterController>();
+            c.hasRocketJump = true;
+            c.animator.SetTrigger("GetRocket");
+            c.StartCutscene();
             ammoUI.SetActive(true);
             Destroy(this.gameObject);
         }

@@ -30,7 +30,11 @@ public class BigRecoilPickup : MonoBehaviour
         if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
         {
             GameStats.Instance.hasBigRecoil = 1;
-            player.GetComponent<CharacterController>().hasBigRecoil = true;
+            CharacterController c = player.GetComponent<CharacterController>();
+            c.hasBigRecoil = true;
+            c.animator.SetTrigger("GetShotgun");
+            c.animator.SetBool("Gunless", false);
+            c.StartCutscene();
             ammoUI.SetActive(true);
             Destroy(this.gameObject);
         }
