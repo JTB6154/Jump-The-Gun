@@ -40,20 +40,9 @@ public class CharacterController : MonoBehaviour
     [Range(0.001f, .3f)] [SerializeField] float groundCheckDepth = .01f;
     [Range(0.001f, 1f)] [SerializeField] float groundTimer = .01f;
 
-
-    [Space]
-
-    [Header("Controls")]
-    [SerializeField] KeyCode left = KeyCode.A;
-    [SerializeField] KeyCode right = KeyCode.D;
-    [SerializeField] KeyCode fire1 = KeyCode.Mouse0;
-    [SerializeField] KeyCode fire2 = KeyCode.Mouse1;
-
-
     [Space]
     [Header("Big recoil")]
     public bool hasBigRecoil = false;
-    KeyCode fireBigRecoil;
     [Range(5f, 1500f)] [SerializeField] float recoilForce = 300f;
     [Range(1, 5)] [SerializeField] int maxBigRecoilShots = 2;
     [SerializeField] GameObject shotgunShot;
@@ -63,7 +52,6 @@ public class CharacterController : MonoBehaviour
 
     [Header("Rocket Jump")]
     public bool hasRocketJump = false;
-    KeyCode fireRocket;
     [Range(5f, 2000f)] [SerializeField] float rocketForce = 300f;
     [Range(.1f, 10f)] [SerializeField] float rocketRadius = 2f;
     [SerializeField] int maxRockets = 2;
@@ -117,27 +105,27 @@ public class CharacterController : MonoBehaviour
         if (grounded)
         {
             //currently no smoothing between starting to walk and being walking.
-            if (Input.GetKey(left))
+            if (Input.GetKey(Options.Instance.Left))
             {
                 //Debug.Log("walk left");
                 moveControls.x += -walkSpeed;
             }
 
-            if (Input.GetKey(right))
+            if (Input.GetKey(Options.Instance.Right))
             {
                 //Debug.Log("walk Right");
                 moveControls.x += walkSpeed;
             }
         }
 
-        if (Input.GetKeyDown(fireBigRecoil))
+        if (Input.GetKeyDown(Options.Instance.Fire1))
         {
             //if the big recoil has been fired apply big recoil
             ShootBigRecoil();
 
         }
 
-        if (Input.GetKeyDown(fireRocket))
+        if (Input.GetKeyDown(Options.Instance.Fire2))
         {
             //if the rocket has been fired shoot the rocket
             ShootRocket();
@@ -350,10 +338,6 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     void InitializeGuns()
     {
-        //assign guns to fire buttons
-        fireBigRecoil = fire1;
-        fireRocket = fire2;
-
         //initialize the values of the guns
         if (GameStats.Instance.hasSaveData == 0)
         {
