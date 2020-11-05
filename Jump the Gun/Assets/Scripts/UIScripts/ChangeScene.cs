@@ -41,6 +41,7 @@ public class ChangeScene : MonoBehaviour
     public void LoadMenuScene()
     {
         GameStats.Instance.isPaused = false;
+        Cursor.visible = true;
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
         GameStats.Instance.SaveData();
     }
