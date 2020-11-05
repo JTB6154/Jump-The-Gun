@@ -17,7 +17,7 @@ public class RocketJumpPickUp : MonoBehaviour
     void Update()
     {
         
-         if (GameStats.Instance.hasRocketLauncher == 1)
+         if (GameStats.Instance.hasRocketLauncher == 1 || player.GetComponent<CharacterController>().hasRocketJump == true)
         {
             player.GetComponent<CharacterController>().hasRocketJump = true;
             ammoUI.SetActive(true);
