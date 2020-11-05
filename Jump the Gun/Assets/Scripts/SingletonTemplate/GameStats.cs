@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameStats : Singleton<GameStats>
 {
     //Check if it has been saved
-    public bool newGame = false;
+    public bool newGame = true;
     public int hasSaveData = 0;
 
     //Check if paused
@@ -34,7 +34,6 @@ public class GameStats : Singleton<GameStats>
         if (newGame)
         {
             hasSaveData = 0;
-            newGame = false;
 
             ResetData();
         }
