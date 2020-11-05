@@ -25,17 +25,16 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        Debug.Log("UnPausing");
         GameStats.Instance.isPaused = false;
-        
+        Cursor.visible = false;
     }
 
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        Debug.Log("Pausing");
         GameStats.Instance.isPaused = true;
+        Cursor.visible = false;
     }
 
     public void Quit()
