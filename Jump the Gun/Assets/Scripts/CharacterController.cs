@@ -13,7 +13,6 @@ public class CharacterController : MonoBehaviour
     groundFinder finder;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask reloadLayer;
-    [SerializeField] Texture2D cursorTexture;
     [Space]
 
     [Header("Physics settings")]
@@ -87,7 +86,6 @@ public class CharacterController : MonoBehaviour
         //rb.mass = mass;
 
         InitializeGuns();
-        SetCursor();
 
         if (GameStats.Instance.hasSaveData == 1)
         {
@@ -567,16 +565,6 @@ public class CharacterController : MonoBehaviour
         cutsceneTimer = 0;
         animator.SetBool("Jumping", false);
         animator.SetBool("Running", false);
-    }
-
-    void SetCursor()
-    {
-        if (cursorTexture != null)
-        { 
-
-            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
-
-        }
     }
     #endregion
 }

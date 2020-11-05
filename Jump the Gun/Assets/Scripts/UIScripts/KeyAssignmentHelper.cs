@@ -9,6 +9,7 @@ public class KeyAssignmentHelper : MonoBehaviour
 
 	private void Start()
 	{
+		//get the buttons
 		children = GetComponentsInChildren<Button>();
 		updateButtonText();
 	}
@@ -24,6 +25,7 @@ public class KeyAssignmentHelper : MonoBehaviour
 
 	private void updateButtonText()
 	{
+		//update the text on the buttons
 		children[0].GetComponentInChildren<Text>().text = Options.Instance.Left.ToString();
 		children[1].GetComponentInChildren<Text>().text = Options.Instance.Right.ToString();
 		children[2].GetComponentInChildren<Text>().text = Options.Instance.Fire1.ToString();
