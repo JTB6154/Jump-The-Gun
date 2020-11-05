@@ -10,7 +10,7 @@ public class Options : Singleton<Options>
     public KeyCode Fire2 { get { return  keyHolders[3].Code; } }
     public KeyCode Escape { get { return keyHolders[4].Code; } }
 
-    private KeyHolder[] keyHolders = new KeyHolder[5];
+    private KeyHolder[] keyHolders = new KeyHolder[6];
 
     private bool updatingKeyCode = false;
     private int updatingKeyOfIndex;
@@ -26,7 +26,6 @@ public class Options : Singleton<Options>
             new KeyHolder("fire2","Mouse1"),
             new KeyHolder("escape","Escape"),
         };
-
     }
 
 
@@ -55,6 +54,7 @@ public class Options : Singleton<Options>
 
     private bool checkKeyCodeInUse(Event key)
     {
+        //check if a keycode is in use
         KeyCode code;
         if (keyEvent.isKey)
         {
