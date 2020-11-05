@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Options : Singleton<Options>
 {
-    public KeyCode Left { get; set; }
-    public KeyCode Right{ get; set; }
-    public KeyCode Fire1 { get; set; }
-    public KeyCode Fire2 { get; set; }
+    public KeyCode Left { get { return   keyHolders[0].Code; } }
+    public KeyCode Right{ get { return   keyHolders[1].Code; } }
+    public KeyCode Fire1 { get { return  keyHolders[2].Code; } }
+    public KeyCode Fire2 { get { return  keyHolders[3].Code; } }
+    public KeyCode Escape { get { return keyHolders[4].Code; } }
+
+    private KeyHolder[] keyHolders = new KeyHolder[5];
 
     private bool updatingKeyCode = false;
     private int updatingKeyOfIndex;
@@ -16,13 +19,17 @@ public class Options : Singleton<Options>
     override protected void Awake()
     {
         base.Awake();
-
-        Left = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", "A"));
-        Right = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", "D"));
-        Fire1 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("fire1", "Mouse0"));
-        Fire2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("fire2", "Mouse1"));
+        keyHolders = new KeyHolder[] {
+            new KeyHolder("left","A"),
+            new KeyHolder("right","D"),
+            new KeyHolder("fire1","Mouse0"),
+            new KeyHolder("fire2","Mouse1"),
+            new KeyHolder("escape","Escape"),
+        };
 
     }
+
+
     private void OnGUI()
     {
         if (updatingKeyCode)
@@ -32,39 +39,13 @@ public class Options : Singleton<Options>
             if (keyEvent.isKey || keyEvent.isMouse)
             {
                 updatingKeyCode = false;
-                switch (updatingKeyOfIndex) {
-                    case 0:
-                        if (checkKeyCodeInUse(keyEvent))
-                        {
-                            if(keyEvent.isKey) Left = keyEvent.keyCode;
-                            if (keyEvent.isMouse) Left = ConvertMouseIntToKeycode(keyEvent.button);
-                            PlayerPrefs.SetString("left", Left.ToString());
-                        }
-                        break;
-                    case 1:
-                        if (checkKeyCodeInUse(keyEvent))
-                        {
-                            if (keyEvent.isKey) Right = keyEvent.keyCode;
-                            if (keyEvent.isMouse) Right = ConvertMouseIntToKeycode(keyEvent.button);
-                            PlayerPrefs.SetString("right", Right.ToString());
-                        }
-                        break;
-                    case 2:
-                        if (checkKeyCodeInUse(keyEvent))
-                        {
-                            if (keyEvent.isKey) Fire1 = keyEvent.keyCode;
-                            if (keyEvent.isMouse) Fire1 = ConvertMouseIntToKeycode(keyEvent.button);
-                            PlayerPrefs.SetString("fire1", Fire1.ToString()); 
-                        }
-                        break;
-                    case 3:
-                        if (checkKeyCodeInUse(keyEvent))
-                        {
-                            if (keyEvent.isKey) Fire2 = keyEvent.keyCode;
-                            if (keyEvent.isMouse) Fire2 = ConvertMouseIntToKeycode(keyEvent.button);
-                            PlayerPrefs.SetString("fire2", Fire2.ToString());
-                        }
-                        break;
+                if (checkKeyCodeInUse(keyEvent))
+                {
+                    KeyCode temp;
+                    if (keyEvent.isKey) temp = keyEvent.keyCode;
+                    else temp = ConvertMouseIntToKeycode(keyEvent.button);
+
+                    keyHolders[updatingKeyOfIndex].SetKey(temp);
                 }
 
             }
@@ -81,9 +62,15 @@ public class Options : Singleton<Options>
         }
         else
         {
-             code = ConvertMouseIntToKeycode(key.button);
+            code = ConvertMouseIntToKeycode(key.button);
         }
-        return !(code == Right || code == Left || code == Fire1 || code == Fire2);
+
+        bool temp = true;
+        for (int i = 0; i < keyHolders.Length; i++){
+            if (keyHolders[i].Code == code) temp = false;
+
+        }
+        return temp;
 
     }
 
