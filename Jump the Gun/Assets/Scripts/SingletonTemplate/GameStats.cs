@@ -25,6 +25,9 @@ public class GameStats : Singleton<GameStats>
     public float playerMomentumX = 0f;
     public float playerMomentumY = 0f;
 
+    //For changing cursor
+    public int cursorNum = 1;
+
      public void StartLoad()
      {
         //Check if starting a new game
