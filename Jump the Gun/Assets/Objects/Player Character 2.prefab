@@ -159,7 +159,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &162656340347786344
@@ -231,7 +231,6 @@ MonoBehaviour:
   reloadLayer:
     serializedVersion: 2
     m_Bits: 8192
-  cursorTexture: {fileID: 0}
   gravityScale: 3.762
   walkSpeed: 9.382
   maxXSpeed: 20.52
@@ -245,10 +244,6 @@ MonoBehaviour:
   groundCheckRadius: 0.5472
   groundCheckDepth: 0.228
   groundTimer: 0.01
-  left: 97
-  right: 100
-  fire1: 323
-  fire2: 324
   hasBigRecoil: 1
   recoilForce: 927
   maxBigRecoilShots: 2
@@ -263,6 +258,8 @@ MonoBehaviour:
   rocketPrefab: {fileID: 7119951904622624212, guid: 8f0a160432307b141a4e6cea06edb85f,
     type: 3}
   liftOffCheckTime: 0.3
+  animator: {fileID: 0}
+  standStill: 0
 --- !u!95 &3673668008098400033
 Animator:
   serializedVersion: 3
@@ -294,6 +291,7 @@ GameObject:
   - component: {fileID: 3673668007412231177}
   - component: {fileID: 3673668007412231182}
   - component: {fileID: 3673668007412231183}
+  - component: {fileID: 2310099311087709989}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -397,3 +395,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &2310099311087709989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3673668007412231181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6f7957eae0c8a49ba0389a12736a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: []
+  choke: 0
+  scrollSpeed: 0
