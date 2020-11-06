@@ -81,7 +81,7 @@ public class ParallaxScroll : MonoBehaviour
             float parallaxSpeedY = 0.5f - Mathf.Clamp01(Mathf.Abs(transform.position.z / obj.transform.position.z));
             float diffX = transform.position.x - lastScreenPosition.x;
             float diffY = transform.position.y - lastScreenPosition.y;
-            obj.transform.Translate(Vector3.right * diffX * parallaxSpeedX + Vector3.up * diffY * 0.95f);
+            obj.transform.Translate(Vector3.right * diffX * parallaxSpeedX + Vector3.up * diffY);
         }
 
         lastScreenPosition = transform.position;
