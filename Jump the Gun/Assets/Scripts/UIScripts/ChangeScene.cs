@@ -46,6 +46,12 @@ public class ChangeScene : MonoBehaviour
         GameStats.Instance.SaveData();
     }
 
+    public void LoadOptionsScene()
+    {
+        GameStats.Instance.isPaused = false;
+        SceneManager.LoadScene("OptionsMenu", LoadSceneMode.Single);
+    }
+
     //Load Options
 
 }

@@ -77,11 +77,13 @@ public class Options : Singleton<Options>
 
     public KeyCode ConvertMouseIntToKeycode(int key)
     {
+        //converts the mouse int from unity's Event into the keycode
         return (KeyCode)System.Enum.Parse(typeof(KeyCode), "Mouse" + key);
     }
 
     public void UpdateKeyOfIndex(int index)
     {
+        //set updating KeyCode To true and updatingkeyofindex to the index of the key that is being updated.
         updatingKeyCode = true;
         updatingKeyOfIndex = index;
     }

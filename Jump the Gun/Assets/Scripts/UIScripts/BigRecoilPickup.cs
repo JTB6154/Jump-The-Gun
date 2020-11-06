@@ -19,7 +19,7 @@ public class BigRecoilPickup : MonoBehaviour
     void Update()
     {
         
-        if (GameStats.Instance.hasBigRecoil == 1)
+        if (GameStats.Instance.hasBigRecoil == 1 || player.GetComponent<CharacterController>().hasBigRecoil == true)
         {
             player.GetComponent<CharacterController>().hasBigRecoil = true;
             ammoUI.SetActive(true);

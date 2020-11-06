@@ -94,6 +94,18 @@ public class CharacterController : MonoBehaviour
             rb.velocity = new Vector2(GameStats.Instance.playerMomentumX, GameStats.Instance.playerMomentumX);
             numBigRecoilShots = GameStats.Instance.bigRecoilAmmo;
             numRockets = GameStats.Instance.rocketLauncherAmmo;
+
+            animator.SetBool("Initialized", true);
+            if (GameStats.Instance.hasBigRecoil == 1)
+            {
+                animator.SetBool("Gunless", false);
+                hasBigRecoil = true;
+            }
+            if (GameStats.Instance.hasRocketLauncher == 1)
+            {
+                animator.SetBool("Gunless", false);
+                hasRocketJump = true;
+            }
         }
 
         StartCutscene();
@@ -140,6 +152,14 @@ public class CharacterController : MonoBehaviour
         //update the cursor
 
         //Update gamestats
+        if (hasBigRecoil)
+        {
+            GameStats.Instance.hasBigRecoil = 1;
+        }
+        if (hasRocketJump)
+        {
+            GameStats.Instance.hasRocketLauncher = 1;
+        }
         GameStats.Instance.bigRecoilAmmo = numBigRecoilShots;
         GameStats.Instance.rocketLauncherAmmo = numRockets;
         GameStats.Instance.playerPosX = this.transform.position.x;
@@ -477,13 +497,17 @@ public class CharacterController : MonoBehaviour
         if (standStill) return;
 
         //Check to see if the player has finished the shooting animation
-        if (shooting && animTimer <= Time.time)
+        if (shooting)
         {
-            if (gun == 0) //shotgun
-                animator.SetBool("Shotgun", false);
-            else //rocket
-                animator.SetBool("Rocket", false);
-            shooting = false;
+            animTimer += Time.deltaTime;
+            if (animTimer >= animator.GetCurrentAnimatorStateInfo(0).length)
+            {
+                if (gun == 0) //shotgun
+                    animator.SetBool("Shotgun", false);
+                else //rocket
+                    animator.SetBool("Rocket", false);
+                shooting = false;
+            }
         }
 
         //Check if the player is moving up or down
@@ -493,12 +517,12 @@ public class CharacterController : MonoBehaviour
             animator.SetBool("Jumping", false);
 
         //Check if the player character is moving left or right
-        if (rb.velocity.x > 0 && grounded && !shooting)
+        if (Input.GetKey(Options.Instance.Right) && grounded && !shooting)
         {
             sprite.flipX = true;
             animator.SetBool("Running", true);
         }
-        else if (rb.velocity.x < 0 && grounded && !shooting)
+        else if (Input.GetKey(Options.Instance.Left) && grounded && !shooting)
         {
             sprite.flipX = false;
             animator.SetBool("Running", true);
@@ -551,10 +575,8 @@ public class CharacterController : MonoBehaviour
         }
 
         //Set the timer
-
-        int timerOffset = 40;
-        if (animator.GetBool("Running")) { timerOffset = 10; }
-        animTimer = Time.time + (timerOffset * Time.deltaTime);
+        animTimer = 0;
+        if (animator.GetBool("Running")) animTimer += 0.1f;
         shooting = true;
     }
 
