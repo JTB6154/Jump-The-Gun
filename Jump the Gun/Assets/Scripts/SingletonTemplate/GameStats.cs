@@ -26,7 +26,7 @@ public class GameStats : Singleton<GameStats>
     public float playerMomentumY = 0f;
 
     //For changing cursor
-    public int cursorNum = 1;
+    public int cursorNum = 4;
 
      public void StartLoad()
      {

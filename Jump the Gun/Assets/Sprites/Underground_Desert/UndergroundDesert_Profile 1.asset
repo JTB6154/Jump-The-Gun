@@ -10,9 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
-  m_Name: UndergroundDesert_Profile
+  m_Name: UndergroundDesert_Profile 1
   m_EditorClassIdentifier: 
-  m_Angles: []
+  m_Angles:
+  - m_Start: -14
+    m_End: 4
+    m_Order: 4
+    m_Sprites:
+    - {fileID: 21300000, guid: f994c24b464890c46aa48ae51c8caa8d, type: 3}
   m_FillTexture: {fileID: 2800000, guid: 61c0eba99aacd4f48bff63a434eae666, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
