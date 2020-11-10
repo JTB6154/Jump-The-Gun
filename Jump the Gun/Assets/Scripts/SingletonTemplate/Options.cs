@@ -12,9 +12,14 @@ public class Options : Singleton<Options>
 
     private KeyHolder[] keyHolders = new KeyHolder[6];
 
+    public bool UpdatingKeyCode { get { return updatingKeyCode; } }
+
     private bool updatingKeyCode = false;
+    bool changeUpdating = false;
     private int updatingKeyOfIndex;
     private Event keyEvent;
+
+    float secondsUntilDisableUpdatingKey = .05f;
 
     override protected void Awake()
     {
@@ -46,9 +51,17 @@ public class Options : Singleton<Options>
 
                     keyHolders[updatingKeyOfIndex].SetKey(temp);
                 }
-
             }
 
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (changeUpdating)
+        {
+            changeUpdating = false;
+            updatingKeyCode = false;
         }
     }
 

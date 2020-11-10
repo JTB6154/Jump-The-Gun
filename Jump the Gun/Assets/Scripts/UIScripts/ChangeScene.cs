@@ -40,6 +40,7 @@ public class ChangeScene : MonoBehaviour
     //Load title screen
     public void LoadMenuScene()
     {
+        if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
         Cursor.visible = true;
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);

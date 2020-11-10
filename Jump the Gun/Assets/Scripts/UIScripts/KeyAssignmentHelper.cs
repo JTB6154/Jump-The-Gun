@@ -15,6 +15,7 @@ public class KeyAssignmentHelper : MonoBehaviour
 	}
 	public void AssignKey(int index)
 	{
+		if(!Options.Instance.UpdatingKeyCode)
 		Options.Instance.UpdateKeyOfIndex(index);
 	}
 
