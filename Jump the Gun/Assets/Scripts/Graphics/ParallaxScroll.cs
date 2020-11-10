@@ -74,6 +74,7 @@ public class ParallaxScroll : MonoBehaviour
     {
         for (int i = 0; i < levels.Length; i++)
         {
+            if (levels[i] == null) continue;
             GameObject obj = levels[i];
             RepositionChildObjects(obj);
             float tempObjectPosZ = obj.transform.position.z + (obj.transform.position.z - avgObjectPosZ) * (1.0f + parallaxXMultiplier);
