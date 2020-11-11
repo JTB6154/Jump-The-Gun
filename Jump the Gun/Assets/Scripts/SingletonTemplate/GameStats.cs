@@ -25,6 +25,8 @@ public class GameStats : Singleton<GameStats>
     public float playerMomentumX = 0f;
     public float playerMomentumY = 0f;
 
+    public bool isShotNumberGUIOn = false;
+
     //For changing cursor
     public int cursorNum = 4;
 

@@ -55,4 +55,9 @@ public class ChangeScene : MonoBehaviour
 
     //Load Options
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }

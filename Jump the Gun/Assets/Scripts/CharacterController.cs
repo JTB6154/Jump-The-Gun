@@ -251,9 +251,12 @@ public class CharacterController : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.backgroundColor = Color.gray;
-        GUI.contentColor = Color.yellow;
-        GUI.Label(new Rect(10, 10, 300, 100), "Number of Bigrecoil Shots: " + numBigRecoilShots + "\nNumber of Rockets: " + numRockets);
+        if (GameStats.Instance.isShotNumberGUIOn)
+        {
+            GUI.backgroundColor = Color.gray;
+            GUI.contentColor = Color.yellow;
+            GUI.Label(new Rect(10, 10, 300, 100), "Number of Bigrecoil Shots: " + numBigRecoilShots + "\nNumber of Rockets: " + numRockets);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
