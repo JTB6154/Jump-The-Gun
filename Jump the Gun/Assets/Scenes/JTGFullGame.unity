@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8319,7 +8319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662033182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.19681, y: 18.784157, z: -1036.6211}
+  m_LocalPosition: {x: 35.19681, y: 18.784157, z: -1088.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3623917481952804296}
@@ -17319,12 +17319,12 @@ PrefabInstance:
     - target: {fileID: 3781893503130733609, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -90
+      value: -128.11
       objectReference: {fileID: 0}
     - target: {fileID: 3781893503130733609, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3781893503130733610, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
@@ -17334,7 +17334,7 @@ PrefabInstance:
     - target: {fileID: 3781893503686936928, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 171.46
+      value: 133.35
       objectReference: {fileID: 0}
     - target: {fileID: 3781893503686936928, guid: e41db49dda4da1e428f84d877469cd63,
         type: 3}
@@ -25196,7 +25196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25501,7 +25501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25769,7 +25769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25968,7 +25968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
