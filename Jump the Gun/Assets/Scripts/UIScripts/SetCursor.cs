@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SetCursor : MonoBehaviour
 {
@@ -14,32 +15,7 @@ public class SetCursor : MonoBehaviour
         Cursor.visible = false;
         rend = GetComponent<SpriteRenderer>();
 
-        switch (GameStats.Instance.cursorNum)
-        {
-            case 0:
-                //Default Color
-                rend.color = Color.white;
-                break;
-
-            case 1:
-                rend.color = Color.black;
-                break;
-
-            case 2:
-                rend.color = Color.blue;
-                break;
-
-            case 3:
-                rend.color = Color.red;
-                break;
-
-            case 4:
-                rend.color = Color.green;
-                break;
-
-            default:
-                break;
-        }
+        rend.color = new Color(GameStats.Instance.redColor, GameStats.Instance.greenColor, GameStats.Instance.blueColor);
     }
 
     // Update is called once per frame

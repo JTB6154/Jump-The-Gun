@@ -28,7 +28,9 @@ public class GameStats : Singleton<GameStats>
     public bool isShotNumberGUIOn = false;
 
     //For changing cursor
-    public int cursorNum = 4;
+    public float redColor = 1f;
+    public float greenColor = 1f;
+    public float blueColor = 1f;
 
      public void StartLoad()
      {
