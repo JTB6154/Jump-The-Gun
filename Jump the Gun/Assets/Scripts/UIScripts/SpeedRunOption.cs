@@ -13,7 +13,7 @@ public class SpeedRunOption : MonoBehaviour
 
         speedRunToggle = GameObject.Find("SpeedrunToggle");
 
-        if (GameStats.Instance.speedRunning)
+        if (GameStats.Instance.speedRunning == 1)
         {
             speedRunToggle.GetComponent<Toggle>().isOn = true;
         }
@@ -27,11 +27,11 @@ public class SpeedRunOption : MonoBehaviour
     {
         if (speedRunToggle.GetComponent<Toggle>().isOn)
         {
-            GameStats.Instance.speedRunning = true;
+            GameStats.Instance.speedRunning = 1;
         }
         else
         {
-            GameStats.Instance.speedRunning = false;
+            GameStats.Instance.speedRunning = 0;
         }
     }
 }
