@@ -16,7 +16,7 @@ public class GameTimer : MonoBehaviour
         startTime = Time.time;
         previousTime = GameStats.Instance.previousTime;
 
-        if (GameStats.Instance.speedRunning)
+        if (GameStats.Instance.speedRunning == 1)
         {
             timerText.gameObject.SetActive(true);
         }

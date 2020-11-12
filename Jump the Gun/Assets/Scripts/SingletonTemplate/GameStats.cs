@@ -27,7 +27,7 @@ public class GameStats : Singleton<GameStats>
 
     public bool isShotNumberGUIOn = false;
 
-    public bool speedRunning = false;
+    public int speedRunning = 0;
 
     //For changing cursor
     public float redColor = 1f;
@@ -48,6 +48,10 @@ public class GameStats : Singleton<GameStats>
             hasSaveData = 1;
 
             //Load previous data if there is any
+            redColor = PlayerPrefs.HasKey("redColor") ? PlayerPrefs.GetFloat("redColor") : 1f;
+            greenColor = PlayerPrefs.HasKey("greenColor") ? PlayerPrefs.GetFloat("greenColor") : 1f;
+            blueColor = PlayerPrefs.HasKey("blueColor") ? PlayerPrefs.GetFloat("blueColor") : 1f;
+            speedRunning = PlayerPrefs.HasKey("speedRunning") ? PlayerPrefs.GetInt("speedRunning") : 0;
             previousTime = PlayerPrefs.HasKey("previousTime") ? PlayerPrefs.GetFloat("previousTime") : 0f;
             hasBigRecoil = PlayerPrefs.HasKey("hasBigRecoil") ? PlayerPrefs.GetInt("hasBigRecoil") : 0;
             hasRocketLauncher = PlayerPrefs.HasKey("hasRocketLauncher") ? PlayerPrefs.GetInt("hasRocketLauncher") : 0;
@@ -69,6 +73,10 @@ public class GameStats : Singleton<GameStats>
     {
         //Save game 
         PlayerPrefs.SetInt("hasSaveData", 1);
+        PlayerPrefs.SetInt("speedRunning", speedRunning);
+        PlayerPrefs.SetFloat("redColor", redColor);
+        PlayerPrefs.SetFloat("greenColor", greenColor);
+        PlayerPrefs.SetFloat("blueColor", blueColor);
         PlayerPrefs.SetFloat("previousTime", previousTime);
         PlayerPrefs.SetInt("bigRecoilAmmo", bigRecoilAmmo);
         PlayerPrefs.SetInt("hasBigRecoil", hasBigRecoil);
