@@ -15,6 +15,15 @@ public class GameTimer : MonoBehaviour
     {
         startTime = Time.time;
         previousTime = GameStats.Instance.previousTime;
+
+        if (GameStats.Instance.speedRunning)
+        {
+            timerText.gameObject.SetActive(true);
+        }
+        else
+        {
+            timerText.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

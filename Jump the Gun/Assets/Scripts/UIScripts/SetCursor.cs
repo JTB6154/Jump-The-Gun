@@ -14,7 +14,6 @@ public class SetCursor : MonoBehaviour
     {
         Cursor.visible = false;
         rend = GetComponent<SpriteRenderer>();
-
         rend.color = new Color(GameStats.Instance.redColor, GameStats.Instance.greenColor, GameStats.Instance.blueColor);
     }
 

@@ -27,6 +27,8 @@ public class GameStats : Singleton<GameStats>
 
     public bool isShotNumberGUIOn = false;
 
+    public bool speedRunning = false;
+
     //For changing cursor
     public float redColor = 1f;
     public float greenColor = 1f;
@@ -102,4 +104,5 @@ public class GameStats : Singleton<GameStats>
         PlayerPrefs.SetFloat("playerMomentumX", 0f);
         PlayerPrefs.SetFloat("playerMomentumY", 0f);
     }
+
 }
