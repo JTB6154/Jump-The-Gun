@@ -200,7 +200,7 @@ public class CharacterController : MonoBehaviour
             if (subtractBigRecoil)
             {
                 numBigRecoilShots -= 1;
-                subtractBigRecoil = true;
+                subtractBigRecoil = false;
             }
         }
 
