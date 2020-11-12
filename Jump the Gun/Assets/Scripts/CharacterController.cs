@@ -439,29 +439,28 @@ public class CharacterController : MonoBehaviour
         {
 
             isGrounded = true;
+            float min = float.MaxValue;
 
-            if (!CheckRayCastNormalAngle(left)) isGrounded = false;
-            if (!CheckRayCastNormalAngle(right)) isGrounded = false;
-            if (!CheckRayCastNormalAngle(center)) isGrounded = false;
+            if (min > CheckRayCastNormalAngle(left)) min = CheckRayCastNormalAngle(left);
+            if (min > CheckRayCastNormalAngle(right)) min = CheckRayCastNormalAngle(right);
+            if (min > CheckRayCastNormalAngle(center)) min = CheckRayCastNormalAngle(center);
 
+            if (min > maxWalkableAngle && min != float.MaxValue) isGrounded = false;
         }
-
 
         return isGrounded;
     }
 
-    bool CheckRayCastNormalAngle(RaycastHit2D hit)
+    float CheckRayCastNormalAngle(RaycastHit2D hit)
     {
         if (hit.collider != null)
         {
             //Debug.Log(Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg));
-            if (Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg) > maxWalkableAngle)
-            {
-                return false;
-            }
+            return Mathf.Abs(Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg);
+            
         }
 
-        return true;
+        return float.MaxValue;
     }
 
     void Landed()
