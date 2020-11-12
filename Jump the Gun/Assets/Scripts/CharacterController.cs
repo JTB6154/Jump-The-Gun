@@ -91,7 +91,7 @@ public class CharacterController : MonoBehaviour
         {
             //Load data for player from saved
             this.transform.position = new Vector2(GameStats.Instance.playerPosX, GameStats.Instance.playerPosY);
-            rb.velocity = new Vector2(GameStats.Instance.playerMomentumX, GameStats.Instance.playerMomentumX);
+            rb.velocity = new Vector2(GameStats.Instance.playerMomentumX, GameStats.Instance.playerMomentumY);
             numBigRecoilShots = GameStats.Instance.bigRecoilAmmo;
             numRockets = GameStats.Instance.rocketLauncherAmmo;
 
