@@ -14,6 +14,7 @@ public class rocketScript : MonoBehaviour
     bool hasExploded = false;
     [SerializeField] LayerMask player;
     [SerializeField] LayerMask notPlayer;
+    [SerializeField] GameObject explosion_particles;
     
     void Start()
     {
@@ -65,6 +66,7 @@ public class rocketScript : MonoBehaviour
         }
         //show the rocket has already exploded
         hasExploded = true;
+        Instantiate(explosion_particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
