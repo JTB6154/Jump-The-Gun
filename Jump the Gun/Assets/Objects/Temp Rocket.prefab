@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7119951904622624212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.097, y: -2.046, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.746927, y: 1.746927, z: 1.746927}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -153,3 +153,5 @@ MonoBehaviour:
   notPlayer:
     serializedVersion: 2
     m_Bits: 2583
+  explosion_particles: {fileID: 5601958881685669251, guid: f8f159d0dc6160a469b97cc5ea66c127,
+    type: 3}
