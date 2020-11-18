@@ -62,6 +62,9 @@ public class rocketScript : MonoBehaviour
                     prb.velocity = Vector2.zero;
                 }
                 prb.AddForce(direction * scale * explosionforce);
+
+                if (colliders[i].GetComponent<CharacterController>().grounded)
+                    Camera.main.GetComponent<CameraShake>().ShakeCamera(.15f, .3f);
             }
         }
         //show the rocket has already exploded

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6065016694883907047
+--- !u!114 &1926931864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,10 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2211156290653659087}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 852183b04ab1356459924a091a52c58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntensity: 2.2
+  minIntensity: 0.1
+  fadeInTime: 0.1
+  fadeOutTime: 0.3
+--- !u!114 &6065016694883907047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211156290653659087}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a7f1f6db48b0304b98a7c30f1b65608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 0.2
+  lifetime: 2
 --- !u!1 &5601958881685669251
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,8 +199,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
-      minScalar: 4
+      scalar: 10
+      minScalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -761,7 +777,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0.48
     randomPositionAmount: 1.02
     radius:
-      value: 2
+      value: 1.5
       mode: 0
       spread: 0
       speed:
@@ -990,7 +1006,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 100
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1048,7 +1064,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 300
+        scalar: 150
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1463,7 +1479,7 @@ ParticleSystem:
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.841969, b: 0.23113209, a: 1}
+        key0: {r: 1, g: 0.8131066, b: 0.042452812, a: 1}
         key1: {r: 1, g: 0.854902, b: 0.29411766, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 1}
@@ -2258,7 +2274,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   ForceModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2315,7 +2331,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -10
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4994,17 +5010,17 @@ PrefabInstance:
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d16234a5fd0dc344ab329e7d6c981b2f, type: 3}
