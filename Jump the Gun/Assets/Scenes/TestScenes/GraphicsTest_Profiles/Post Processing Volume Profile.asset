@@ -18,10 +18,10 @@ MonoBehaviour:
     value: 1
   thickness:
     overrideState: 1
-    value: 0.455
+    value: 1
   multiplier:
     overrideState: 1
-    value: 1
+    value: 0.512
   bias:
     overrideState: 1
     value: 1

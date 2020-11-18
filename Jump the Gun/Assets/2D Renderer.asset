@@ -27,9 +27,9 @@ MonoBehaviour:
       multiplicative: 0
       additive: 0
   - enabled: 0
-    name: Blend Style 1
-    maskTextureChannel: 0
-    renderTextureScale: 1
+    name: Direct Lighting
+    maskTextureChannel: 1
+    renderTextureScale: 0.5
     blendMode: 1
     customBlendFactors:
       multiplicative: 0
