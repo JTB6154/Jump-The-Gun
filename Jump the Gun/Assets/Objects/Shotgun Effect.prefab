@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7391648926596692266}
   - component: {fileID: 5079416845060556004}
   - component: {fileID: 1218446554328075944}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shotgun Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8075928076737191703}
   - component: {fileID: 9195147350926673389}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
