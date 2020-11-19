@@ -57,19 +57,45 @@ public class DialogueScript : MonoBehaviour
 
     void StartDialogue()
     {
-        //Choose dialogue
-        if (timesEntered < dialogueOptions.Capacity - 1)
-        {
-            dialogueTextBox.GetComponent<Text>().text = dialogueOptions[timesEntered];
-        }
-        else
-        {
-            dialogueTextBox.GetComponent<Text>().text = dialogueOptions[dialogueOptions.Capacity - 1];
-        }
+        //Clear current text if any
+        dialogueTextBox.GetComponent<Text>().text = "";
 
         //Make dialogue visible
         dialogueTextBox.SetActive(true);
 
+        //Choose dialogue
+        if (timesEntered < dialogueOptions.Capacity - 1)
+        {
+            //dialogueTextBox.GetComponent<Text>().text = dialogueOptions[timesEntered];
+            StartCoroutine(DelayText());
+        }
+        else
+        {
+            //dialogueTextBox.GetComponent<Text>().text = dialogueOptions[dialogueOptions.Capacity - 1];
+            StartCoroutine(DelayRepeatText());
+        }
+    }
+
+    IEnumerator DelayText()
+    {
+
+        for (int i = 1; i < dialogueOptions[timesEntered].Length + 1; i++)
+        {
+            dialogueTextBox.GetComponent<Text>().text = dialogueOptions[timesEntered].Substring(0, i);
+            yield return new WaitForSeconds(0.08f);
+        }
+        //Adjust times entered
+        timesEntered++;
+    }
+
+    IEnumerator DelayRepeatText()
+    {
+
+        for (int i = 1; i < dialogueOptions[dialogueOptions.Capacity - 1].Length + 1; i++)
+        {
+            dialogueTextBox.GetComponent<Text>().text = dialogueOptions[dialogueOptions.Capacity - 1].Substring(0, i);
+            yield return new WaitForSeconds(0.08f);
+        }
         //Adjust times entered
         timesEntered++;
 
