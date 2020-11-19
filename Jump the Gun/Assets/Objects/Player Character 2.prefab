@@ -100,7 +100,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 246382072}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200649941
 GameObject:
@@ -167,9 +167,15 @@ Transform:
   - {fileID: 1560209673}
   - {fileID: 1987233846}
   - {fileID: 1334024513}
+  - {fileID: 4796841882259186654}
   - {fileID: 157098578}
+  - {fileID: 7042619803377594775}
   - {fileID: 396428033}
+  - {fileID: 573721075535056514}
+  - {fileID: 7612149809879385832}
   - {fileID: 1346854643}
+  - {fileID: 2172166940329010628}
+  - {fileID: 2902886356366705226}
   m_Father: {fileID: 5350618648013575099}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -197,11 +203,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396428032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.853, y: -0.929, z: 0}
+  m_LocalPosition: {x: -0.731, y: -0.794, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 246382072}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956488720
 GameObject:
@@ -329,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140295460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.997, y: 1.088, z: 0}
+  m_LocalPosition: {x: -1.051, y: 1.049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 246382072}
@@ -405,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346854643}
   m_Layer: 8
-  m_Name: FiringPoint_N90D
+  m_Name: FiringPoint_N80D
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -419,11 +425,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346854642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.398, y: -1.178, z: 0}
+  m_LocalPosition: {x: -0.3, y: -0.808, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 246382072}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1560209672
 GameObject:
@@ -514,6 +520,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 246382072}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1088927558285836997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2902886356366705226}
+  m_Layer: 8
+  m_Name: FiringPoint_N90D_New (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2902886356366705226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088927558285836997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.014, y: -0.816, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 246382072}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3091234476854810240
 GameObject:
@@ -750,38 +786,56 @@ MonoBehaviour:
     m_Bits: 8192
   firingPoints:
   - firingPointTransform: {fileID: 200649942}
-    minAngleBound: -15
+    minAngleBound: -5
     maxAngleBound: 15
   - firingPointTransform: {fileID: 2134844236}
-    minAngleBound: 14.9
+    minAngleBound: 15
     maxAngleBound: 30
   - firingPointTransform: {fileID: 1014095348}
-    minAngleBound: 29.9
+    minAngleBound: 30
     maxAngleBound: 45
   - firingPointTransform: {fileID: 1189210170}
-    minAngleBound: 44.9
+    minAngleBound: 45
     maxAngleBound: 60
   - firingPointTransform: {fileID: 1140295461}
-    minAngleBound: 59.9
+    minAngleBound: 60
     maxAngleBound: 80
   - firingPointTransform: {fileID: 1560209673}
-    minAngleBound: 79.9
-    maxAngleBound: 100
+    minAngleBound: 80
+    maxAngleBound: 90
   - firingPointTransform: {fileID: 1987233846}
-    minAngleBound: -30
-    maxAngleBound: -14.9
+    minAngleBound: -12
+    maxAngleBound: -5
   - firingPointTransform: {fileID: 1334024513}
-    minAngleBound: -45
-    maxAngleBound: -29.9
+    minAngleBound: -17
+    maxAngleBound: -12
+  - firingPointTransform: {fileID: 4796841882259186654}
+    minAngleBound: -27
+    maxAngleBound: -17
   - firingPointTransform: {fileID: 157098578}
-    minAngleBound: -60
-    maxAngleBound: -44.9
+    minAngleBound: -37
+    maxAngleBound: -27
+  - firingPointTransform: {fileID: 7042619803377594775}
+    minAngleBound: -45
+    maxAngleBound: -37
   - firingPointTransform: {fileID: 396428033}
-    minAngleBound: -80
-    maxAngleBound: -59.9
+    minAngleBound: -52
+    maxAngleBound: -45
+  - firingPointTransform: {fileID: 573721075535056514}
+    minAngleBound: -62
+    maxAngleBound: -52
+  - firingPointTransform: {fileID: 7612149809879385832}
+    minAngleBound: -72
+    maxAngleBound: -62
   - firingPointTransform: {fileID: 1346854643}
+    minAngleBound: -82
+    maxAngleBound: -72
+  - firingPointTransform: {fileID: 2172166940329010628}
+    minAngleBound: -91
+    maxAngleBound: -82
+  - firingPointTransform: {fileID: 2902886356366705226}
     minAngleBound: -100
-    maxAngleBound: -79.9
+    maxAngleBound: -91
   gravityScale: 3.762
   walkSpeed: 9.382
   maxXSpeed: 20.52
@@ -795,14 +849,14 @@ MonoBehaviour:
   groundCheckRadius: 0.5472
   groundCheckDepth: 0.228
   groundTimer: 0.01
-  hasBigRecoil: 1
+  hasBigRecoil: 0
   recoilForce: 927
   maxBigRecoilShots: 2
   shotgunShot: {fileID: 4954155497841062491, guid: 92c493c8872137f4fb73422375f0b035,
     type: 3}
   maxVariation: 10
   numShot: 3
-  hasRocketJump: 1
+  hasRocketJump: 0
   rocketForce: 1368
   rocketRadius: 9.12
   maxRockets: 2
@@ -1041,3 +1095,153 @@ MonoBehaviour:
   m_AfterStackBundles:
   - assemblyQualifiedName: ContourEdgeOutline, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &4233072767085835886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2172166940329010628}
+  m_Layer: 8
+  m_Name: FiringPoint_N90D_New
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2172166940329010628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233072767085835886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.157, y: -0.808, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 246382072}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5425670795067954308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573721075535056514}
+  m_Layer: 8
+  m_Name: FiringPoint_N75D_New
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &573721075535056514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5425670795067954308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.507, y: -0.806, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 246382072}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5668343072453396556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7042619803377594775}
+  m_Layer: 8
+  m_Name: FiringPoint_N60D_New
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7042619803377594775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668343072453396556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.959, y: -0.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 246382072}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6678883276941988683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4796841882259186654}
+  m_Layer: 8
+  m_Name: FiringPoint_N35D_New
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4796841882259186654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6678883276941988683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.31, y: -0.541, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 246382072}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7749819039525480289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7612149809879385832}
+  m_Layer: 8
+  m_Name: FiringPoint_N75D_New (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7612149809879385832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749819039525480289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.409, y: -0.802, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 246382072}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -249,6 +249,18 @@ public class CharacterController : MonoBehaviour
                 groundchecker.transform.position + transform.right * groundCheckRadius + -Vector3.up * groundCheckDepth);
         Gizmos.DrawLine(groundchecker.transform.position,
                         groundchecker.transform.position + -Vector3.up * groundCheckDepth);
+
+        // Draw arcs every 10 degree angle
+        //Gizmos.color = Color.white;
+        //float gizmosRadius = 10f;
+        //int unitAngle = 15;
+        //Gizmos.DrawWireSphere(transform.position, gizmosRadius);
+        //for (int i = 0; i < 360 / unitAngle; i++)
+        //{
+        //    float angle = i * unitAngle * Mathf.Deg2Rad;
+        //    Gizmos.DrawLine(transform.position, 
+        //        transform.position + new Vector3(Mathf.Cos(angle) * gizmosRadius, Mathf.Sin(angle) * gizmosRadius));
+        //}
     }
 
     private void OnGUI()
@@ -319,8 +331,8 @@ public class CharacterController : MonoBehaviour
                 output = isFlipped ?
                     firingPoints[i].GetFlippedFiringPosition() : firingPoints[i].GetFiringPosition();
 
-                //string flip = isFlipped ? "flipped" : "";
-                //Debug.Log("Firing from " + firingPoints[i].firingPointTransform.gameObject.name + " " + flip);
+                string flip = isFlipped ? "flipped" : "";
+                Debug.Log("Firing from " + firingPoints[i].firingPointTransform.gameObject.name + " " + flip);
                 break;
             }
         }
@@ -407,7 +419,7 @@ public class CharacterController : MonoBehaviour
                     GameObject shooting = GameObject.Instantiate(shotgunShot);
                     //shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
                     shooting.transform.position = GetFiringPoint(firingAngle, true);
-                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg + Random.Range(-maxVariation, maxVariation));
+                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);
                 }
             }
 
@@ -642,4 +654,5 @@ public class CharacterController : MonoBehaviour
         animator.SetBool("Running", false);
     }
     #endregion
+
 }

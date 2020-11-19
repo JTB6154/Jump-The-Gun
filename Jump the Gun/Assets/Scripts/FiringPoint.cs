@@ -23,6 +23,6 @@ public class FiringPoint
 
     public bool IsWithinRange(float angle)
     {
-        return angle > minAngleBound && angle < maxAngleBound;
+        return angle >= minAngleBound && angle < maxAngleBound;
     }
 }
