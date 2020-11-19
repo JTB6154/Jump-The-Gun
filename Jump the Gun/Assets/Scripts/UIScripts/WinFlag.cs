@@ -10,10 +10,9 @@ public class WinFlag : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name + "" + player.gameObject.name);
+        //Debug.Log(collision.gameObject.name + "" + player.gameObject.name);
         if (collision.gameObject.name == player.gameObject.name)
         {
-            GameStats.Instance.finishTime = GameStats.Instance.previousTime;
             Cursor.visible = true;
             SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
             GameStats.Instance.SaveData();
