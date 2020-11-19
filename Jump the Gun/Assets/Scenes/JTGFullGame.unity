@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4328,7 +4328,7 @@ PrefabInstance:
     - target: {fileID: 5350618648013575099, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5350618648013575099, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
@@ -4364,7 +4364,7 @@ PrefabInstance:
     - target: {fileID: 6412269831089179003, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
       propertyPath: hasRocketJump
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
@@ -17975,7 +17975,7 @@ PrefabInstance:
     - target: {fileID: 3090470693155360986, guid: 39e8786a6d3ebf044beb81a6b65144e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3090470693155360986, guid: 39e8786a6d3ebf044beb81a6b65144e5,
         type: 3}
@@ -20611,7 +20611,7 @@ PrefabInstance:
     - target: {fileID: 5601958881685669248, guid: c7c3d94dc0ce89f4693242762233ce0e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.7
+      value: -42.66
       objectReference: {fileID: 0}
     - target: {fileID: 5601958881685669248, guid: c7c3d94dc0ce89f4693242762233ce0e,
         type: 3}
@@ -20663,6 +20663,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: ShapeModule.angle
+      value: 33.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: -1.5707963
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669249, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601958881685669250, guid: c7c3d94dc0ce89f4693242762233ce0e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 713f9756f8a2e9543b55a6ba04506780, type: 2}
     - target: {fileID: 5601958881685669251, guid: c7c3d94dc0ce89f4693242762233ce0e,
         type: 3}
       propertyPath: m_Name

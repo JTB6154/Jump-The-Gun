@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852183b04ab1356459924a091a52c58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIntensity: 1.8
+  maxIntensity: 2
   minIntensity: 0
-  fadeInTime: 0.1
-  fadeOutTime: 0.05
+  fadeInTime: 0.05
+  fadeOutTime: 0.2
 --- !u!114 &6065016694883907047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.05
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -198,9 +198,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 7
-      minScalar: 5
+      minMaxState: 0
+      scalar: 50
+      minScalar: 80
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -315,8 +315,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.8
-      minScalar: 0.6
+      scalar: 0.5
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -580,7 +580,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.0471976
+      scalar: 1.5707963
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -690,15 +690,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 8
-    angle: 17.7
+    type: 4
+    angle: 13.35
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 3.33, y: 0, z: 0}
     m_Rotation: {x: -0, y: 90, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 2.79, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -765,7 +765,7 @@ ParticleSystem:
     m_SpriteRenderer: {fileID: 0}
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
-    alignToDirection: 1
+    alignToDirection: 0
     m_Texture: {fileID: 0}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
@@ -775,7 +775,7 @@ ParticleSystem:
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
     sphericalDirectionAmount: 0
-    randomPositionAmount: 0.1
+    randomPositionAmount: 0.05
     radius:
       value: 0.0001
       mode: 0
@@ -1118,7 +1118,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1632,7 +1632,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2274,7 +2274,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2498,7 +2498,7 @@ ParticleSystem:
       m_Bits: 4294967295
     influenceList: []
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -3473,7 +3473,7 @@ ParticleSystem:
     range: {x: 0, y: 1}
     separateAxes: 0
   RotationBySpeedModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -4025,7 +4025,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 0.5
     lifetime:
@@ -4858,7 +4858,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4b177680b1088c1468c18caa612ddbdf, type: 2}
-  - {fileID: 2100000, guid: e35fdf6b76f66f74eb6bd27c9dca5ee7, type: 2}
+  - {fileID: 2100000, guid: f6f1c1e25574e2942a060c3eff8cbcce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4951,6 +4951,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AlphaBlendOnOverlap
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
+        type: 3}
+      propertyPath: m_LightType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
+        type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.486
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
+        type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
