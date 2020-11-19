@@ -13,6 +13,7 @@ public class GameStats : Singleton<GameStats>
 
     //Variables for saving and loading 
     public float previousTime = 0f;
+    public float finishTime = 0f;
 
     public int hasBigRecoil = 0;
     public int hasRocketLauncher = 0;
