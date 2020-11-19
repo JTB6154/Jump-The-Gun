@@ -13,7 +13,7 @@ public class rocketScript : MonoBehaviour
     float minimumForcePercent;
     bool hasExploded = false;
     [SerializeField] LayerMask player;
-    [SerializeField] LayerMask notPlayer;
+    [SerializeField] public LayerMask notPlayer;
     [SerializeField] GameObject explosion_particles;
     
     void Start()
@@ -26,7 +26,7 @@ public class rocketScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
         //check if it is colliding with the something other than the player
         if (gameObject.GetComponent<Collider2D>().IsTouchingLayers(notPlayer))
@@ -43,7 +43,7 @@ public class rocketScript : MonoBehaviour
         explosionRadius = initExplosionRadius;
     }
 
-    void Explode()
+    public void Explode()
     {
         if (hasExploded) return;//if the rocket has already exploded don't make it blow up again
 
