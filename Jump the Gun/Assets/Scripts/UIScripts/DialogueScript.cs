@@ -91,7 +91,7 @@ public class DialogueScript : MonoBehaviour
     IEnumerator DelayRepeatText()
     {
 
-        for (int i = 1; i < dialogueOptions[timesEntered].Length + 1; i++)
+        for (int i = 1; i < dialogueOptions[dialogueOptions.Capacity - 1].Length + 1; i++)
         {
             dialogueTextBox.GetComponent<Text>().text = dialogueOptions[dialogueOptions.Capacity - 1].Substring(0, i);
             yield return new WaitForSeconds(0.08f);
