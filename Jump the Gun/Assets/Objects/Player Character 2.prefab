@@ -802,7 +802,7 @@ MonoBehaviour:
     maxAngleBound: 80
   - firingPointTransform: {fileID: 1560209673}
     minAngleBound: 80
-    maxAngleBound: 90
+    maxAngleBound: 100
   - firingPointTransform: {fileID: 1987233846}
     minAngleBound: -12
     maxAngleBound: -5

@@ -370,6 +370,8 @@ public class CharacterController : MonoBehaviour
                 Vector3 dir2 = firingPoint - transform.position;
                 
                 GameObject tempRocket = Instantiate(rocketPrefab, firingPoint, Quaternion.identity); //set the rocket
+                tempRocket.transform.forward = dir.normalized; //set the rockets rotation
+                tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
                 RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir2, dir2.magnitude, tempRocket.GetComponent<rocketScript>().notPlayer);
                 if (hit)
                 {
@@ -380,8 +382,7 @@ public class CharacterController : MonoBehaviour
 
                     return;
                 }
-                tempRocket.transform.forward = dir.normalized; //set the rockets rotation
-                tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+
 
                 //Startup the shooting animation
                 StartShootAnim(firingAngle, 1);
