@@ -46,7 +46,7 @@ public class rocketScript : MonoBehaviour
     public void Explode()
     {
         if (hasExploded) return;//if the rocket has already exploded don't make it blow up again
-
+        
         Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, explosionRadius, player);
         for (int i = 0; i < colliders.Length; i++)
         {
