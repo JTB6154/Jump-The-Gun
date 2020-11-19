@@ -8,10 +8,10 @@ public class WinFlag : MonoBehaviour
 
     public GameObject player;
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.name == player.gameObject.name )
+        Debug.Log(collision.gameObject.name + "" + player.gameObject.name);
+        if (collision.gameObject.name == player.gameObject.name)
         {
             GameStats.Instance.finishTime = GameStats.Instance.previousTime;
             Cursor.visible = true;
@@ -19,4 +19,5 @@ public class WinFlag : MonoBehaviour
             GameStats.Instance.SaveData();
         }
     }
+
 }

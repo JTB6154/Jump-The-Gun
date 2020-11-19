@@ -9,6 +9,9 @@ public class WinScreenTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeText.text = "Total Time: " + GameStats.Instance.finishTime.ToString();
+        float time = GameStats.Instance.finishTime;
+        float minutes = Mathf.Floor(time / 60f);
+        float seconds = time % 60f;
+        timeText.text = "Total Time: " + minutes + ":" + seconds.ToString("n4");
     }
 }
