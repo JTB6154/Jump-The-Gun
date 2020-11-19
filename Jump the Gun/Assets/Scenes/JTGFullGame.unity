@@ -31432,7 +31432,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: 81.5345, y: -88.16287, z: 0}
+    - position: {x: 82.0936, y: -87.76974, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -32199,7 +32199,7 @@ EdgeCollider2D:
   - {x: 73.68094, y: -90.78124}
   - {x: 73.77075, y: -93.09851}
   - {x: 78.44159, y: -93.13174}
-  - {x: 81.5345, y: -88.16287}
+  - {x: 82.0936, y: -87.76974}
   - {x: 81.58769, y: -84.47078}
   - {x: 82.40315, y: -81.69951}
   - {x: 86.45094, y: -81.52898}
@@ -33906,7 +33906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7776026386878765938}
   m_LocalRotation: {x: -0, y: -0, z: 0.021594282, w: 0.9997668}
-  m_LocalPosition: {x: 84.429, y: -81.595, z: 0}
+  m_LocalPosition: {x: 84.4273, y: -81.6064, z: 0}
   m_LocalScale: {x: 4.05, y: 1.4976819, z: 1}
   m_Children: []
   m_Father: {fileID: 3166182072266360178}
