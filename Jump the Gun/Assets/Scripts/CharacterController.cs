@@ -356,7 +356,7 @@ public class CharacterController : MonoBehaviour
                 //GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
                 GameObject tempRocket = Instantiate(rocketPrefab, GetFiringPoint(firingAngle, false), Quaternion.identity); //set the rocket
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
-                tempRocket.GetComponent<RocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+                tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
 
                 //Startup the shooting animation
                 StartShootAnim(firingAngle, 1);

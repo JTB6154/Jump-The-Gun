@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketScript : MonoBehaviour
+public class rocketScript : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [Range(1,100)] [SerializeField] float initialSpeed = 10f;
