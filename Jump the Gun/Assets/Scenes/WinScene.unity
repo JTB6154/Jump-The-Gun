@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 749322550}
   - component: {fileID: 749322549}
   - component: {fileID: 749322548}
+  - component: {fileID: 749322551}
   m_Layer: 5
   m_Name: MenuBtn
   m_TagString: Untagged
@@ -312,7 +313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 506, y: -505}
+  m_AnchoredPosition: {x: 650, y: -585}
   m_SizeDelta: {x: 307.83734, y: 98.95946}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749322548
@@ -783,7 +784,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 6
     m_MaxSize: 60
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -814,7 +815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 48.3}
+  m_AnchoredPosition: {x: 0, y: 11}
   m_SizeDelta: {x: 827.1694, y: 167.03268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1733566880
