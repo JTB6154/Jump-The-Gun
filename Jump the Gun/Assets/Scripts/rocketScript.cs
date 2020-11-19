@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rocketScript : MonoBehaviour
+public class RocketScript : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
-    [Range(1,100)][SerializeField] float initialSpeed = 10f;
+    [Range(1,100)] [SerializeField] float initialSpeed = 10f;
     float explosionforce = 0f;
     float explosionRadius = 2f;
     [SerializeField] [Range(0, 100)] float MinimumForcePercent;

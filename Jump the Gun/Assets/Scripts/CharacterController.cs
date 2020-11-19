@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     groundFinder finder;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask reloadLayer;
+    [SerializeField] private List<FiringPoint> firingPoints;
     [Space]
 
     [Header("Physics settings")]
@@ -68,6 +69,7 @@ public class CharacterController : MonoBehaviour
     private float cutsceneTimer;
     private float cutsceneLength;
     private short gun;
+
     #endregion
 
     #region UnityFunctions
@@ -269,7 +271,7 @@ public class CharacterController : MonoBehaviour
 
     #endregion
 
-    #region guns
+    #region Guns
 
 
     public int GetBigRecoilAmmo()
@@ -281,6 +283,51 @@ public class CharacterController : MonoBehaviour
     {
         return numRockets;
     }
+
+    private Vector3 GetFiringPoint(float firingAngle, bool isGun)
+    {
+        Vector3 output = Vector3.zero;
+        bool isFlipped = false;
+
+        if (isGun)
+        {
+            firingAngle *= -1;
+
+            if (firingAngle > 100 || firingAngle < -100)
+            {
+                isFlipped = true;
+                int sign = firingAngle > 0 ? 1 : -1;
+                firingAngle = sign * (180 - Mathf.Abs(firingAngle));
+            }
+        }
+        else
+        {
+            // If shooting a rocket
+            if (firingAngle > 100 || firingAngle < -100)
+            {
+                int sign = firingAngle > 0 ? 1 : -1;
+                firingAngle = sign * (180 - Mathf.Abs(firingAngle));
+            }
+            else
+                isFlipped = true;
+        }
+
+        for (int i = 0; i < firingPoints.Count; i++)
+        {
+            if (firingPoints[i].IsWithinRange(firingAngle))
+            {
+                output = isFlipped ?
+                    firingPoints[i].GetFlippedFiringPosition() : firingPoints[i].GetFiringPosition();
+
+                //string flip = isFlipped ? "flipped" : "";
+                //Debug.Log("Firing from " + firingPoints[i].firingPointTransform.gameObject.name + " " + flip);
+                break;
+            }
+        }
+
+        return output;
+    }
+
     /// <summary>
     /// shoots the a rocket in the direction of the mouse
     /// </summary>
@@ -300,18 +347,19 @@ public class CharacterController : MonoBehaviour
                 subtractRockets = true;
                 StartCoroutine(removeRocketsFired());
             }
-
+            
 
             if (rocketPrefab != null)
             {
                 Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position; //get the direction the rocket is going to be going in
-                //float angle = Mathf.Atan2(dir.y, dir.x);
-                GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
+                float firingAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                //GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
+                GameObject tempRocket = Instantiate(rocketPrefab, GetFiringPoint(firingAngle, false), Quaternion.identity); //set the rocket
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
-                tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+                tempRocket.GetComponent<RocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
 
                 //Startup the shooting animation
-                StartShootAnim(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, 1);
+                StartShootAnim(firingAngle, 1);
             }
         }
     }
@@ -349,19 +397,22 @@ public class CharacterController : MonoBehaviour
             Vector2 direction = new Vector2(gameObject.transform.position.x - mousePos.x, gameObject.transform.position.y - mousePos.y).normalized;
 
             rb.AddForce(direction * recoilForce);
-            
+
+            float firingAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
             if (shotgunShot != null)
             {
                 for (int i = 0; i < numShot; i++)
                 {
                     GameObject shooting = GameObject.Instantiate(shotgunShot);
-                    shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
+                    //shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
+                    shooting.transform.position = GetFiringPoint(firingAngle, true);
                     shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg + Random.Range(-maxVariation, maxVariation));
                 }
             }
 
             //Startup the shooting animation
-            StartShootAnim(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, 0);
+            StartShootAnim(firingAngle, 0);
         }
     }
 
@@ -397,7 +448,7 @@ public class CharacterController : MonoBehaviour
 
     #endregion
 
-    #region initializationHelpers
+    #region InitializationHelpers
 
     /// <summary>
     /// Gets the game object, rigidbody, and 
@@ -423,7 +474,7 @@ public class CharacterController : MonoBehaviour
     }
     #endregion
 
-    #region physicsHelpers
+    #region PhysicsHelpers
     bool CheckGrounded(LayerMask countsAsGround)
     {
 
@@ -470,7 +521,7 @@ public class CharacterController : MonoBehaviour
 
     #endregion
 
-    #region coroutines
+    #region Coroutines
     IEnumerator removeRocketsFired()
     {
         yield return new WaitForSeconds(liftOffCheckTime);
