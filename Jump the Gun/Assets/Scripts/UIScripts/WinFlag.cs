@@ -15,7 +15,7 @@ public class WinFlag : MonoBehaviour
         {
             Cursor.visible = true;
             SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
-            GameStats.Instance.SaveData();
+            GameStats.Instance.ResetData();
         }
     }
 
