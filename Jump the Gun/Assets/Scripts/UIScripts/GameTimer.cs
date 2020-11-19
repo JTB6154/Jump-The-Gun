@@ -49,5 +49,6 @@ public class GameTimer : MonoBehaviour
         timerText.text = minutes + ":" + seconds;
 
         GameStats.Instance.previousTime = t;
+        GameStats.Instance.finishTime = t;
     }
 }

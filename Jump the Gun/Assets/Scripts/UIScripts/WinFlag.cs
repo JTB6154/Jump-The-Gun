@@ -8,15 +8,14 @@ public class WinFlag : MonoBehaviour
 
     public GameObject player;
 
-
-    private void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.gameObject.name == player.gameObject.name )
+        if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
         {
-            GameStats.Instance.finishTime = GameStats.Instance.previousTime;
             Cursor.visible = true;
             SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
             GameStats.Instance.SaveData();
         }
-    }
+    } 
+    
 }
