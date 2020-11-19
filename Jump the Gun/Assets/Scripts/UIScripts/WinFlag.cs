@@ -8,14 +8,15 @@ public class WinFlag : MonoBehaviour
 
     public GameObject player;
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
+        //Debug.Log(collision.gameObject.name + "" + player.gameObject.name);
+        if (collision.gameObject.name == player.gameObject.name)
         {
             Cursor.visible = true;
             SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
             GameStats.Instance.SaveData();
         }
-    } 
-    
+    }
+
 }

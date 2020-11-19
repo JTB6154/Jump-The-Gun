@@ -366,7 +366,20 @@ public class CharacterController : MonoBehaviour
                 Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position; //get the direction the rocket is going to be going in
                 float firingAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 //GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
-                GameObject tempRocket = Instantiate(rocketPrefab, GetFiringPoint(firingAngle, false), Quaternion.identity); //set the rocket
+                Vector3 firingPoint = GetFiringPoint(firingAngle, false);
+                Vector3 dir2 = firingPoint - transform.position;
+                
+                GameObject tempRocket = Instantiate(rocketPrefab, firingPoint, Quaternion.identity); //set the rocket
+                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir2, dir2.magnitude, tempRocket.GetComponent<rocketScript>().notPlayer);
+                if (hit)
+                {
+                    tempRocket.transform.position = new Vector3(hit.point.x, hit.point.y);
+                    tempRocket.GetComponent<rocketScript>().Explode();
+                    //Startup the shooting animation
+                    StartShootAnim(firingAngle, 1);
+
+                    return;
+                }
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
                 tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
 
