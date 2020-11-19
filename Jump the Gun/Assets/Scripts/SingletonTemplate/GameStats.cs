@@ -91,7 +91,7 @@ public class GameStats : Singleton<GameStats>
 
     public void ResetData()
     {
-        newGame = false;
+        newGame = true;
         hasSaveData = 0;
         previousTime = 0f;
         hasBigRecoil = 0;
