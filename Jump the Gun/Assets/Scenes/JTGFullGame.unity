@@ -30043,7 +30043,7 @@ MonoBehaviour:
   player: {fileID: 955816094}
   dialogueTextBox: {fileID: 3623917482075902746}
   dialogueOptions:
-  - Aim at the ground and left click to fire a shotgun to jump
+  - Aim at the ground and left click to fire a shotgun and jump
   - Try a running start...
   textVisibleTime: 5
   enterAgainTime: 20

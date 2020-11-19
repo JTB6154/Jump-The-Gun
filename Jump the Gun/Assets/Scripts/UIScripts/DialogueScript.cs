@@ -19,6 +19,8 @@ public class DialogueScript : MonoBehaviour
     bool invoking;
     int timesEntered;
 
+    string current;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,14 +59,31 @@ public class DialogueScript : MonoBehaviour
 
     void StartDialogue()
     {
+        //Clear dialogue box if text remains
+        //dialogueTextBox.GetComponent<Text>().text = "";
+
         //Choose dialogue
         if (timesEntered < dialogueOptions.Capacity - 1)
         {
             dialogueTextBox.GetComponent<Text>().text = dialogueOptions[timesEntered];
+
+            /*
+            current = "";
+            foreach (char letter in dialogueOptions[timesEntered])
+            {
+                DelayText(letter);
+            }*/
         }
         else
         {
             dialogueTextBox.GetComponent<Text>().text = dialogueOptions[dialogueOptions.Capacity - 1];
+
+            /*
+            current = "";
+            foreach (char letter in dialogueOptions[dialogueOptions.Capacity - 1])
+            {
+                DelayText(letter);
+            }*/
         }
 
         //Make dialogue visible
@@ -74,5 +93,12 @@ public class DialogueScript : MonoBehaviour
         timesEntered++;
 
     }
+    /*    FIX LATER
+    IEnumerator DelayText(char letter)
+    {
+        yield return new WaitForSeconds(.2f);
+        current += letter;
+        dialogueTextBox.GetComponent<Text>().text = current;
+    }*/
 
 }
