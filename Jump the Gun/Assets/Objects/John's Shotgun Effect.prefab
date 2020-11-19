@@ -4887,6 +4887,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0.5
+--- !u!114 &970616723036882538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187175519002340418}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7f1f6db48b0304b98a7c30f1b65608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 2
 --- !u!114 &6436512795099797013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4903,19 +4916,6 @@ MonoBehaviour:
   minIntensity: 0
   fadeInTime: 0.1
   fadeOutTime: 0.05
---- !u!114 &970616723036882538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5187175519002340418}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7f1f6db48b0304b98a7c30f1b65608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 2
 --- !u!1001 &5149844518335015508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4946,17 +4946,17 @@ PrefabInstance:
     - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 376.07
+      value: 7.2023916
       objectReference: {fileID: 0}
     - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.9776024
+      value: 0.7029813
       objectReference: {fileID: 0}
     - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.6273585
+      value: 0.25943398
       objectReference: {fileID: 0}
     - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
@@ -4967,6 +4967,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AlphaBlendOnOverlap
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
+        type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
+        type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 19.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203459123827265399, guid: d16234a5fd0dc344ab329e7d6c981b2f,
+        type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 4.84
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
@@ -4986,22 +5001,22 @@ PrefabInstance:
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.71107966
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70311147
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
@@ -5021,7 +5036,7 @@ PrefabInstance:
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3420637227844322094, guid: d16234a5fd0dc344ab329e7d6c981b2f,
         type: 3}
