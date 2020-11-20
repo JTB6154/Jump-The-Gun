@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1522195728}
+      - m_Target: {fileID: 1044463594}
         m_MethodName: AssignKey
         m_Mode: 3
         m_Arguments:
@@ -2968,7 +2968,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1522195728}
+      - m_Target: {fileID: 1044463594}
         m_MethodName: AssignKey
         m_Mode: 3
         m_Arguments:
@@ -4026,6 +4026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1044463593}
+  - component: {fileID: 1044463594}
   m_Layer: 5
   m_Name: Controls
   m_TagString: Untagged
@@ -4063,6 +4064,18 @@ RectTransform:
   m_AnchoredPosition: {x: -171, y: 34.000004}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1044463594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044463592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e156f87ab990104bbaaab82c427b10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073678736
 GameObject:
   m_ObjectHideFlags: 0
@@ -4654,7 +4667,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1522195728}
+      - m_Target: {fileID: 1044463594}
         m_MethodName: AssignKey
         m_Mode: 3
         m_Arguments:
@@ -5332,7 +5345,6 @@ GameObject:
   - component: {fileID: 1522195727}
   - component: {fileID: 1522195730}
   - component: {fileID: 1522195729}
-  - component: {fileID: 1522195728}
   - component: {fileID: 1522195731}
   - component: {fileID: 1522195732}
   m_Layer: 5
@@ -5368,18 +5380,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.2, y: 7}
   m_SizeDelta: {x: 788.662, y: 658.5947}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1522195728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522195726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e156f87ab990104bbaaab82c427b10a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1522195729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5773,7 +5773,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1522195728}
+      - m_Target: {fileID: 1044463594}
         m_MethodName: AssignKey
         m_Mode: 3
         m_Arguments:
@@ -6751,7 +6751,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1522195728}
+      - m_Target: {fileID: 1044463594}
         m_MethodName: AssignKey
         m_Mode: 3
         m_Arguments:
