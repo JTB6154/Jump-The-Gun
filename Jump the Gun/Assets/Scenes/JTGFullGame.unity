@@ -30981,7 +30981,7 @@ GameObject:
   - component: {fileID: 2083213989303327588}
   - component: {fileID: 1125766643647247691}
   - component: {fileID: 1832470792286661524}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Platform_07
   m_TagString: SpriteShape
   m_Icon: {fileID: 0}
