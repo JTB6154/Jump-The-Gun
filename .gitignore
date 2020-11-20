@@ -71,3 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Jump the Gun/Packages/packages-lock.json
 Jump the Gun/fmod_editor.log
+Jump the Gun/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+Jump the Gun/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
