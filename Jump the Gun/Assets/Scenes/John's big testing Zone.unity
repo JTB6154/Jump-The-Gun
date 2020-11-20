@@ -2180,6 +2180,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bfabb5a19ae58546a0c5e409f940035, type: 3}
+--- !u!1001 &6436512793871923798
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810509, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507916033632810510, guid: fb4ccee31abba9943b989cc05043d7ae,
+        type: 3}
+      propertyPath: m_Name
+      value: John's Shotgun Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb4ccee31abba9943b989cc05043d7ae, type: 3}
 --- !u!1001 &7114572541230048111
 PrefabInstance:
   m_ObjectHideFlags: 0
