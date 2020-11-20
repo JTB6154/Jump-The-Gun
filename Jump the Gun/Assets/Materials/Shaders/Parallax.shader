@@ -101,7 +101,7 @@
                     o.color = v.color;
 
                     // Calculate view direction
-                    float3 worldSpaceViewDir = GetCameraPositionWS() - mul(unity_ObjectToWorld, v.positionOS).xyz;
+                    float3 worldSpaceViewDir = GetCameraPositionWS() - mul((float3x3)unity_ObjectToWorld, v.positionOS).xyz;
                     o.viewDir = normalize(worldSpaceViewDir);
 
                     return o;
