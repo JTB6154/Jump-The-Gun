@@ -23,7 +23,7 @@
 			<destination>{57422e7a-e9f7-4650-96cf-96e76fa62a1b}</destination>
 		</relationship>
 		<relationship name="markerTracks">
-			<destination>{8009a766-eb94-4127-b5f1-08e4adef815a}</destination>
+			<destination>{0ce51679-42f9-4bfe-8fad-b91ac56f1cc4}</destination>
 		</relationship>
 		<relationship name="groupTracks">
 			<destination>{1c83b16f-697e-447c-b4f0-d29140ca45f1}</destination>
@@ -50,11 +50,11 @@
 			<destination>{d6cd0efd-2274-4d53-995e-1865acd83495}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ce52405a-0f1d-457e-bc91-72129832845f}</destination>
+			<destination>{5c6a8a26-fb19-496f-8a40-2c4b0e979baf}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{57422e7a-e9f7-4650-96cf-96e76fa62a1b}" />
-	<object class="MarkerTrack" id="{8009a766-eb94-4127-b5f1-08e4adef815a}" />
+	<object class="MarkerTrack" id="{0ce51679-42f9-4bfe-8fad-b91ac56f1cc4}" />
 	<object class="GroupTrack" id="{1c83b16f-697e-447c-b4f0-d29140ca45f1}">
 		<relationship name="modules">
 			<destination>{491f8632-f69b-4a96-b890-f470b316b02f}</destination>
