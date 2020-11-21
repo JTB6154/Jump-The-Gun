@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] GameObject character;
     [SerializeField] Camera cam;
     [SerializeField] GameObject groundchecker;
-    groundFinder finder;
+    GroundFinder finder;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask reloadLayer;
     [SerializeField] private List<FiringPoint> firingPoints;
@@ -496,7 +496,7 @@ public class CharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-        finder = groundchecker.GetComponent<groundFinder>();
+        finder = groundchecker.GetComponent<GroundFinder>();
     }
     #endregion
 

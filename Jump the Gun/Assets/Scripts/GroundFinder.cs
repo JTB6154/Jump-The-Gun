@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class groundFinder : MonoBehaviour
+public class GroundFinder : MonoBehaviour
 {
     [SerializeField] LayerMask defaultGround;
     [SerializeField] CharacterController player;
