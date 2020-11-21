@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class platformScript : MonoBehaviour
+public class PlatformScript : MonoBehaviour
 {
     bool state = false; //start in the off position
     public bool State

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchScript : MonoBehaviour
 {
     [SerializeField] SpriteRenderer switchSprite;
-    [SerializeField] platformScript[] tiedPlatforms = {};
+    [SerializeField] PlatformScript[] tiedPlatforms = {};
     [SerializeField] LayerMask tripsSwitch;
     bool switchIsOn = false;
     [SerializeField] Sprite offSprite;
@@ -29,7 +29,7 @@ public class SwitchScript : MonoBehaviour
 
             if (!canBeTurnedOff && switchIsOn) return; //if the switch can't be turned off, and the switch is currently on, back out now
             
-            foreach (platformScript platform in tiedPlatforms)
+            foreach (PlatformScript platform in tiedPlatforms)
             {
                 if (platform == null) continue;
                 //call the platforms start transformation
@@ -40,7 +40,7 @@ public class SwitchScript : MonoBehaviour
 
     private void Update()
     {
-        foreach (platformScript platform in tiedPlatforms)
+        foreach (PlatformScript platform in tiedPlatforms)
         {
             if (platform == null) continue;
             //call the platform that don't currently match the state of the switch

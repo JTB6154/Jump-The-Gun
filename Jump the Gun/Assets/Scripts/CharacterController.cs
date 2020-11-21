@@ -371,12 +371,12 @@ public class CharacterController : MonoBehaviour
                 
                 GameObject tempRocket = Instantiate(rocketPrefab, firingPoint, Quaternion.identity); //set the rocket
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
-                tempRocket.GetComponent<rocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
-                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir2, dir2.magnitude, tempRocket.GetComponent<rocketScript>().notPlayer);
+                tempRocket.GetComponent<RocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
+                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir2, dir2.magnitude, tempRocket.GetComponent<RocketScript>().notPlayer);
                 if (hit)
                 {
                     tempRocket.transform.position = new Vector3(hit.point.x, hit.point.y);
-                    tempRocket.GetComponent<rocketScript>().Explode();
+                    tempRocket.GetComponent<RocketScript>().Explode();
                     //Startup the shooting animation
                     StartShootAnim(firingAngle, 1);
 
