@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7135729808385639175}
   - component: {fileID: 8967675180997167366}
   - component: {fileID: 2491184299533774725}
+  - component: {fileID: 3915968148511810272}
   m_Layer: 9
   m_Name: NewRocket
   m_TagString: Untagged
@@ -156,6 +157,21 @@ MonoBehaviour:
     m_Bits: 2048
   explosion_particles: {fileID: 5601958881685669251, guid: f8f159d0dc6160a469b97cc5ea66c127,
     type: 3}
+--- !u!114 &3915968148511810272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7119951904622624212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7f1f6db48b0304b98a7c30f1b65608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 0
+  IsDestroyedWhenInvisible: 1
+  timeToDestroyAfterInvisible: 0.5
 --- !u!1 &7268348989658923569
 GameObject:
   m_ObjectHideFlags: 0
