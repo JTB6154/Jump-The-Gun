@@ -69,6 +69,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Custom ignored files
 Jump the Gun/Packages/packages-lock.json
 Jump the Gun/fmod_editor.log
 Jump the Gun/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
