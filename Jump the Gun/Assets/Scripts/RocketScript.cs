@@ -24,6 +24,7 @@ public class RocketScript : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+        AudioManager.Instance.PlaySound("Rocket/RocketTraveling");
     }
 
     private void Update()
@@ -33,7 +34,7 @@ public class RocketScript : MonoBehaviour
         {
             Explode();
         }
-    } 
+    }
 
     public void Init(Vector2 direction, float initExplosionForce, float initExplosionRadius)
     {

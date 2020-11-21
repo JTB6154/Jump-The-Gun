@@ -58,17 +58,15 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayLoop(string key)
     {
-        if (!isLooping)
-        {
-            isLooping = true;
-            loopInstance = RuntimeManager.CreateInstance(eventPathsDict[key]);
+        
+        //isLooping = true;
+        loopInstance = RuntimeManager.CreateInstance(eventPathsDict[key]);
 
-            // Set volume level
-            loopInstance.setVolume(masterVolume);
+        // Set volume level
+        loopInstance.setVolume(masterVolume);
 
-            loopInstance.start();
-        }
-
+        loopInstance.start();
+        
     }
     private void GetOutOfLoopAndPlayRest()
     {
