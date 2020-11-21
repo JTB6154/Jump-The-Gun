@@ -33,7 +33,7 @@ Shader "Hidden/Custom/ContourEdgeOutline"
         {
             float3 sobelVec = abs(st - sc) + abs(sb - sc) + abs(sl - sc) + abs(sr - sc);
             float sobel = saturate(sobelVec.x + sobelVec.y + sobelVec.z);
-            return pow(sobel * _OutlineMultiplier, _OutlineBias);
+            return pow(abs(sobel * _OutlineMultiplier), _OutlineBias);
         }
 
         float SobelSampleColor(Texture2D t, SamplerState s, float2 uv, float3 offset)
