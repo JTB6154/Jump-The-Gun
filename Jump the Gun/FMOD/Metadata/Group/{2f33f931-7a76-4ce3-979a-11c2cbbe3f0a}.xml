@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{2f33f931-7a76-4ce3-979a-11c2cbbe3f0a}">
+		<property name="name">
+			<value>AirTravel</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{663c8efa-7e3e-41f7-8007-72aa938af548}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{a9e51346-ec13-414c-b3b6-5e93e87eaba3}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{ce52405a-0f1d-457e-bc91-72129832845f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{663c8efa-7e3e-41f7-8007-72aa938af548}">
+		<relationship name="effects">
+			<destination>{c0c6f3b8-cfe5-4ced-a287-39b9598f4461}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{a9e51346-ec13-414c-b3b6-5e93e87eaba3}" />
+	<object class="MixerBusFader" id="{c0c6f3b8-cfe5-4ced-a287-39b9598f4461}" />
+</objects>
