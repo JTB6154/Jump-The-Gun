@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
+    /*
     public GameObject continueButton;
 
     void Start()
@@ -16,10 +17,11 @@ public class ChangeScene : MonoBehaviour
         {
             continueButton.SetActive(true);
         }
-    }
+    }*/
 
     public void LoadContinueGameScene()
     {
+        GameStats.Instance.started = true;
         GameStats.Instance.isPaused = false;
         GameStats.Instance.newGame = false;
         GameStats.Instance.StartLoad();
@@ -30,6 +32,7 @@ public class ChangeScene : MonoBehaviour
     //Load main game
     public void LoadNewGameScene()
     {
+        GameStats.Instance.started = true;
         GameStats.Instance.isPaused = false;
         GameStats.Instance.newGame = true;
         GameStats.Instance.StartLoad();

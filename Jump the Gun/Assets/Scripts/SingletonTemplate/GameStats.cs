@@ -7,6 +7,7 @@ public class GameStats : Singleton<GameStats>
     //Check if it has been saved
     public bool newGame = true;
     public int hasSaveData = 0;
+    public bool started = false;
 
     //Check if paused
     public bool isPaused = false;
@@ -21,8 +22,8 @@ public class GameStats : Singleton<GameStats>
     public int bigRecoilAmmo = 2;
     public int rocketLauncherAmmo = 2;
 
-    public float playerPosX = -5f;
-    public float playerPosY = 77f;
+    public float playerPosX = -49.36f;
+    public float playerPosY = 74.77f;
     public float playerMomentumX = 0f;
     public float playerMomentumY = 0f;
 
@@ -58,8 +59,8 @@ public class GameStats : Singleton<GameStats>
             hasRocketLauncher = PlayerPrefs.HasKey("hasRocketLauncher") ? PlayerPrefs.GetInt("hasRocketLauncher") : 0;
             bigRecoilAmmo = PlayerPrefs.HasKey("bigRecoilAmmo") ? PlayerPrefs.GetInt("bigRecoilAmmo") : 2;
             rocketLauncherAmmo = PlayerPrefs.HasKey("rocketLauncherAmmo") ? PlayerPrefs.GetInt("rocketLauncherAmmo") : 2;
-            playerPosX = PlayerPrefs.HasKey("playerPosX") ? PlayerPrefs.GetFloat("playerPosX") : -5f;
-            playerPosY = PlayerPrefs.HasKey("playerPosY") ? PlayerPrefs.GetFloat("playerPosY") : 77f;
+            playerPosX = PlayerPrefs.HasKey("playerPosX") ? PlayerPrefs.GetFloat("playerPosX") : -49.36f;
+            playerPosY = PlayerPrefs.HasKey("playerPosY") ? PlayerPrefs.GetFloat("playerPosY") : 74.77f;
             playerMomentumX = PlayerPrefs.HasKey("playerMomentumX") ? PlayerPrefs.GetFloat("playerMomentumX") : 0f;
             playerMomentumY = PlayerPrefs.HasKey("playerMomentumY") ? PlayerPrefs.GetFloat("playerMomentumY") : 0f;
         }
@@ -67,7 +68,10 @@ public class GameStats : Singleton<GameStats>
 
     void OnDestroy()
     {
-        SaveData();
+        if (started)
+        {
+            SaveData();
+        }
     } 
 
     public void SaveData()
@@ -96,8 +100,8 @@ public class GameStats : Singleton<GameStats>
         previousTime = 0f;
         hasBigRecoil = 0;
         hasRocketLauncher = 0;
-        playerPosX = -5f;
-        playerPosY = 77f;
+        playerPosX = -49.36f;
+        playerPosY = 74.77f;
         playerMomentumX = 0f;
         playerMomentumY = 0f;
 
@@ -108,8 +112,8 @@ public class GameStats : Singleton<GameStats>
         PlayerPrefs.SetInt("hasBigRecoil", 0);
         PlayerPrefs.SetInt("hasRocketLauncher", 0);
         PlayerPrefs.SetInt("rocketLauncherAmmo", 0);
-        PlayerPrefs.SetFloat("playerPosX", -5f);
-        PlayerPrefs.SetFloat("playerPosY", 77f);
+        PlayerPrefs.SetFloat("playerPosX", -49.36f);
+        PlayerPrefs.SetFloat("playerPosY", 74.77f);
         PlayerPrefs.SetFloat("playerMomentumX", 0f);
         PlayerPrefs.SetFloat("playerMomentumY", 0f);
     }
