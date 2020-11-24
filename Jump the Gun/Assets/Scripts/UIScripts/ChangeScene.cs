@@ -43,8 +43,17 @@ public class ChangeScene : MonoBehaviour
         if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
         Cursor.visible = true;
-        SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
         GameStats.Instance.SaveData();
+        SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
+    }
+
+    public void LoadMenuSceneFromWin()
+    {
+        if (Options.Instance.UpdatingKeyCode) return;
+        GameStats.Instance.isPaused = false;
+        Cursor.visible = true;
+        GameStats.Instance.ResetData();
+        SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 
     //Load Options
