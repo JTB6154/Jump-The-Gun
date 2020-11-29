@@ -126,12 +126,17 @@ public class CharacterController : MonoBehaviour
             {
                 //Debug.Log("walk left");
                 moveControls.x += -walkSpeed;
+                AudioManager.Instance.PlayLoop("Movement/Walking");
             }
-
-            if (Input.GetKey(Options.Instance.Right))
+            else if (Input.GetKey(Options.Instance.Right))
             {
                 //Debug.Log("walk Right");
                 moveControls.x += walkSpeed;
+                AudioManager.Instance.PlayLoop("Movement/Walking");
+            }
+            else if (Input.GetKeyUp(Options.Instance.Left) || Input.GetKeyUp(Options.Instance.Right))
+            {
+                AudioManager.Instance.StopLoop();
             }
         }
 
@@ -373,10 +378,7 @@ public class CharacterController : MonoBehaviour
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
                 tempRocket.GetComponent<RocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
                 RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir2, dir2.magnitude, tempRocket.GetComponent<RocketScript>().notPlayer);
-
-                // Audio code
-                AudioManager.Instance.PlaySound("Rocket/RocketShooting");
-                
+          
                 if (hit)
                 {
                     tempRocket.transform.position = new Vector3(hit.point.x, hit.point.y);
@@ -387,9 +389,11 @@ public class CharacterController : MonoBehaviour
                     return;
                 }
 
-
                 //Startup the shooting animation
                 StartShootAnim(firingAngle, 1);
+
+                // Audio code
+                AudioManager.Instance.PlaySound("Rocket/RocketShooting");
             }
         }
     }
@@ -443,6 +447,9 @@ public class CharacterController : MonoBehaviour
 
             //Startup the shooting animation
             StartShootAnim(firingAngle, 0);
+
+            // Audio code
+            AudioManager.Instance.PlaySound("Shotgun/ShotgunShooting");
         }
     }
 

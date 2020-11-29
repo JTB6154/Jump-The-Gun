@@ -13,6 +13,14 @@ public class AudioManager : Singleton<AudioManager>
         {"Rocket/RocketExploding",                   "event:/Rocket/RocketExploding" },
         {"Rocket/RocketShooting",                    "event:/Rocket/RocketShooting" },
         {"Rocket/RocketTraveling",                   "event:/Rocket/RocketTraveling" },
+
+        {"Shotgun/ShotgunShooting",                  "event:/ShotgunShooting" },
+
+        {"Movement/Walking",                         "event:/Walking" },
+        {"Movement/Landing",                         "event:/Landing" },
+        {"Movement/MovingThroughAir",                "event:/Landing" },
+
+        {"Ambience/Ambient1",                        "event:/Ambience/Ambient1" },
     };
 
     // Handle looping
@@ -46,7 +54,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySound(string key)
     {
-        //instance.release();
+        instance.release();
         instance = RuntimeManager.CreateInstance(eventPathsDict[key]);
 
         // Set volume level
@@ -58,15 +66,16 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayLoop(string key)
     {
-        
-        //isLooping = true;
-        loopInstance = RuntimeManager.CreateInstance(eventPathsDict[key]);
+        if (!isLooping)
+        {
+            isLooping = true;
+            loopInstance = RuntimeManager.CreateInstance(eventPathsDict[key]);
 
-        // Set volume level
-        loopInstance.setVolume(masterVolume);
+            // Set volume level
+            loopInstance.setVolume(masterVolume);
 
-        loopInstance.start();
-        
+            loopInstance.start();
+        }
     }
     private void GetOutOfLoopAndPlayRest()
     {
@@ -78,7 +87,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (isLooping)
         {
-            GetOutOfLoopAndPlayRest();
+            //GetOutOfLoopAndPlayRest();
 
             loopInstance.release();
             isLooping = false;
