@@ -258,9 +258,6 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{42871e11-3ee0-4973-a062-d9cff7fc40da}">
-		<property name="length">
-			<value>0.98999999999999999</value>
-		</property>
 		<property name="looping">
 			<value>true</value>
 		</property>
