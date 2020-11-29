@@ -77,17 +77,17 @@ public class AudioManager : Singleton<AudioManager>
             loopInstance.start();
         }
     }
-    private void GetOutOfLoopAndPlayRest()
+    private void EndLoopBySettingParameter(string parameterName, float value)
     {
         // Play the end track
-        loopInstance.setParameterByName("End", 0.5f);
+        loopInstance.setParameterByName(parameterName, value);
     }
 
     public void StopLoop()
     {
         if (isLooping)
         {
-            //GetOutOfLoopAndPlayRest();
+            EndLoopBySettingParameter("End", 0.5f);
 
             loopInstance.release();
             isLooping = false;
