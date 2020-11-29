@@ -75,7 +75,6 @@ public class CharacterController : MonoBehaviour
     #region UnityFunctions
     void Start()
     {
-
         if (shotgunShot == null)
         {
             Debug.LogError("shotgun does not have proper shot");
@@ -136,15 +135,18 @@ public class CharacterController : MonoBehaviour
             }
             else if (Input.GetKeyUp(Options.Instance.Left) || Input.GetKeyUp(Options.Instance.Right))
             {
-                AudioManager.Instance.StopLoop();
+                AudioManager.Instance.StopPlayerSoundLoop();
             }
+        }
+        else
+        {
+            AudioManager.Instance.StopPlayerSoundLoop();
         }
 
         if (Input.GetKeyDown(Options.Instance.Fire1))
         {
             //if the big recoil has been fired apply big recoil
             ShootBigRecoil();
-
         }
 
         if (Input.GetKeyDown(Options.Instance.Fire2))
@@ -210,8 +212,11 @@ public class CharacterController : MonoBehaviour
                 subtractBigRecoil = false;
             }
         }
-
         
+        if (!lastGrounded && grounded) // landed
+        {
+            AudioManager.Instance.PlaySound("Movement/Landing");
+        }
 
         //cap the speed of the player in the x and y directions
         if (rb.velocity.x > maxXSpeed)
@@ -404,7 +409,6 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     void ShootBigRecoil()
     {
-
         if (hasBigRecoil && GameStats.Instance.isPaused == false)
         {
             if (numBigRecoilShots < 1)// no big recoil shots if there are no bullets left

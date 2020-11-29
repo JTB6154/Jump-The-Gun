@@ -30,11 +30,18 @@ public class AudioManager : Singleton<AudioManager>
     private EventInstance manyMusic;
 
     private Bus bus;
+    private Bus playerSoundsBus;
+    private Bus airTravelBus;
 
     [SerializeField] private float masterVolume = 3f;
 
     #endregion
 
+    private void Start()
+    {
+        playerSoundsBus = RuntimeManager.GetBus("bus:/PlayerSounds");
+        airTravelBus = RuntimeManager.GetBus("bus:/AirTravel");
+    }
 
     public void PlayMusicLoop(string key)
     {
@@ -83,20 +90,20 @@ public class AudioManager : Singleton<AudioManager>
         loopInstance.setParameterByName(parameterName, value);
     }
 
-    public void StopLoop()
+    public void StopPlayerSoundLoop()
     {
         if (isLooping)
         {
-            EndLoopBySettingParameter("End", 0.5f);
+            //EndLoopBySettingParameter("End", 0.5f);
+            StopAllPlayerSounds();
 
             loopInstance.release();
             isLooping = false;
         }
     }
 
-    public void StopAllSounds()
+    private void StopAllPlayerSounds()
     {
-        bus = RuntimeManager.GetBus("event:/GunSounds");
-        bus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        playerSoundsBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 }
