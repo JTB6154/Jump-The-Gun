@@ -10,6 +10,8 @@ public class DialogueScript : MonoBehaviour
     public GameObject player;
     public GameObject dialogueTextBox;
 
+    public int dialogueBoxIndex;
+
     public List<string> dialogueOptions;
 
     [Range(0, 20)] [SerializeField] int textVisibleTime = 1;

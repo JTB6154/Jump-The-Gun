@@ -4,6 +4,14 @@ using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
 
+public enum SoundBus
+{
+    AirTravel,
+    BackgroundMusic,
+    GunSounds,
+    PlayerSounds
+}
+
 public class AudioManager : Singleton<AudioManager>
 {
     #region Fields
@@ -18,22 +26,34 @@ public class AudioManager : Singleton<AudioManager>
 
         {"Movement/Walking",                         "event:/Walking" },
         {"Movement/Landing",                         "event:/Landing" },
-        {"Movement/MovingThroughAir",                "event:/Landing" },
+        {"Movement/MovingThroughAir",                "event:/MovingThroughAir" },
 
         {"Ambience/Ambient1",                        "event:/Ambience/Ambient1" },
     };
 
+    private Dictionary<string, bool> loopingDict = new Dictionary<string, bool>();
+
     // Handle looping
-    private bool isLooping = false;
+    [SerializeField] private bool isLooping = false;
     private EventInstance loopInstance;
-    private EventInstance instance;
-    private EventInstance manyMusic;
+    private EventInstance oneShotInstance;
+    private EventInstance musicInstance;
 
-    private Bus bus;
-    private Bus playerSoundsBus;
     private Bus airTravelBus;
+    private Bus backgroundMusicBus;
+    private Bus gunSoundsBus;
+    private Bus playerSoundsBus;
 
-    [SerializeField] private float masterVolume = 3f;
+    private bool isPlayerSoundsBusMuted;
+
+    private float masterVolume = 1f;
+    private float soundEffectsVolume = 3f;
+    private float musicVolume = 3f;
+
+    public float MasterVolume { get => masterVolume; set => masterVolume = value; }
+    public float SoundEffectsVolume { get => soundEffectsVolume; set => soundEffectsVolume = value; }
+    public float MusicVolume { get => musicVolume; set => musicVolume = value; }
+
 
     #endregion
 
@@ -41,69 +61,146 @@ public class AudioManager : Singleton<AudioManager>
     {
         playerSoundsBus = RuntimeManager.GetBus("bus:/PlayerSounds");
         airTravelBus = RuntimeManager.GetBus("bus:/AirTravel");
+        backgroundMusicBus = RuntimeManager.GetBus("bus:/BackgroundMusic");
+        gunSoundsBus = RuntimeManager.GetBus("bus:/GunSounds");
+
+        MasterVolume = 1f;
+
+        // Start off with playerSounds Bus muted
+        SetPlayerSoundsBusMute(true);
     }
 
-    public void PlayMusicLoop(string key)
+    // Play one-time sound
+    public void PlaySound(string path)
     {
-        manyMusic = RuntimeManager.CreateInstance(eventPathsDict[key]);
+        oneShotInstance.release();
+        oneShotInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
 
         // Set volume level
-        manyMusic.setVolume(masterVolume);
+        oneShotInstance.setVolume(GetVolumeLevel(soundEffectsVolume));
 
-        manyMusic.start();
+        oneShotInstance.start();
+        oneShotInstance.release();
     }
 
-    public void StopMusicLoop()
+    // Play looping sound
+    public void PlayLoop(string path)
     {
-        manyMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        manyMusic.release();
-    }
-
-    public void PlaySound(string key)
-    {
-        instance.release();
-        instance = RuntimeManager.CreateInstance(eventPathsDict[key]);
-
-        // Set volume level
-        instance.setVolume(masterVolume);
-
-        instance.start();
-        instance.release();
-    }
-
-    public void PlayLoop(string key)
-    {
-        if (!isLooping)
+        if (!loopingDict.ContainsKey(path))
         {
-            isLooping = true;
-            loopInstance = RuntimeManager.CreateInstance(eventPathsDict[key]);
+            loopingDict.Add(path, false);
+        }
+
+        if (!loopingDict[path])
+        {
+            loopingDict[path] = true;
+
+            loopInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
 
             // Set volume level
-            loopInstance.setVolume(masterVolume);
+            loopInstance.setVolume(GetVolumeLevel(soundEffectsVolume));
 
             loopInstance.start();
         }
     }
-    private void EndLoopBySettingParameter(string parameterName, float value)
+
+    public void StopLoop(string path, SoundBus busIndex)
     {
-        // Play the end track
-        loopInstance.setParameterByName(parameterName, value);
+        if (!loopingDict.ContainsKey(path))
+            return;
+
+        loopingDict[path] = false;
+
+        StopBusSounds(ConvertToFMODBus(busIndex));
+        
+        loopInstance.release();
     }
 
-    public void StopPlayerSoundLoop()
+    public void PauseLoop(SoundBus busIndex)
     {
-        if (isLooping)
-        {
-            //EndLoopBySettingParameter("End", 0.5f);
-            StopAllPlayerSounds();
+        ConvertToFMODBus(busIndex).setPaused(true);
+    }
 
-            loopInstance.release();
-            isLooping = false;
+    public void UnpauseLoop(SoundBus busIndex)
+    {
+        ConvertToFMODBus(busIndex).setPaused(false);
+    }
+
+    // Play looping ambient music
+    public void PlayMusic(string path)
+    {
+        if (!loopingDict.ContainsKey(path))
+        {
+            loopingDict.Add(path, false);
+        }
+
+        if (!loopingDict[path])
+        {
+            loopingDict[path] = true;
+
+            musicInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
+
+            // Set volume level
+            musicInstance.setVolume(GetVolumeLevel(musicVolume));
+
+            musicInstance.start();
         }
     }
 
-    private void StopAllPlayerSounds()
+    public void StopMusic(SoundBus bus)
     {
-        playerSoundsBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        StopBusSounds(ConvertToFMODBus(bus));
+        musicInstance.release();
     }
+
+    public void SetPlayerSoundsBusMute(bool mute)
+    {
+        if (isPlayerSoundsBusMuted ^ mute)
+        {
+            //Debug.Log((mute ? "Mute " : "Unmute ") + "Player Sounds Bus.");
+            playerSoundsBus.setMute(mute);
+            isPlayerSoundsBusMuted = mute;
+        }
+    }
+
+    public void SetDynamicBusVolume(DynamicBusVolumeController controller, float inputValue)
+    {
+        ConvertToFMODBus(controller.SoundBusType).setVolume(controller.GetOutputVolume(inputValue));
+    }
+
+    #region Private Methods
+
+    private void StopBusSounds(Bus bus)
+    {
+        bus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    private Bus ConvertToFMODBus(SoundBus busIndex)
+    {
+        switch (busIndex)
+        {
+            case SoundBus.AirTravel:
+                return airTravelBus;
+            case SoundBus.BackgroundMusic:
+                return backgroundMusicBus;
+            case SoundBus.GunSounds:
+                return gunSoundsBus;
+            case SoundBus.PlayerSounds:
+                return playerSoundsBus;
+            default:
+                return airTravelBus;
+        }
+    }
+
+    private bool IsEventInstanceNull(EventInstance instance)
+    {
+        return instance.Equals(default(EventInstance));
+    }
+
+    private float GetVolumeLevel(float typeVolume)
+    {
+        return masterVolume * typeVolume;
+    }
+
+    #endregion
 }

@@ -43,6 +43,9 @@ public class ChangeScene : MonoBehaviour
     //Load title screen
     public void LoadMenuScene()
     {
+        // Stop ambient music
+        AudioManager.Instance.StopMusic(SoundBus.BackgroundMusic);
+
         if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
         Cursor.visible = true;
@@ -52,6 +55,9 @@ public class ChangeScene : MonoBehaviour
 
     public void LoadMenuSceneFromWin()
     {
+        // Stop ambient music
+        AudioManager.Instance.StopMusic(SoundBus.BackgroundMusic);
+
         if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
         Cursor.visible = true;

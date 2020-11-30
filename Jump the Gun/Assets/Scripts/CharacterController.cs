@@ -5,7 +5,8 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     #region Variables
-    [Header("Character Objects")]
+    [Space]
+    [Header("1 - CHARACTER OBJECTS")]
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject character;
     [SerializeField] Camera cam;
@@ -14,10 +15,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask reloadLayer;
     [SerializeField] private List<FiringPoint> firingPoints;
+    
     [Space]
-
-    [Header("Physics settings")]
-
+    [Header("2 - PHYSICS SETTINGS")]
     [SerializeField] float gravityScale = 1f;
     [SerializeField] float walkSpeed = 5f;
     //[SerializeField] float mass = 2.5f;
@@ -33,15 +33,16 @@ public class CharacterController : MonoBehaviour
     [SerializeField] public bool velocityZeroing = true;
     [SerializeField] float maxWalkableAngle = 1f;
 
-
     public bool grounded;
     public bool lastGrounded;
     [SerializeField] float groundCheckRadius = .15f;
     [Range(0.001f, .3f)] [SerializeField] float groundCheckDepth = .01f;
     [Range(0.001f, 1f)] [SerializeField] float groundTimer = .01f;
+    [SerializeField] float speedInAir;
+    [SerializeField] DynamicBusVolumeController airTravelBusVolumeController;
 
     [Space]
-    [Header("Big recoil")]
+    [Header("3.1 - BIG RECOIL")]
     public bool hasBigRecoil = false;
     [Range(5f, 1500f)] [SerializeField] float recoilForce = 300f;
     [Range(1, 5)] [SerializeField] int maxBigRecoilShots = 2;
@@ -50,7 +51,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] int numShot = 3;
     int numBigRecoilShots = 0;
 
-    [Header("Rocket Jump")]
+    [Space]
+    [Header("3.2 - ROCKET JUMP")]
     public bool hasRocketJump = false;
     [Range(5f, 2000f)] [SerializeField] float rocketForce = 300f;
     [Range(.1f, 10f)] [SerializeField] float rocketRadius = 2f;
@@ -61,6 +63,8 @@ public class CharacterController : MonoBehaviour
     bool subtractRockets = false;
     bool subtractBigRecoil = false;
 
+    [Space]
+    [Header("4 - MISC SETTINGS")]
     public Animator animator;
     private SpriteRenderer sprite;
     private bool shooting;
@@ -110,6 +114,9 @@ public class CharacterController : MonoBehaviour
         }
 
         StartCutscene();
+
+        // Play ambient music
+        AudioManager.Instance.PlayMusic("Ambience/Ambient1");
     }
 
     void Update()
@@ -120,6 +127,8 @@ public class CharacterController : MonoBehaviour
 
         if (grounded && !standStill)
         {
+            AudioManager.Instance.SetPlayerSoundsBusMute(false);
+
             //currently no smoothing between starting to walk and being walking.
             if (Input.GetKey(Options.Instance.Left))
             {
@@ -135,12 +144,12 @@ public class CharacterController : MonoBehaviour
             }
             else if (Input.GetKeyUp(Options.Instance.Left) || Input.GetKeyUp(Options.Instance.Right))
             {
-                AudioManager.Instance.StopPlayerSoundLoop();
+                AudioManager.Instance.StopLoop("Movement/Walking", SoundBus.PlayerSounds);
             }
         }
         else
         {
-            AudioManager.Instance.StopPlayerSoundLoop();
+            AudioManager.Instance.StopLoop("Movement/Walking", SoundBus.PlayerSounds);
         }
 
         if (Input.GetKeyDown(Options.Instance.Fire1))
@@ -192,10 +201,13 @@ public class CharacterController : MonoBehaviour
             //Debug.Log(targetVelocity);
             rb.velocity = targetVelocity;
 
-            //if (!lastGrounded)//if last frame you were not grounded this frame you have landed
-            //{
-            //    //Landed(); //currently has no functionality
-            //}
+            if (!lastGrounded)//if last frame you were not grounded this frame you have landed
+            {
+                //Landed(); //currently has no functionality
+                speedInAir = 0f;
+                AudioManager.Instance.PlaySound("Movement/Landing");
+                AudioManager.Instance.StopLoop("Movement/MovingThroughAir", SoundBus.AirTravel);
+            }
         }
         else if (lastGrounded) //if you are not currently grounded but last frame you were you just took off
         {
@@ -212,10 +224,13 @@ public class CharacterController : MonoBehaviour
                 subtractBigRecoil = false;
             }
         }
-        
-        if (!lastGrounded && grounded) // landed
+
+        if (!grounded) // In air
         {
-            AudioManager.Instance.PlaySound("Movement/Landing");
+            // Update speed in air
+            speedInAir = Mathf.Sqrt(Vector2.SqrMagnitude(rb.velocity));
+            AudioManager.Instance.PlayLoop("Movement/MovingThroughAir");
+            AudioManager.Instance.SetDynamicBusVolume(airTravelBusVolumeController, speedInAir);
         }
 
         //cap the speed of the player in the x and y directions
@@ -341,8 +356,8 @@ public class CharacterController : MonoBehaviour
                 output = isFlipped ?
                     firingPoints[i].GetFlippedFiringPosition() : firingPoints[i].GetFiringPosition();
 
-                string flip = isFlipped ? "flipped" : "";
-                Debug.Log("Firing from " + firingPoints[i].firingPointTransform.gameObject.name + " " + flip);
+                //string flip = isFlipped ? "flipped" : "";
+                //Debug.Log("Firing from " + firingPoints[i].firingPointTransform.gameObject.name + " " + flip);
                 break;
             }
         }
