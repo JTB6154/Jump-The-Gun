@@ -234,7 +234,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{ec7b16e9-ce75-4089-a870-ce994128336f}">
 		<property name="volume">
-			<value>1.5</value>
+			<value>-26</value>
 		</property>
 		<property name="overridingInputFormat">
 			<value>0</value>
@@ -562,7 +562,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-13.0030022</value>
+			<value>-20</value>
 		</property>
 		<property name="curveShape">
 			<value>0.181582779</value>
@@ -573,7 +573,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-0.00300216675</value>
+			<value>-7</value>
 		</property>
 	</object>
 </objects>
