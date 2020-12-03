@@ -107,11 +107,17 @@
 		<property name="length">
 			<value>6.7000000000000011</value>
 		</property>
+		<relationship name="fadeInCurve">
+			<destination>{6ee15e99-9525-4c9c-9155-339286c850db}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{6ec82270-3f20-42b3-9308-37ebceea9096}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{5d337de5-cd28-4765-a687-1bf727edcd61}">
+		<property name="volume">
+			<value>-1.5</value>
+		</property>
 		<property name="name">
 			<value>Start</value>
 		</property>
@@ -194,6 +200,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{ed98db3d-e025-4fef-8b9f-0cca70272c66}" />
 	<object class="MixerBusFader" id="{82047863-74d3-4e1a-97c5-20072c661bc9}" />
+	<object class="FadeCurve" id="{6ee15e99-9525-4c9c-9155-339286c850db}">
+		<relationship name="startPoint">
+			<destination>{cc53876f-063e-4976-ab9f-b49624603bc1}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{5acbec83-3795-49b4-82f2-c3b8cb47d571}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{0e6af7d2-2587-4c3d-bd0d-21000f0e71f6}">
 		<relationship name="effects">
 			<destination>{d1625520-ef09-4f6a-8475-c6b0bcacfdaa}</destination>
@@ -219,6 +233,25 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{203a65d8-9222-4eef-8bb1-b424d08021b9}" />
+	<object class="AutomationPoint" id="{cc53876f-063e-4976-ab9f-b49624603bc1}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.2547189</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{5acbec83-3795-49b4-82f2-c3b8cb47d571}">
+		<property name="position">
+			<value>4.2999999999999998</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{d1625520-ef09-4f6a-8475-c6b0bcacfdaa}" />
 	<object class="LoudnessMeter" id="{b3b3a9ef-c4cd-4f24-9117-d5e9f017c56c}" />
 	<object class="MixerBusFader" id="{54bcd6d1-6d30-4cf5-ba3c-d51b7a0b3154}" />
