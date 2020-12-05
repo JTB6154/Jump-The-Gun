@@ -57,8 +57,10 @@ public class AudioManager : Singleton<AudioManager>
 
     #endregion
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         playerSoundsBus = RuntimeManager.GetBus("bus:/PlayerSounds");
         airTravelBus = RuntimeManager.GetBus("bus:/AirTravel");
         backgroundMusicBus = RuntimeManager.GetBus("bus:/BackgroundMusic");
@@ -101,6 +103,7 @@ public class AudioManager : Singleton<AudioManager>
             loopInstance.setVolume(GetVolumeLevel(soundEffectsVolume));
 
             loopInstance.start();
+            loopInstance.release();
         }
     }
 
@@ -136,6 +139,7 @@ public class AudioManager : Singleton<AudioManager>
 
         if (!loopingDict[path])
         {
+            Debug.Log("Start playing " + path);
             loopingDict[path] = true;
 
             musicInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
@@ -144,12 +148,21 @@ public class AudioManager : Singleton<AudioManager>
             musicInstance.setVolume(GetVolumeLevel(musicVolume));
 
             musicInstance.start();
+            musicInstance.release();
         }
     }
 
-    public void StopMusic(SoundBus bus)
+    public void StopMusic(string path, SoundBus bus)
     {
-        StopBusSounds(ConvertToFMODBus(bus));
+        Debug.Log("Music stops");
+
+        if (!loopingDict.ContainsKey(path))
+            return;
+
+        loopingDict[path] = false;
+
+        //StopBusSounds(ConvertToFMODBus(bus));
+
         musicInstance.release();
     }
 

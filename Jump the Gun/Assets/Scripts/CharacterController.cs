@@ -114,13 +114,13 @@ public class CharacterController : MonoBehaviour
         }
 
         StartCutscene();
-
-        // Play ambient music
-        AudioManager.Instance.PlayMusic("Ambience/Ambient1");
     }
 
     void Update()
     {
+        // Play ambient music
+        AudioManager.Instance.PlayMusic("Ambience/Ambient1");
+
         moveControls = Vector3.zero;
 
         //update controls here

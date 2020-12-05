@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ParallaxScroll : MonoBehaviour
 {
-    public GameObject[] levels;
+    public GameObject[] layers;
+
     private Camera mainCamera;
     private Vector2 screenBounds;
     public float choke;
@@ -18,40 +19,61 @@ public class ParallaxScroll : MonoBehaviour
 
     void Start()
     {
+        //layersParent.transform.position = transform.parent.position;
+
         mainCamera = gameObject.GetComponent<Camera>();
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-        foreach (GameObject obj in levels)
+        foreach (GameObject layer in layers)
         {
-            LoadChildObjects(obj);
+            LoadChildObjects(layer);
         }
         lastScreenPosition = transform.position;
 
-        foreach (GameObject obj in levels)
-            avgObjectPosZ += obj.transform.position.z;
-        avgObjectPosZ /= levels.Length;
+        foreach (GameObject layer in layers)
+            avgObjectPosZ += layer.transform.position.z;
+        avgObjectPosZ /= layers.Length;
     }
 
-    void LoadChildObjects(GameObject obj)
+    void LateUpdate()
+    {
+        for (int i = 0; i < layers.Length; i++)
+        {
+            if (layers[i] == null) continue;
+            GameObject layer = layers[i];
+            RepositionChildObjects(layer);
+            float tempObjectPosZ = layer.transform.position.z + (layer.transform.position.z - avgObjectPosZ) * (1.0f + parallaxXMultiplier);
+            float parallaxSpeedX = 1 - Mathf.Clamp01(Mathf.Abs(transform.position.z / tempObjectPosZ));
+            float parallaxSpeedY = 0.5f - Mathf.Clamp01(Mathf.Abs(transform.position.z / layer.transform.position.z));
+            float diffX = transform.position.x - lastScreenPosition.x;
+            float diffY = transform.position.y - lastScreenPosition.y;
+            layer.transform.Translate(Vector3.right * diffX * parallaxSpeedX + Vector3.up * diffY);
+        }
+
+        lastScreenPosition = transform.position;
+    }
+
+    void LoadChildObjects(GameObject layer)
     {
         // Create left, mid, right children
-        float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
+        float objectWidth = layer.GetComponent<SpriteRenderer>().bounds.size.x - choke;
         int childrenNeeded = 2;
-        GameObject clone = Instantiate(obj);
+        GameObject clone = Instantiate(layer);
         for (int i = -1; i <= -1 + childrenNeeded; i++)
         {
             GameObject c = Instantiate(clone);
-            c.transform.SetParent(obj.transform);
-            c.transform.position = new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z);
-            c.name = obj.name + i;
+            c.transform.SetParent(layer.transform);
+            c.transform.position = new Vector3(objectWidth * i, layer.transform.position.y, layer.transform.position.z);
+            c.name = layer.name + i;
         }
+
         Destroy(clone);
-        Destroy(obj.GetComponent<SpriteRenderer>());
+        Destroy(layer.GetComponent<SpriteRenderer>());
     }
 
-    void RepositionChildObjects(GameObject obj)
+    void RepositionChildObjects(GameObject layer)
     {
         // Get left, mid, right children
-        Transform[] children = obj.GetComponentsInChildren<Transform>();
+        Transform[] children = layer.GetComponentsInChildren<Transform>();
         if (children.Length > 1)
         {
             GameObject leftChild = children[1].gameObject;
@@ -68,24 +90,6 @@ public class ParallaxScroll : MonoBehaviour
                 rightChild.transform.position = new Vector3(leftChild.transform.position.x - halfObjectWidth * 2, leftChild.transform.position.y, leftChild.transform.position.z);
             }
         }
-    }
-
-    void LateUpdate()
-    {
-        for (int i = 0; i < levels.Length; i++)
-        {
-            if (levels[i] == null) continue;
-            GameObject obj = levels[i];
-            RepositionChildObjects(obj);
-            float tempObjectPosZ = obj.transform.position.z + (obj.transform.position.z - avgObjectPosZ) * (1.0f + parallaxXMultiplier);
-            float parallaxSpeedX = 1 - Mathf.Clamp01(Mathf.Abs(transform.position.z / tempObjectPosZ));
-            float parallaxSpeedY = 0.5f - Mathf.Clamp01(Mathf.Abs(transform.position.z / obj.transform.position.z));
-            float diffX = transform.position.x - lastScreenPosition.x;
-            float diffY = transform.position.y - lastScreenPosition.y;
-            obj.transform.Translate(Vector3.right * diffX * parallaxSpeedX + Vector3.up * diffY);
-        }
-
-        lastScreenPosition = transform.position;
     }
 
 }

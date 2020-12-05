@@ -44,7 +44,7 @@ public class ChangeScene : MonoBehaviour
     public void LoadMenuScene()
     {
         // Stop ambient music
-        AudioManager.Instance.StopMusic(SoundBus.BackgroundMusic);
+        AudioManager.Instance.StopMusic("Ambience/Ambient1", SoundBus.BackgroundMusic);
 
         if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
@@ -56,7 +56,7 @@ public class ChangeScene : MonoBehaviour
     public void LoadMenuSceneFromWin()
     {
         // Stop ambient music
-        AudioManager.Instance.StopMusic(SoundBus.BackgroundMusic);
+        AudioManager.Instance.StopMusic("Ambience/Ambient1", SoundBus.BackgroundMusic);
 
         if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
