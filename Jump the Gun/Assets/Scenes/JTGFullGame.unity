@@ -7988,6 +7988,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74975495, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 906863251, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
       propertyPath: antialiasingMode
       value: 1
@@ -8089,6 +8093,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247533030566656561, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 644129dc595a60649ac37290e57ca796, type: 2}
+    - target: {fileID: 6247533030566656561, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -559980487528098791, guid: 6909155dae3172b469d56f931e8dc872,
+        type: 3}
     - target: {fileID: 6412269831089179003, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
       propertyPath: numShot

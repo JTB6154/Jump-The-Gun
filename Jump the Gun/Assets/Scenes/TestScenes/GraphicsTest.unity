@@ -240,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 832867562}
   dialogueTextBox: {fileID: 2131262591}
+  dialogueBoxIndex: 0
   dialogueOptions:
   - Ouch
   textVisibleTime: 0
@@ -3373,7 +3374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09abf96ce14b7a142b01df643604d6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continueButton: {fileID: 0}
 --- !u!114 &441667894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3400,6 +3400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1172489422}
+  ammoUI: {fileID: 0}
 --- !u!114 &441667896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,7 +3627,7 @@ SpriteRenderer:
   m_Size: {x: 2.76, y: 0.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &476757189
@@ -3969,6 +3970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 832867562}
   dialogueTextBox: {fileID: 761032714}
+  dialogueBoxIndex: 0
   dialogueOptions:
   - Grab the gun to Start your climb
   - Wrong Way
@@ -4147,7 +4149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &515354998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7754,6 +7756,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74975495, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956488720, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2310099311087709989, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
       propertyPath: levels.Array.data[0]
@@ -7834,6 +7844,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247533030566656561, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 644129dc595a60649ac37290e57ca796, type: 2}
+    - target: {fileID: 6247533030566656561, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -566150083252180700, guid: 6909155dae3172b469d56f931e8dc872,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
 --- !u!20 &832867561 stripped
@@ -11225,6 +11246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1432054905}
+  ammoUI: {fileID: 0}
 --- !u!114 &1355818581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11254,7 +11276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09abf96ce14b7a142b01df643604d6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continueButton: {fileID: 0}
 --- !u!114 &1355818583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16010,6 +16031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 832867562}
   dialogueTextBox: {fileID: 1807192483}
+  dialogueBoxIndex: 0
   dialogueOptions:
   - Aim at the ground and left click to fire a shotgun to jump
   - Ooof
@@ -16920,6 +16942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 832867562}
   dialogueTextBox: {fileID: 910190133}
+  dialogueBoxIndex: 0
   dialogueOptions:
   - Use The A and D keys to move left and right
   textVisibleTime: 1
