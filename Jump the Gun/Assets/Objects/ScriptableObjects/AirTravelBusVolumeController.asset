@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AirTravelBusVolumeController
   m_EditorClassIdentifier: 
   soundBusType: 0
-  minInputValue: 100
+  minInputValue: 20
   maxInputValue: 1000
   volumeCurve:
     serializedVersion: 2
