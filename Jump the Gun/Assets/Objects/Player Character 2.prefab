@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &74975496
 Transform:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6f1c1e25574e2942a060c3eff8cbcce, type: 2}
+  - {fileID: 2100000, guid: 644129dc595a60649ac37290e57ca796, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -704,7 +704,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 59964bd33326e404583bf579e15c54d9, type: 3}
+  m_Sprite: {fileID: -559980487528098791, guid: 6909155dae3172b469d56f931e8dc872,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -732,7 +733,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.29, y: 2.43}
+    oldSize: {x: 3.09, y: 2.58}
     newSize: {x: 1.29, y: 2.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -849,13 +850,16 @@ MonoBehaviour:
   groundCheckRadius: 0.5472
   groundCheckDepth: 0.228
   groundTimer: 0.01
+  speedInAir: 0
+  airTravelBusVolumeController: {fileID: 11400000, guid: 4ebc7c318002c68478bbb0938a8f7109,
+    type: 2}
   hasBigRecoil: 0
   recoilForce: 927
   maxBigRecoilShots: 2
-  shotgunShot: {fileID: 4954155497841062491, guid: 92c493c8872137f4fb73422375f0b035,
+  shotgunShot: {fileID: 1507916033632810510, guid: fb4ccee31abba9943b989cc05043d7ae,
     type: 3}
   maxVariation: 10
-  numShot: 3
+  numShot: 1
   hasRocketJump: 0
   rocketForce: 1368
   rocketRadius: 9.12
@@ -899,6 +903,7 @@ GameObject:
   - component: {fileID: 2310099311087709989}
   - component: {fileID: 8934548313967843789}
   - component: {fileID: 906863251}
+  - component: {fileID: 1795292304}
   m_Layer: 8
   m_Name: Camera
   m_TagString: MainCamera
@@ -970,7 +975,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3673668007412231181}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &3673668007412231183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,7 +1058,7 @@ MonoBehaviour:
   finalBlitToCameraTarget: 0
   antialiasingMode: 1
   temporalAntialiasing:
-    jitterSpread: 0.75
+    jitterSpread: 0.513
     sharpness: 0.25
     stationaryBlending: 0.95
     motionBlending: 0.85
@@ -1095,6 +1100,20 @@ MonoBehaviour:
   m_AfterStackBundles:
   - assemblyQualifiedName: ContourEdgeOutline, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1795292304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3673668007412231181}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!1 &4233072767085835886
 GameObject:
   m_ObjectHideFlags: 0
