@@ -152,13 +152,13 @@ public class CharacterController : MonoBehaviour
             AudioManager.Instance.StopLoop("Movement/Walking", SoundBus.PlayerSounds);
         }
 
-        if (Input.GetKeyDown(Options.Instance.Fire1))
+        if (Input.GetKeyDown(Options.Instance.Fire1) && !standStill)
         {
             //if the big recoil has been fired apply big recoil
             ShootBigRecoil();
         }
 
-        if (Input.GetKeyDown(Options.Instance.Fire2))
+        if (Input.GetKeyDown(Options.Instance.Fire2) && !standStill)
         {
             //if the rocket has been fired shoot the rocket
             ShootRocket();
