@@ -10,11 +10,29 @@ public class ScreenSpaceRefractions : MonoBehaviour
     private Camera camera;
     private int downResFactor = 1;
 
+    [SerializeField]
+    [Range(0, 1)]
+    private float refractionVisibility = 0;
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float refractionMagnitude = 0;
+
     private string globalTextureName = "_GlobalRefractionTex";
+    private string globalVisibilityName = "_GlobalVisibility";
+    private string globalMagnitudeName = "_GlobalRefractionMag";
+
+    private void OnEnable()
+    {
+        GenerateRT();
+        Shader.SetGlobalFloat(globalVisibilityName, refractionVisibility);
+        Shader.SetGlobalFloat(globalMagnitudeName, refractionMagnitude);
+    }
 
     private void Update()
     {
-        GenerateRT();
+        Shader.SetGlobalFloat(globalVisibilityName, refractionVisibility);
+        Shader.SetGlobalFloat(globalMagnitudeName, refractionMagnitude);
     }
 
     void GenerateRT()

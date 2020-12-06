@@ -2,7 +2,8 @@
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _MainTex ("Albedo", 2D) = "white" {}
+        _NormalMap ("Normal", 2D) = "white" {}
     }
 
     SubShader
@@ -13,6 +14,7 @@
         { 
             "Queue" = "Transparent"
             "PreviewType" = "Plane"
+            "DisableBatching" = "True"
             "RenderPipeline" = "UniversalRenderPipeline" 
         }
 
@@ -57,15 +59,20 @@
                 half4 color : COLOR;
             };
 
-            TEXTURE2D(_MainTex);
-            SAMPLER(sampler_MainTex);
-
-            half4 _MainTex_ST;
-
-
             uniform TEXTURE2D(_GlobalRefractionTex);
             uniform SAMPLER(sampler_GlobalRefractionTex);
             uniform half4 _GlobalRefractionTex_ST;
+            
+            uniform float _GlobalVisibility;
+            uniform float _GlobalRefractionMag;
+
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
+            half4 _MainTex_ST;
+
+            TEXTURE2D(_NormalMap);
+            SAMPLER(sampler_NormalMap);
+            half4 _NormalMap_ST;
 
             Varyings vert (Attributes v)
             {
@@ -79,6 +86,7 @@
 
                 // w = 1 for orthographic cameras
                 o.screenuv = ((o.positionCS.xy / o.positionCS.w) + 1) * 0.5;
+
                 o.color = v.color;
 
                 return o;
@@ -88,10 +96,14 @@
             {
                 // sample the texture
                 half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                half2 offset = mul(unity_ObjectToWorld, SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv).xy * 2 - 1);
 
                 // Reflection
-                half4 refl = SAMPLE_TEXTURE2D(_GlobalRefractionTex, sampler_GlobalRefractionTex, i.screenuv);
-                col.rgb = col.rgb * (1.0 - refl.a) + refl.rgb * refl.a;
+                half4 worldRefl = SAMPLE_TEXTURE2D(_GlobalRefractionTex, sampler_GlobalRefractionTex, i.screenuv + offset * _GlobalRefractionMag);
+                
+                // FINAL Color calculation
+                col.rgb = col.rgb * (1.0 - worldRefl.a * _GlobalVisibility)
+                    + worldRefl.rgb * worldRefl.a * _GlobalVisibility;
 
                 return col;
             }
