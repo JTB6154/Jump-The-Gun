@@ -11914,7 +11914,7 @@ PrefabInstance:
     - target: {fileID: 7379460458865341401, guid: 3948e24ea8745134999e751a3a9dfc11,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3948e24ea8745134999e751a3a9dfc11, type: 3}
@@ -61456,7 +61456,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: 68.8781, y: -86.13483, z: 0}
+    - position: {x: 68.87786, y: -86.12125, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -63076,7 +63076,7 @@ EdgeCollider2D:
   - {x: 65.11141, y: -79.563934}
   - {x: 64.36342, y: -82.20677}
   - {x: 65.5482, y: -85.96869}
-  - {x: 68.8781, y: -86.13483}
+  - {x: 68.87786, y: -86.12125}
   - {x: 69.88916, y: -87.72069}
   - {x: 70.66614, y: -89.76663}
   - {x: 73.16583, y: -90.09892}
