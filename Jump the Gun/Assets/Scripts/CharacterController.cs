@@ -626,14 +626,14 @@ public class CharacterController : MonoBehaviour
             animator.SetBool("Jumping", false);
 
         //Check if the player character is moving left or right
-        if (Input.GetKey(Options.Instance.Right) && grounded && !shooting)
-        {
-            sprite.flipX = true;
-            animator.SetBool("Running", true);
-        }
-        else if (Input.GetKey(Options.Instance.Left) && grounded && !shooting)
+        if (Input.GetKey(Options.Instance.Left) && grounded && !shooting)
         {
             sprite.flipX = false;
+            animator.SetBool("Running", true);
+        }
+        else if (Input.GetKey(Options.Instance.Right) && grounded && !shooting)
+        {
+            sprite.flipX = true;
             animator.SetBool("Running", true);
         }
         else
