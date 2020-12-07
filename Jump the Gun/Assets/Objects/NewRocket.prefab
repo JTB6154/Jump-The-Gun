@@ -157,6 +157,8 @@ MonoBehaviour:
     m_Bits: 2048
   explosion_particles: {fileID: 5601958881685669251, guid: f8f159d0dc6160a469b97cc5ea66c127,
     type: 3}
+  rocketTravelingEvent: event:/Rocket/RocketTraveling
+  rocketExplodingEvent: event:/Rocket/RocketExploding
 --- !u!114 &3915968148511810272
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RocketScript : MonoBehaviour
 {
+    [Space]
+    [Header("Rocket Settings")]
     [SerializeField] Rigidbody2D rb;
     [Range(1,100)] [SerializeField] float initialSpeed = 10f;
     float explosionforce = 0f;
@@ -15,7 +17,15 @@ public class RocketScript : MonoBehaviour
     [SerializeField] LayerMask player;
     [SerializeField] public LayerMask notPlayer;
     [SerializeField] GameObject explosion_particles;
-    
+
+    [Space]
+    [Header("Sound Settings")]
+    [FMODUnity.EventRef]
+    public string rocketTravelingEvent;
+    [FMODUnity.EventRef]
+    public string rocketExplodingEvent;
+
+
     void Start()
     {
         minimumForcePercent = MinimumForcePercent / 100f;
@@ -24,7 +34,8 @@ public class RocketScript : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        AudioManager.Instance.PlaySound("Rocket/RocketTraveling");
+
+        AudioManager.Instance.PlayOneShot(rocketTravelingEvent);
     }
 
     private void Update()
@@ -70,6 +81,7 @@ public class RocketScript : MonoBehaviour
         }
         //show the rocket has already exploded
         hasExploded = true;
+        AudioManager.Instance.PlayOneShot(rocketExplodingEvent);
         Instantiate(explosion_particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

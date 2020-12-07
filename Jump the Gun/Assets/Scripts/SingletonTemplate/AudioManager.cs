@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using FMOD.Studio;
 using FMODUnity;
 
@@ -16,27 +17,11 @@ public class AudioManager : Singleton<AudioManager>
 {
     #region Fields
 
-    private readonly Dictionary<string, string> eventPathsDict = new Dictionary<string, string>
-    {
-        {"Rocket/RocketExploding",                   "event:/Rocket/RocketExploding" },
-        {"Rocket/RocketShooting",                    "event:/Rocket/RocketShooting" },
-        {"Rocket/RocketTraveling",                   "event:/Rocket/RocketTraveling" },
-
-        {"Shotgun/ShotgunShooting",                  "event:/ShotgunShooting" },
-
-        {"Movement/Walking",                         "event:/Walking" },
-        {"Movement/Landing",                         "event:/Landing" },
-        {"Movement/MovingThroughAir",                "event:/MovingThroughAir" },
-
-        {"Ambience/Ambient1",                        "event:/Ambience/Ambient1" },
-    };
-
     private Dictionary<string, bool> loopingDict = new Dictionary<string, bool>();
 
     // Handle looping
     [SerializeField] private bool isLooping = false;
     private EventInstance loopInstance;
-    private EventInstance oneShotInstance;
     private EventInstance musicInstance;
 
     private Bus airTravelBus;
@@ -64,25 +49,30 @@ public class AudioManager : Singleton<AudioManager>
         backgroundMusicBus = RuntimeManager.GetBus("bus:/BackgroundMusic");
         gunSoundsBus = RuntimeManager.GetBus("bus:/GunSounds");
 
+        // Set default master volume
         MasterVolume = 1f;
 
         // Start off with playerSounds Bus muted
         SetPlayerSoundsBusMute(true);
     }
 
-    // Play one-time sound
-    public void PlaySound(string path)
+    private void OnDestroy()
     {
-        oneShotInstance.release();
-        oneShotInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
-
-        // Set volume level
-        oneShotInstance.setVolume(GetVolumeLevel(soundEffectsVolume));
-
-        oneShotInstance.start();
-        oneShotInstance.release();
+        loopInstance.release();
+        musicInstance.release();
     }
 
+    #region Custom Public Methods
+
+    /// <summary>
+    /// Play a one shot sound
+    /// </summary>
+    public void PlayOneShot(string path)
+    {
+        RuntimeManager.PlayOneShot(path);
+    }
+
+    // ================================ LOOP =================================
     // Play looping sound
     public void PlayLoop(string path)
     {
@@ -95,7 +85,7 @@ public class AudioManager : Singleton<AudioManager>
         {
             loopingDict[path] = true;
 
-            loopInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
+            loopInstance = RuntimeManager.CreateInstance(path);
 
             // Set volume level
             loopInstance.setVolume(GetVolumeLevel(soundEffectsVolume));
@@ -112,7 +102,7 @@ public class AudioManager : Singleton<AudioManager>
         loopingDict[path] = false;
 
         StopBusSounds(ConvertToFMODBus(busIndex));
-        
+
         loopInstance.release();
     }
 
@@ -125,26 +115,21 @@ public class AudioManager : Singleton<AudioManager>
     {
         ConvertToFMODBus(busIndex).setPaused(false);
     }
+    // =======================================================================
 
-    // Play looping ambient music
-    public void PlayMusic(string path)
+
+    // ================================ MUSIC ================================
+    /// <summary>
+    /// Start ambient music.
+    /// </summary>
+    public void StartMusic(string path)
     {
-        if (!loopingDict.ContainsKey(path))
-        {
-            loopingDict.Add(path, false);
-        }
+        musicInstance = RuntimeManager.CreateInstance(path);
 
-        if (!loopingDict[path])
-        {
-            loopingDict[path] = true;
+        // Set volume level
+        musicInstance.setVolume(GetVolumeLevel(musicVolume));
 
-            musicInstance = RuntimeManager.CreateInstance(eventPathsDict[path]);
-
-            // Set volume level
-            musicInstance.setVolume(GetVolumeLevel(musicVolume));
-
-            musicInstance.start();
-        }
+        musicInstance.start();
     }
 
     public void StopMusic(SoundBus bus)
@@ -152,6 +137,8 @@ public class AudioManager : Singleton<AudioManager>
         StopBusSounds(ConvertToFMODBus(bus));
         musicInstance.release();
     }
+    // =======================================================================
+
 
     public void SetPlayerSoundsBusMute(bool mute)
     {
@@ -168,7 +155,9 @@ public class AudioManager : Singleton<AudioManager>
         ConvertToFMODBus(controller.SoundBusType).setVolume(controller.GetOutputVolume(inputValue));
     }
 
-    #region Private Methods
+    #endregion
+
+    #region Utility Private Methods
 
     private void StopBusSounds(Bus bus)
     {

@@ -74,6 +74,23 @@ public class CharacterController : MonoBehaviour
     private float cutsceneLength;
     private short gun;
 
+    [Space]
+    [Header("5 - AUDIO SETTINGS")]
+    [FMODUnity.EventRef]
+    public string ambient1Event;
+    [FMODUnity.EventRef]
+    public string landingEvent;
+    [FMODUnity.EventRef]
+    public string rocketShootingEvent;
+    [FMODUnity.EventRef]
+    public string shotgunShootingEvent;
+    [FMODUnity.EventRef]
+    public string rocketTravelingEvent;
+    [FMODUnity.EventRef]
+    public string walkingEvent;
+    [FMODUnity.EventRef]
+    public string movingThroughAirEvent;
+
     #endregion
 
     #region UnityFunctions
@@ -113,10 +130,9 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        StartCutscene();
+        AudioManager.Instance.StartMusic(ambient1Event);
 
-        // Play ambient music
-        AudioManager.Instance.PlayMusic("Ambience/Ambient1");
+        StartCutscene();
     }
 
     void Update()
@@ -134,22 +150,22 @@ public class CharacterController : MonoBehaviour
             {
                 //Debug.Log("walk left");
                 moveControls.x += -walkSpeed;
-                AudioManager.Instance.PlayLoop("Movement/Walking");
+                AudioManager.Instance.PlayLoop(walkingEvent);
             }
             else if (Input.GetKey(Options.Instance.Right))
             {
                 //Debug.Log("walk Right");
                 moveControls.x += walkSpeed;
-                AudioManager.Instance.PlayLoop("Movement/Walking");
+                AudioManager.Instance.PlayLoop(walkingEvent);
             }
             else if (Input.GetKeyUp(Options.Instance.Left) || Input.GetKeyUp(Options.Instance.Right))
             {
-                AudioManager.Instance.StopLoop("Movement/Walking", SoundBus.PlayerSounds);
+                AudioManager.Instance.StopLoop(walkingEvent, SoundBus.PlayerSounds);
             }
         }
         else
         {
-            AudioManager.Instance.StopLoop("Movement/Walking", SoundBus.PlayerSounds);
+            AudioManager.Instance.StopLoop(walkingEvent, SoundBus.PlayerSounds);
         }
 
         if (Input.GetKeyDown(Options.Instance.Fire1) && !standStill)
@@ -205,7 +221,7 @@ public class CharacterController : MonoBehaviour
             {
                 //Landed(); //currently has no functionality
                 speedInAir = 0f;
-                AudioManager.Instance.PlaySound("Movement/Landing");
+                AudioManager.Instance.PlayOneShot(landingEvent);
                 AudioManager.Instance.StopLoop("Movement/MovingThroughAir", SoundBus.AirTravel);
             }
         }
@@ -229,8 +245,8 @@ public class CharacterController : MonoBehaviour
         {
             // Update speed in air
             speedInAir = Mathf.Sqrt(Vector2.SqrMagnitude(rb.velocity));
-            AudioManager.Instance.PlayLoop("Movement/MovingThroughAir");
-            AudioManager.Instance.SetDynamicBusVolume(airTravelBusVolumeController, speedInAir);
+            //AudioManager.Instance.PlayLoop(movingThroughAirEvent);
+            //AudioManager.Instance.SetDynamicBusVolume(airTravelBusVolumeController, speedInAir);
         }
 
         //cap the speed of the player in the x and y directions
@@ -413,7 +429,7 @@ public class CharacterController : MonoBehaviour
                 StartShootAnim(firingAngle, 1);
 
                 // Audio code
-                AudioManager.Instance.PlaySound("Rocket/RocketShooting");
+                AudioManager.Instance.PlayOneShot(rocketShootingEvent);
             }
         }
     }
@@ -468,7 +484,7 @@ public class CharacterController : MonoBehaviour
             StartShootAnim(firingAngle, 0);
 
             // Audio code
-            AudioManager.Instance.PlaySound("Shotgun/ShotgunShooting");
+            AudioManager.Instance.PlayOneShot(shotgunShootingEvent);
         }
     }
 

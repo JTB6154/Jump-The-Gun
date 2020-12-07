@@ -853,14 +853,14 @@ MonoBehaviour:
   speedInAir: 0
   airTravelBusVolumeController: {fileID: 11400000, guid: 4ebc7c318002c68478bbb0938a8f7109,
     type: 2}
-  hasBigRecoil: 0
+  hasBigRecoil: 1
   recoilForce: 927
   maxBigRecoilShots: 2
   shotgunShot: {fileID: 1507916033632810510, guid: fb4ccee31abba9943b989cc05043d7ae,
     type: 3}
   maxVariation: 10
   numShot: 1
-  hasRocketJump: 0
+  hasRocketJump: 1
   rocketForce: 1368
   rocketRadius: 9.12
   maxRockets: 2
@@ -869,6 +869,12 @@ MonoBehaviour:
   liftOffCheckTime: 0.3
   animator: {fileID: 0}
   standStill: 0
+  landingEvent: event:/Landing
+  rocketShootingEvent: event:/Rocket/RocketShooting
+  shotgunShootingEvent: event:/ShotgunShooting
+  rocketTravelingEvent: event:/Rocket/RocketTraveling
+  walkingEvent: event:/Walking
+  movingThroughAirEvent: event:/MovingThroughAir
 --- !u!95 &3673668008098400033
 Animator:
   serializedVersion: 3
@@ -904,6 +910,7 @@ GameObject:
   - component: {fileID: 8934548313967843789}
   - component: {fileID: 906863251}
   - component: {fileID: 1795292304}
+  - component: {fileID: 3059614281421474559}
   m_Layer: 8
   m_Name: Camera
   m_TagString: MainCamera
@@ -1101,6 +1108,20 @@ MonoBehaviour:
   - assemblyQualifiedName: ContourEdgeOutline, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1795292304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3673668007412231181}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
+--- !u!114 &3059614281421474559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -27,9 +27,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         ammoUI.SetActive(true);
 
-        // Resume music
-        AudioManager.Instance.UnpauseLoop(SoundBus.BackgroundMusic);
-
         Time.timeScale = 1f;
         GameStats.Instance.isPaused = false;
         Cursor.visible = false;
@@ -39,9 +36,6 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         ammoUI.SetActive(false);
-
-        // Pause music
-        AudioManager.Instance.PauseLoop(SoundBus.BackgroundMusic);
 
         Time.timeScale = 0f;
         GameStats.Instance.isPaused = true;
