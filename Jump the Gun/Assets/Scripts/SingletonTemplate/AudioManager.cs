@@ -153,22 +153,22 @@ public class AudioManager : Singleton<AudioManager>
     public void SetMasterMixerVolume(float value)
     {
         MasterVolume = value;
-        float dbVolume = (value * 100f) - 80f;
-        RuntimeManager.GetVCA("vca:/Master").setVolume(dbVolume);
+        float dbVolume = (value * 100f) - 100f;
+        RuntimeManager.GetVCA("vca:/Master").setVolume(value);
     }
 
     public void SetSFXMixerVolume(float value)
     {
         SoundEffectsVolume = value;
-        float dbVolume = (value * 100f) - 80f;
-        RuntimeManager.GetVCA("vca:/Music").setVolume(dbVolume);
+        float dbVolume = (value * 100f) - 100f;
+        RuntimeManager.GetVCA("vca:/Music").setVolume(value);
     }
 
     public void SetMusicMixerVolume(float value)
     {
         MusicVolume = value;
-        float dbVolume = (value * 100f) - 80f;
-        RuntimeManager.GetVCA("vca:/Sound Effects").setVolume(dbVolume);
+        float dbVolume = (value * 100f) - 100f;
+        RuntimeManager.GetVCA("vca:/Sound Effects").setVolume(value);
     }
 
     #endregion
