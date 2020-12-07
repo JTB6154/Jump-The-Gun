@@ -200,7 +200,6 @@ public class CharacterController : MonoBehaviour
         GameStats.Instance.playerPosY = this.transform.position.y;
         GameStats.Instance.playerMomentumX = rb.velocity.x;
         GameStats.Instance.playerMomentumY = rb.velocity.y;
-
     }
 
     private void FixedUpdate()
@@ -219,10 +218,7 @@ public class CharacterController : MonoBehaviour
 
             if (!lastGrounded)//if last frame you were not grounded this frame you have landed
             {
-                //Landed(); //currently has no functionality
-                speedInAir = 0f;
-                AudioManager.Instance.PlayOneShot(landingEvent);
-                AudioManager.Instance.StopLoop("Movement/MovingThroughAir", SoundBus.AirTravel);
+                Landed(); //currently has no functionality
             }
         }
         else if (lastGrounded) //if you are not currently grounded but last frame you were you just took off
@@ -244,9 +240,15 @@ public class CharacterController : MonoBehaviour
         if (!grounded) // In air
         {
             // Update speed in air
+            Debug.Log("In air");
             speedInAir = Mathf.Sqrt(Vector2.SqrMagnitude(rb.velocity));
-            //AudioManager.Instance.PlayLoop(movingThroughAirEvent);
-            //AudioManager.Instance.SetDynamicBusVolume(airTravelBusVolumeController, speedInAir);
+
+            if (rb.velocity.y < -0.1f)
+            {
+                // Is falling
+                AudioManager.Instance.PlayLoop(movingThroughAirEvent);
+                AudioManager.Instance.SetDynamicBusVolume(airTravelBusVolumeController, speedInAir);
+            }
         }
 
         //cap the speed of the player in the x and y directions
@@ -588,7 +590,9 @@ public class CharacterController : MonoBehaviour
 
     void Landed()
     {
-        //no functions here yet
+        speedInAir = 0f;
+        AudioManager.Instance.PlayOneShot(landingEvent);
+        AudioManager.Instance.StopLoop(movingThroughAirEvent, SoundBus.AirTravel);
     }
 
     #endregion

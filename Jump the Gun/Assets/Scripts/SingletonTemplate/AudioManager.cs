@@ -39,7 +39,6 @@ public class AudioManager : Singleton<AudioManager>
     public float SoundEffectsVolume { get => soundEffectsVolume; set => soundEffectsVolume = value; }
     public float MusicVolume { get => musicVolume; set => musicVolume = value; }
 
-
     #endregion
 
     private void Start()
@@ -71,6 +70,11 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayOneShot(string path)
     {
         RuntimeManager.PlayOneShot(path);
+    }
+
+    public void PlayOneShotAttached(string path, GameObject obj)
+    {
+        RuntimeManager.PlayOneShotAttached(path, obj);
     }
 
     // ================================ LOOP =================================
@@ -161,14 +165,14 @@ public class AudioManager : Singleton<AudioManager>
     {
         SoundEffectsVolume = value;
         float dbVolume = (value * 100f) - 100f;
-        RuntimeManager.GetVCA("vca:/Music").setVolume(value);
+        RuntimeManager.GetVCA("vca:/Sound Effects").setVolume(value);
     }
 
     public void SetMusicMixerVolume(float value)
     {
         MusicVolume = value;
         float dbVolume = (value * 100f) - 100f;
-        RuntimeManager.GetVCA("vca:/Sound Effects").setVolume(value);
+        RuntimeManager.GetVCA("vca:/Music").setVolume(value);
     }
 
     #endregion

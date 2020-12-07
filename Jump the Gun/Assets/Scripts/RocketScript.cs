@@ -35,7 +35,7 @@ public class RocketScript : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         }
 
-        AudioManager.Instance.PlayOneShot(rocketTravelingEvent);
+        AudioManager.Instance.PlayOneShotAttached(rocketTravelingEvent, gameObject);
     }
 
     private void Update()
