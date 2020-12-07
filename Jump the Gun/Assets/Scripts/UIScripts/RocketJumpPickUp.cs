@@ -31,6 +31,7 @@ public class RocketJumpPickUp : MonoBehaviour
             CharacterController c = player.GetComponent<CharacterController>();
             c.hasRocketJump = true;
             c.animator.SetTrigger("GetRocket");
+            c.animator.SetBool("Gunless", false);
             c.StartCutscene();
             ammoUI.SetActive(true);
             Destroy(this.gameObject);

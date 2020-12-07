@@ -692,10 +692,11 @@ public class CharacterController : MonoBehaviour
     public void StartCutscene()
     {
         standStill = true;
-        cutsceneLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        cutsceneTimer = 0;
         animator.SetBool("Jumping", false);
         animator.SetBool("Running", false);
+        cutsceneLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).length);
+        cutsceneTimer = 0;
     }
     #endregion
 
