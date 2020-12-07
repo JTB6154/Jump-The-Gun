@@ -4,6 +4,10 @@
 		<property name="name">
 			<value>AirTravel</value>
 		</property>
+		<relationship name="masters">
+			<destination>{6fa0c316-896a-4950-a8e0-b1e2c6f32ab7}</destination>
+			<destination>{d90cb4f3-ccf1-4e5b-a75d-4979817d8388}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{663c8efa-7e3e-41f7-8007-72aa938af548}</destination>
 		</relationship>
