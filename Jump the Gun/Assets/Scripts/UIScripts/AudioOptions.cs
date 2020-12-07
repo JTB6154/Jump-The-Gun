@@ -12,23 +12,23 @@ public class AudioOptions : MonoBehaviour
     private void Start()
     {
         // Load volume sliders
-        masterVolumeSlider.value = AudioManager.Instance.MasterVolume;
-        soundEffectsVolumeSlider.value = AudioManager.Instance.SoundEffectsVolume;
-        musicVolumeSlider.value = AudioManager.Instance.MusicVolume;
+        masterVolumeSlider.value = PlayerPrefs.HasKey("masterVolume") ? PlayerPrefs.GetFloat("masterVolume") : 1f;
+        soundEffectsVolumeSlider.value = PlayerPrefs.HasKey("soundEffectsVolume") ? PlayerPrefs.GetFloat("soundEffectsVolume") : 1f;
+        musicVolumeSlider.value = PlayerPrefs.HasKey("musicVolume") ? PlayerPrefs.GetFloat("musicVolume") : 1f;
     }
 
     public void SetMasterVolume(float value)
     {
-        AudioManager.Instance.MasterVolume = value;
+        AudioManager.Instance.SetMasterMixerVolume(value);
     }
 
     public void SetSoundEffectsVolume(float value)
     {
-        AudioManager.Instance.SoundEffectsVolume = value;
+        AudioManager.Instance.SetSFXMixerVolume(value);
     }
 
     public void SetMusicVolume(float value)
     {
-        AudioManager.Instance.MusicVolume = value;
+        AudioManager.Instance.SetMusicMixerVolume(value);
     }
 }

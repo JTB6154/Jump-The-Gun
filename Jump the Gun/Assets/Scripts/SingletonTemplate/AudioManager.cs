@@ -32,8 +32,8 @@ public class AudioManager : Singleton<AudioManager>
     private bool isPlayerSoundsBusMuted;
 
     private float masterVolume = 1f;
-    private float soundEffectsVolume = 3f;
-    private float musicVolume = 3f;
+    private float soundEffectsVolume = 1f;
+    private float musicVolume = 1f;
 
     public float MasterVolume { get => masterVolume; set => masterVolume = value; }
     public float SoundEffectsVolume { get => soundEffectsVolume; set => soundEffectsVolume = value; }
@@ -44,22 +44,23 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start()
     {
+        // Load user saved data for audio settings
+        MasterVolume = PlayerPrefs.HasKey("masterVolume") ? PlayerPrefs.GetFloat("masterVolume") : 1f;
+        MusicVolume = PlayerPrefs.HasKey("musicVolume") ? PlayerPrefs.GetFloat("musicVolume") : 1f;
+        SoundEffectsVolume = PlayerPrefs.HasKey("soundEffectsVolume") ? PlayerPrefs.GetFloat("soundEffectsVolume") : 1f;
+
+        // Set vca mixer volumes at start
+        SetMasterMixerVolume(masterVolume);
+        SetMusicMixerVolume(musicVolume);
+        SetSFXMixerVolume(soundEffectsVolume);
+
         playerSoundsBus = RuntimeManager.GetBus("bus:/PlayerSounds");
         airTravelBus = RuntimeManager.GetBus("bus:/AirTravel");
         backgroundMusicBus = RuntimeManager.GetBus("bus:/BackgroundMusic");
         gunSoundsBus = RuntimeManager.GetBus("bus:/GunSounds");
 
-        // Set default master volume
-        MasterVolume = 1f;
-
         // Start off with playerSounds Bus muted
         SetPlayerSoundsBusMute(true);
-    }
-
-    private void OnDestroy()
-    {
-        loopInstance.release();
-        musicInstance.release();
     }
 
     #region Custom Public Methods
@@ -86,9 +87,6 @@ public class AudioManager : Singleton<AudioManager>
             loopingDict[path] = true;
 
             loopInstance = RuntimeManager.CreateInstance(path);
-
-            // Set volume level
-            loopInstance.setVolume(GetVolumeLevel(soundEffectsVolume));
 
             loopInstance.start();
         }
@@ -126,9 +124,6 @@ public class AudioManager : Singleton<AudioManager>
     {
         musicInstance = RuntimeManager.CreateInstance(path);
 
-        // Set volume level
-        musicInstance.setVolume(GetVolumeLevel(musicVolume));
-
         musicInstance.start();
     }
 
@@ -153,6 +148,27 @@ public class AudioManager : Singleton<AudioManager>
     public void SetDynamicBusVolume(DynamicBusVolumeController controller, float inputValue)
     {
         ConvertToFMODBus(controller.SoundBusType).setVolume(controller.GetOutputVolume(inputValue));
+    }
+
+    public void SetMasterMixerVolume(float value)
+    {
+        MasterVolume = value;
+        float dbVolume = (value * 100f) - 80f;
+        RuntimeManager.GetVCA("vca:/Master").setVolume(dbVolume);
+    }
+
+    public void SetSFXMixerVolume(float value)
+    {
+        SoundEffectsVolume = value;
+        float dbVolume = (value * 100f) - 80f;
+        RuntimeManager.GetVCA("vca:/Music").setVolume(dbVolume);
+    }
+
+    public void SetMusicMixerVolume(float value)
+    {
+        MusicVolume = value;
+        float dbVolume = (value * 100f) - 80f;
+        RuntimeManager.GetVCA("vca:/Sound Effects").setVolume(dbVolume);
     }
 
     #endregion

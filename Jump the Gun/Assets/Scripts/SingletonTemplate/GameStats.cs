@@ -64,7 +64,7 @@ public class GameStats : Singleton<GameStats>
             playerMomentumX = PlayerPrefs.HasKey("playerMomentumX") ? PlayerPrefs.GetFloat("playerMomentumX") : 0f;
             playerMomentumY = PlayerPrefs.HasKey("playerMomentumY") ? PlayerPrefs.GetFloat("playerMomentumY") : 0f;
         }
-     } 
+    } 
 
     void OnDestroy()
     {
@@ -91,6 +91,10 @@ public class GameStats : Singleton<GameStats>
         PlayerPrefs.SetFloat("playerPosY", playerPosY);
         PlayerPrefs.SetFloat("playerMomentumX", playerMomentumX);
         PlayerPrefs.SetFloat("playerMomentumY", playerMomentumY);
+
+        PlayerPrefs.SetFloat("masterVolume", AudioManager.Instance.MasterVolume);
+        PlayerPrefs.SetFloat("musicVolume", AudioManager.Instance.MusicVolume);
+        PlayerPrefs.SetFloat("soundEffectsVolume", AudioManager.Instance.SoundEffectsVolume);
     }
 
     public void ResetData()
