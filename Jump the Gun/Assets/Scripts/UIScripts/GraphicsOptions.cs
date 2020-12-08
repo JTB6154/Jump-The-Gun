@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 
 public class GraphicsOptions : MonoBehaviour
@@ -9,7 +10,7 @@ public class GraphicsOptions : MonoBehaviour
     Resolution[] resolutions;
     void Start()
     {
-        resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions.Select(Res => new Resolution { width = Res.width, height = Res.height }).Distinct().ToArray();
         int resolutionIndex = -1;
 
         resolutionDropDown.ClearOptions();
@@ -29,6 +30,7 @@ public class GraphicsOptions : MonoBehaviour
 
         resolutionDropDown.AddOptions(options);
         resolutionDropDown.value = resolutionIndex;
+        resolutionDropDown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)
