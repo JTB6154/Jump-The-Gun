@@ -64,6 +64,9 @@ public class GameStats : Singleton<GameStats>
             playerMomentumX = PlayerPrefs.HasKey("playerMomentumX") ? PlayerPrefs.GetFloat("playerMomentumX") : 0f;
             playerMomentumY = PlayerPrefs.HasKey("playerMomentumY") ? PlayerPrefs.GetFloat("playerMomentumY") : 0f;
         }
+
+        PlayerPrefs.SetInt("firstTime", 0);
+
     } 
 
     void OnDestroy()

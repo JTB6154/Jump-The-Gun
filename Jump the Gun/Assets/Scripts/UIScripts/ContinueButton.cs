@@ -10,8 +10,9 @@ public class ContinueButton : MonoBehaviour
     void Update()
     {
         int hasSaveData = PlayerPrefs.HasKey("hasSaveData") ? PlayerPrefs.GetInt("hasSaveData") : 0;
+        int firstTime = PlayerPrefs.HasKey("firstTime") ? PlayerPrefs.GetInt("firstTime") : 1;
 
-        if (hasSaveData == 1)
+        if (hasSaveData == 1 && firstTime == 0)
         {
             continueButton.SetActive(true);
         }
