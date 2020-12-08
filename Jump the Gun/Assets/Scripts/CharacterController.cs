@@ -240,7 +240,7 @@ public class CharacterController : MonoBehaviour
         if (!grounded) // In air
         {
             // Update speed in air
-            Debug.Log("In air");
+            //Debug.Log("In air");
             speedInAir = Mathf.Sqrt(Vector2.SqrMagnitude(rb.velocity));
 
             if (rb.velocity.y < -0.1f)
