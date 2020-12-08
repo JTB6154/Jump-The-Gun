@@ -9125,12 +9125,12 @@ PrefabInstance:
     - target: {fileID: 5350618648013575099, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 212.2
+      value: -49.36
       objectReference: {fileID: 0}
     - target: {fileID: 5350618648013575099, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 341.7
+      value: 74.77
       objectReference: {fileID: 0}
     - target: {fileID: 5350618648013575099, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
         type: 3}
@@ -9191,6 +9191,16 @@ PrefabInstance:
         type: 3}
       propertyPath: lastGrounded
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412269831089179003, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
+        type: 3}
+      propertyPath: hasBigRecoil
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412269831089179003, guid: ab9c9e81c5bab484c9503f0ca70d5be7,
+        type: 3}
+      propertyPath: hasRocketJump
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9c9e81c5bab484c9503f0ca70d5be7, type: 3}
@@ -62781,8 +62791,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120670284}
   m_LocalRotation: {x: 0, y: 0, z: 0.057408057, w: 0.9983508}
-  m_LocalPosition: {x: -35.9874, y: 114.876, z: 0}
-  m_LocalScale: {x: 0.61334, y: 7.42615, z: 5}
+  m_LocalPosition: {x: -35.961, y: 114.851, z: 0}
+  m_LocalScale: {x: 0.61334, y: 2.132102, z: 5}
   m_Children: []
   m_Father: {fileID: 2750339907057774539}
   m_RootOrder: 8
@@ -62800,7 +62810,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.9905548, y: -0.013558146}
+  m_Offset: {x: -0.9905548, y: -0.011231668}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62811,7 +62821,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 20.467438, y: 0.012883708}
+  m_Size: {x: 20.467438, y: 0.008230752}
   m_EdgeRadius: 0
 --- !u!114 &2120670287
 MonoBehaviour:
@@ -65042,7 +65052,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: -42.82048, y: 114.034225, z: 0}
+    - position: {x: -42.80159, y: 114.04204, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -67122,7 +67132,7 @@ EdgeCollider2D:
   - {x: -39.74214, y: 100.49283}
   - {x: -40.952637, y: 105.864426}
   - {x: -42.555405, y: 111.05156}
-  - {x: -42.82048, y: 114.034225}
+  - {x: -42.80159, y: 114.04204}
   - {x: -30.40657, y: 115.42906}
   - {x: -16.92862, y: 113.25891}
   - {x: -14.197189, y: 106.54051}
