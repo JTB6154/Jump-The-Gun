@@ -48,7 +48,7 @@ public class CharacterController : MonoBehaviour
     [Range(1, 5)] [SerializeField] int maxBigRecoilShots = 2;
     [SerializeField] GameObject shotgunShot;
     [SerializeField] float maxVariation = 10f;
-    [SerializeField] int numShot = 3;
+    //[SerializeField] int numShot = 3;
     int numBigRecoilShots = 0;
 
     [Space]
@@ -473,13 +473,9 @@ public class CharacterController : MonoBehaviour
 
             if (shotgunShot != null)
             {
-                for (int i = 0; i < numShot; i++)
-                {
-                    GameObject shooting = GameObject.Instantiate(shotgunShot);
-                    //shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
-                    shooting.transform.position = GetFiringPoint(firingAngle, true);
-                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);
-                }
+                GameObject shooting = GameObject.Instantiate(shotgunShot);
+                shooting.transform.position = GetFiringPoint(firingAngle, true);
+                shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);
             }
 
             //Startup the shooting animation
