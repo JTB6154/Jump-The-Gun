@@ -19,7 +19,9 @@ public class Options : Singleton<Options>
     private int updatingKeyOfIndex;
     private Event keyEvent;
 
-    float secondsUntilDisableUpdatingKey = .05f;
+    public Resolution CurrentRes;
+    public bool IsFullScreen;
+
 
     override protected void Awake()
     {
@@ -31,6 +33,14 @@ public class Options : Singleton<Options>
             new KeyHolder("fire2","Mouse1"),
             new KeyHolder("escape","Escape"),
         };
+
+        int width =  PlayerPrefs.GetInt("resWidth", Screen.currentResolution.width);
+        int height = PlayerPrefs.GetInt("resHeight", Screen.currentResolution.height);
+        
+        CurrentRes = new Resolution();
+        CurrentRes.width = width;
+        CurrentRes.height = height;
+        IsFullScreen = PlayerPrefs.GetInt("isFullScreen",1) == 1;
     }
 
 
@@ -99,5 +109,18 @@ public class Options : Singleton<Options>
         //set updating KeyCode To true and updatingkeyofindex to the index of the key that is being updated.
         updatingKeyCode = true;
         updatingKeyOfIndex = index;
+    }
+
+    public void SaveResolution(Resolution res)
+    {
+        //write the resolution
+        PlayerPrefs.SetInt("resWidth", res.width);
+        PlayerPrefs.SetInt("resHeight", res.height);
+    }
+
+    public void SaveFullScreen()
+    {
+        //write the fullscreen value
+        if (IsFullScreen) { PlayerPrefs.SetInt("isFullScreen", 1); } else { PlayerPrefs.SetInt("isFullScreen", 0); }
     }
 }
