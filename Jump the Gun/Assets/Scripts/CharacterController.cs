@@ -46,9 +46,10 @@ public class CharacterController : MonoBehaviour
     public bool hasBigRecoil = false;
     [Range(5f, 1500f)] [SerializeField] float recoilForce = 300f;
     [Range(1, 5)] [SerializeField] int maxBigRecoilShots = 2;
-    [SerializeField] GameObject shotgunShot;
+    [SerializeField] GameObject shotgunEffect;
+    [SerializeField] GameObject shotgunBullet;
     [SerializeField] float maxVariation = 10f;
-    [SerializeField] int numShot = 3;
+    //[SerializeField] int numShot = 3;
     int numBigRecoilShots = 0;
 
     [Space]
@@ -96,7 +97,7 @@ public class CharacterController : MonoBehaviour
     #region UnityFunctions
     void Start()
     {
-        if (shotgunShot == null)
+        if (shotgunEffect == null)
         {
             Debug.LogError("shotgun does not have proper shot");
         }
@@ -132,6 +133,7 @@ public class CharacterController : MonoBehaviour
 
         AudioManager.Instance.StartMusic(ambient1Event);
 
+        sprite.flipX = true;
         StartCutscene();
     }
 
@@ -471,19 +473,26 @@ public class CharacterController : MonoBehaviour
 
             float firingAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            if (shotgunShot != null)
-            {
-                for (int i = 0; i < numShot; i++)
-                {
-                    GameObject shooting = GameObject.Instantiate(shotgunShot);
-                    //shooting.transform.position = new Vector3(gameObject.transform.position.x - (2 * direction.x), gameObject.transform.position.y - (2 * direction.y), gameObject.transform.position.z);
-                    shooting.transform.position = GetFiringPoint(firingAngle, true);
-                    shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);
-                }
-            }
-
             //Startup the shooting animation
             StartShootAnim(firingAngle, 0);
+
+            GameObject shooting = null;
+            if (shotgunEffect != null)
+            {
+                shooting = Instantiate(shotgunEffect);
+                shooting.transform.position = GetFiringPoint(firingAngle, true);
+                shooting.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);
+            }
+
+            firingAngle -= 5;
+            for (int i = 0; i < 4; i++)
+            {
+                firingAngle += Random.Range(1.5f, 2.5f);
+                ShotgunBullet bullet = Instantiate(shotgunBullet).GetComponent<ShotgunBullet>();
+                bullet.transform.position = shooting.transform.position;
+                bullet.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);
+                bullet.Init(new Vector2(-Mathf.Cos(firingAngle * Mathf.Deg2Rad), -Mathf.Sin(firingAngle * Mathf.Deg2Rad)).normalized);
+            }
 
             // Audio code
             AudioManager.Instance.PlayOneShot(shotgunShootingEvent);
