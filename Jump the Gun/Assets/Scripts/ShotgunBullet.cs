@@ -18,7 +18,7 @@ public class ShotgunBullet : MonoBehaviour
         rb.velocity *= 1.06f;
         if (collision.IsTouchingLayers(collisionLayer))
         {
-            Explode();
+            //Explode();
         }
     }
 
