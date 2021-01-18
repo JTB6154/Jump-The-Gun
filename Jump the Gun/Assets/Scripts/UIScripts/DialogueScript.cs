@@ -27,6 +27,12 @@ public class DialogueScript : MonoBehaviour
         invoking = false;
         entered = false;
         timesEntered = 0;
+
+        if (dialogueOptions[0] == "Use The A and D keys to move left and right")
+        {
+            dialogueOptions[0].Replace(" A ", " " + Options.Instance.Left.ToString() + " ");
+            dialogueOptions[0].Replace(" D ", " " + Options.Instance.Right.ToString() + " ");
+        }
     }
 
     // Update is called once per frame

@@ -22,7 +22,9 @@ public class SelfDestruct : MonoBehaviour
         {
             timer += Time.deltaTime;
             if (timer >= lifetime)
+            {
                 Destroy(gameObject);
+            }
         }
     }
 
