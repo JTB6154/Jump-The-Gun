@@ -46,6 +46,8 @@ public class ChangeScene : MonoBehaviour
         // Stop ambient music
         AudioManager.Instance.StopMusic(SoundBus.BackgroundMusic);
 
+        Time.timeScale = 1f;
+
         if (Options.Instance.UpdatingKeyCode) return;
         GameStats.Instance.isPaused = false;
         Cursor.visible = true;
