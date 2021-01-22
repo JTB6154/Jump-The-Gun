@@ -67,6 +67,7 @@ public class RocketScript : MonoBehaviour
                 //Debug.Log("found it");
                 Rigidbody2D prb = colliders[i].GetComponent<Rigidbody2D>(); //get player rigid body
                 Vector3 direction = colliders[i].gameObject.transform.position - gameObject.transform.position; //vector from rocket to player
+                direction.z = 0;
                 float scale = (explosionRadius - direction.magnitude) / explosionRadius; //farther away scales down force applied
                 direction.Normalize();
                 if (rocketVelocityZeroing && scale > minimumForcePercent)
