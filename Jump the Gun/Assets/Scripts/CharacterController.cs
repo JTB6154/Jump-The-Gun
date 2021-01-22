@@ -92,6 +92,8 @@ public class CharacterController : MonoBehaviour
     [FMODUnity.EventRef]
     public string movingThroughAirEvent;
 
+    private List<Vector3> firingPointsTest = new List<Vector3>();
+
     #endregion
 
     #region UnityFunctions
@@ -412,15 +414,18 @@ public class CharacterController : MonoBehaviour
                 float firingAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 //GameObject tempRocket = Instantiate(rocketPrefab, gameObject.transform.position + dir.normalized * .1f, Quaternion.identity); //set the rocket
                 Vector3 firingPoint = GetFiringPoint(firingAngle, false);
+
                 Vector3 dir2 = firingPoint - transform.position;
+                dir2.z = 0f;
                 
                 GameObject tempRocket = Instantiate(rocketPrefab, firingPoint, Quaternion.identity); //set the rocket
                 tempRocket.transform.forward = dir.normalized; //set the rockets rotation
                 tempRocket.GetComponent<RocketScript>().Init(dir, rocketForce, rocketRadius); //initialize the rocket
                 RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir2, dir2.magnitude, tempRocket.GetComponent<RocketScript>().notPlayer);
-          
+
                 if (hit)
                 {
+                    Debug.Log("The rocket hits " + hit.transform.gameObject.name);
                     tempRocket.transform.position = new Vector3(hit.point.x, hit.point.y);
                     tempRocket.GetComponent<RocketScript>().Explode();
                     //Startup the shooting animation
