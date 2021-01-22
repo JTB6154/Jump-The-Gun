@@ -26,6 +26,6 @@ public class WinScreenTime : MonoBehaviour
             seconds = "0" + seconds;
         }
 
-        timeText.text = "Total Time: " + minutes + ":" + seconds;
+        timeText.text = "Time: " + minutes + ":" + seconds;
     }
 }
