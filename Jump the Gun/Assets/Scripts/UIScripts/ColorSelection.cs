@@ -25,6 +25,10 @@ public class ColorSelection : MonoBehaviour
         greenSlider = GameObject.Find("GreenSlider").GetComponent<Slider>();
         blueSlider = GameObject.Find("BlueSlider").GetComponent<Slider>();
 
+        redSlider.value = GameStats.Instance.redColor * 255;
+        greenSlider.value = GameStats.Instance.greenColor * 255;
+        blueSlider.value = GameStats.Instance.blueColor * 255;
+
         redText = GameObject.Find("RedNumText").GetComponent<Text>();
         greenText = GameObject.Find("GreenNumText").GetComponent<Text>();
         blueText = GameObject.Find("BlueNumText").GetComponent<Text>();
