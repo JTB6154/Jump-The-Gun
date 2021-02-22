@@ -25450,7 +25450,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 14.959661, y: 2.716221}
+  - {x: 14.971907, y: 2.7194524}
   - {x: 50.48277, y: 2.7108746}
   - {x: 83.88273, y: 2.686527}
   - {x: 72.28254, y: 1.1733463}
@@ -25477,9 +25477,9 @@ EdgeCollider2D:
   - {x: 55.93618, y: -4.1748347}
   - {x: 48.181618, y: -4.7463336}
   - {x: -31.317268, y: -4.13171}
-  - {x: -18.051641, y: 1.558382}
-  - {x: 14.539072, y: 2.7014694}
-  - {x: 14.959661, y: 2.716221}
+  - {x: -17.997406, y: 1.5170227}
+  - {x: 14.551853, y: 2.7041326}
+  - {x: 14.971907, y: 2.7194524}
 --- !u!114 &841001509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25487,7 +25487,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841001506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
   m_Name: 
@@ -25495,7 +25495,7 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 0
     m_ControlPoints:
-    - position: {x: 14.959661, y: 2.7162092, z: 0}
+    - position: {x: 14.971907, y: 2.7194405, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -25567,7 +25567,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: -18.051638, y: 1.5582621, z: 0}
+    - position: {x: -17.997402, y: 1.5169028, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -25598,7 +25598,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841001506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -25637,8 +25637,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 409f7d395e394994294bea7a1e07a394, type: 3}
   m_LocalAABB:
-    m_Center: {x: 26.271292, y: -1.0150564, z: -0.0004}
-    m_Extent: {x: 57.612217, y: 3.7372653, z: 0.0004}
+    m_Center: {x: 26.271404, y: -1.0134406, z: -0.0004}
+    m_Extent: {x: 57.612103, y: 3.738881, z: 0.0004}
 --- !u!1 &857804217
 GameObject:
   m_ObjectHideFlags: 0
